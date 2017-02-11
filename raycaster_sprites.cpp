@@ -47,7 +47,7 @@ int worldMap[mapWidth][mapHeight] =
     {2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
   };
 
-class Sprite
+class Enemy
 {
 public:
   double x;
@@ -56,13 +56,17 @@ public:
   double startX, startY;
   const float speed = 1.5;
   float elapsed;
-
-  Sprite(double x_, double y_, int tex);
+  bool alive;
+  int health;
+  float distance;
+  Enemy(double x_, double y_, int tex);
 
   void move_to(double x, double y);
+  void onDamage();
+  void update(double x_, double y_);
 };
 
-Sprite::Sprite(double x_, double y_, int tex)
+Enemy::Enemy(double x_, double y_, int tex)
 {
   elapsed = 0.01f;
   startX = x_;
@@ -70,10 +74,24 @@ Sprite::Sprite(double x_, double y_, int tex)
   x = x_;
   y = y_;
   texture = tex;
+  alive = true;
+  health = 100;
 }
 
-void Sprite::move_to(double x_, double y_){
-  float distance = sqrt(pow(x_-x,2)+pow(y_-y,2));
+void Enemy::update(double x_, double y_)
+{
+  if(alive){
+    std::cout << health << std::endl;
+    distance = sqrt(pow(x_-x,2)+pow(y_-y,2));
+    if(distance > 2){
+      move_to(x_,y_);
+    }else{
+      onDamage();
+    }
+  }
+}
+
+void Enemy::move_to(double x_, double y_){
   float directionX = (x_-x) / distance;
   float directionY = (y_-y) / distance;
 
@@ -81,9 +99,19 @@ void Sprite::move_to(double x_, double y_){
   y += directionY * speed * elapsed;
 }
 
-#define numSprites 2
+void Enemy::onDamage()
+{
+    if(health <= 0){
+      texture += 1;
+      alive = false;
+    }else{
+      health -= 10;
+  }
+}
 
-Sprite sprite[numSprites] = { {18.5, 10.5, 9}, {18.5, 11.5, 8}};
+#define numEnemies 1
+
+Enemy sprite[numEnemies] = {{18.5, 11.5, 8}};
 
 Uint32 buffer[screenHeight][screenWidth];
 
@@ -92,8 +120,8 @@ double ZBuffer[screenWidth];
 bool moveback = true;
 
 //arrays used to sort the sprites
-int spriteOrder[numSprites];
-double spriteDistance[numSprites];
+int spriteOrder[numEnemies];
+double spriteDistance[numEnemies];
 
 //function used to sort the sprites
 void combSort(int* order, double* dist, int amount);
@@ -292,15 +320,15 @@ int main(int /*argc*/, char */*argv*/[])
 
       //SPRITE CASTING
       //sort sprites from far to close
-      for(int i = 0; i < numSprites; i++)
+      for(int i = 0; i < numEnemies; i++)
 	{
 	  spriteOrder[i] = i;
 	  spriteDistance[i] = ((posX - sprite[i].x) * (posX - sprite[i].x) + (posY - sprite[i].y) * (posY - sprite[i].y)); //sqrt not taken, unneeded
 	}
-      combSort(spriteOrder, spriteDistance, numSprites);
+      combSort(spriteOrder, spriteDistance, numEnemies);
 
       //after sorting the sprites, do the projection and draw them
-      for(int i = 0; i < numSprites; i++)
+      for(int i = 0; i < numEnemies; i++)
 	{
 	  //translate sprite position to relative to camera
 	  double spriteX = sprite[spriteOrder[i]].x - posX;
@@ -357,7 +385,7 @@ int main(int /*argc*/, char */*argv*/[])
 		    if((color & 0x00FFFFFF) != 0) buffer[y][stripe] = color; //paint pixel if it isn't black, black is the invisible color
 		  }
 	    }
-	        for(int i = 0; i < numSprites; i++){
+	        for(int i = 0; i < numEnemies; i++){
       }
 
 	}
@@ -365,10 +393,10 @@ int main(int /*argc*/, char */*argv*/[])
       drawBuffer(buffer[0]);
       for(int x = 0; x < w; x++) for(int y = 0; y < h; y++) buffer[y][x] = 0; //clear the buffer instead cls of()
 
-      for(int i = 0; i < numSprites; i++){
-	sprite[i].move_to(posX,posY);
+      for(int i = 0; i < numEnemies; i++){
+	sprite[i].update(posX,posY);
       }
-      
+
       //timing for input and FPS counter
       oldTime = time;
       time = getTicks();
