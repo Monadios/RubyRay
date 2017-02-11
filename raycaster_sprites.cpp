@@ -53,20 +53,37 @@ public:
   double x;
   double y;
   int texture;
+  double startX, startY;
+  const float speed = 1.5;
+  float elapsed;
 
   Sprite(double x_, double y_, int tex);
+
+  void move_to(double x, double y);
 };
 
 Sprite::Sprite(double x_, double y_, int tex)
 {
+  elapsed = 0.01f;
+  startX = x_;
+  startY = y;
   x = x_;
   y = y_;
   texture = tex;
 }
 
-#define numSprites 1
+void Sprite::move_to(double x_, double y_){
+  float distance = sqrt(pow(x_-x,2)+pow(y_-y,2));
+  float directionX = (x_-x) / distance;
+  float directionY = (y_-y) / distance;
 
-Sprite sprite[numSprites] = { {18.5, 10.5, 9}};
+  x += directionX * speed * elapsed;
+  y += directionY * speed * elapsed;
+}
+
+#define numSprites 2
+
+Sprite sprite[numSprites] = { {18.5, 10.5, 9}, {18.5, 11.5, 8}};
 
 Uint32 buffer[screenHeight][screenWidth];
 
@@ -340,17 +357,25 @@ int main(int /*argc*/, char */*argv*/[])
 		    if((color & 0x00FFFFFF) != 0) buffer[y][stripe] = color; //paint pixel if it isn't black, black is the invisible color
 		  }
 	    }
+	        for(int i = 0; i < numSprites; i++){
+      }
+
 	}
 
       drawBuffer(buffer[0]);
       for(int x = 0; x < w; x++) for(int y = 0; y < h; y++) buffer[y][x] = 0; //clear the buffer instead cls of()
 
+      for(int i = 0; i < numSprites; i++){
+	sprite[i].move_to(posX,posY);
+      }
+      
       //timing for input and FPS counter
       oldTime = time;
       time = getTicks();
       double frameTime = (time - oldTime) / 1000.0; //frametime is the time this frame has taken, in seconds
       print(1.0 / frameTime); //FPS counter
       redraw();
+
 
       //speed modifiers
       double moveSpeed = frameTime * 3.0; //the constant value is in squares/second
