@@ -1,25 +1,26 @@
+#include <chrono>
+#include <thread>
 #include <cmath>
 #include <string>
 #include <vector>
+#include <iterator>
 #include <iostream>
-
-#include "quickcg.h"
+#include <SDL/SDL.h>
+#include "Utils/quickcg.h"
+#include "Player.h"
 using namespace QuickCG;
-
-/*
-  g++ *.cpp -lSDL -O3 -W -Wall -ansi -pedantic
-  g++ *.cpp -lSDL
-*/
-
 
 #define screenWidth 640
 #define screenHeight 480
 #define texWidth 64
 #define texHeight 64
-#define mapWidth 24
-#define mapHeight 24
 
-int worldMap[mapWidth][mapHeight] =
+#define enemyHeight 128
+#define enemyWidth 128
+
+double currentDist;
+
+std::vector<std::vector<int>> worldMap
   {
     {8,8,8,8,8,8,8,8,8,8,8,4,4,6,4,4,6,4,6,4,4,4,6,4},
     {8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
@@ -47,95 +48,58 @@ int worldMap[mapWidth][mapHeight] =
     {2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
   };
 
-class Enemy
+struct Obstacle
 {
-public:
   double x;
   double y;
   int texture;
-  double startX, startY;
-  const float speed = 1.5;
-  float elapsed;
-  bool alive;
-  int health;
-  float distance;
-  Enemy(double x_, double y_, int tex);
 
-  void move_to(double x, double y);
-  void onDamage();
-  void update(double x_, double y_);
+  virtual void update(Player* p)=0;
 };
 
-Enemy::Enemy(double x_, double y_, int tex)
+struct Enemy : public Obstacle
 {
-  elapsed = 0.01f;
-  startX = x_;
-  startY = y;
+  Enemy(double x, double y);
+  void update(Player* p);
+};
+
+Enemy::Enemy(double x_, double y_)
+{
   x = x_;
   y = y_;
-  texture = tex;
-  alive = true;
-  health = 100;
+  texture = 11;
 }
 
-void Enemy::update(double x_, double y_)
+void Enemy::update(Player* p)
 {
-  if(alive){
-    std::cout << health << std::endl;
-    distance = sqrt(pow(x_-x,2)+pow(y_-y,2));
-    if(distance > 2){
-      move_to(x_,y_);
-    }else{
-      onDamage();
-    }
-  }
 }
 
-void Enemy::move_to(double x_, double y_){
-  float directionX = (x_-x) / distance;
-  float directionY = (y_-y) / distance;
+#define numObstacles 2
 
-  x += directionX * speed * elapsed;
-  y += directionY * speed * elapsed;
-}
-
-void Enemy::onDamage()
-{
-    if(health <= 0){
-      texture += 1;
-      alive = false;
-    }else{
-      health -= 10;
-  }
-}
-
-#define numEnemies 1
-
-Enemy sprite[numEnemies] = {{18.5, 11.5, 8}};
+std::vector<Obstacle*> sprite;
 
 Uint32 buffer[screenHeight][screenWidth];
 
 //1D Zbuffer
 double ZBuffer[screenWidth];
-bool moveback = true;
 
 //arrays used to sort the sprites
-int spriteOrder[numEnemies];
-double spriteDistance[numEnemies];
+int spriteOrder[numObstacles];
+double spriteDistance[numObstacles];
 
 //function used to sort the sprites
 void combSort(int* order, double* dist, int amount);
 
 int main(int /*argc*/, char */*argv*/[])
 {
-  double posX = 22.0, posY = 11.5; //x and y start position
-  double dirX = -1.0, dirY = 0.0; //initial direction vector
-  double planeX = 0.0, planeY = 0.66; //the 2d raycaster version of camera plane
-
+  Player* p = new Player(22,11,-1,0,0,0.66);
   double time = 0; //time of current frame
   double oldTime = 0; //time of previous frame
 
-  std::vector<Uint32> texture[11];
+  sprite.push_back(new Enemy(18.5,11.5));
+  sprite.push_back(new Enemy(19.5,11.5));
+
+  std::vector<Uint32> texture[12];
   for(int i = 0; i < 11; i++) texture[i].resize(texWidth * texHeight);
 
   screen(screenWidth,screenHeight, 0, "Raycaster");
@@ -152,9 +116,12 @@ int main(int /*argc*/, char */*argv*/[])
   error |= loadImage(texture[7], tw, th, "pics/colorstone.png");
 
   //load some sprite textures
+  unsigned long gw;
+  unsigned long gh;
   error |= loadImage(texture[8], tw, th, "pics/barrel.png");
   error |= loadImage(texture[9], tw, th, "pics/pillar.png");
   error |= loadImage(texture[10], tw, th, "pics/greenlight.png");
+  error |= loadImage(texture[11], tw, th, "pics/guard.png");
   if(error) { std::cout << "error loading images" << std::endl; return 1; }
 
   //start the main loop
@@ -164,10 +131,10 @@ int main(int /*argc*/, char */*argv*/[])
 	{
 	  //calculate ray position and direction
 	  double cameraX = 2 * x / double(w) - 1; //x-coordinate in camera space
-	  double rayPosX = posX;
-	  double rayPosY = posY;
-	  double rayDirX = dirX + planeX * cameraX;
-	  double rayDirY = dirY + planeY * cameraX;
+	  double rayPosX = p->posX;
+	  double rayPosY = p->posY;
+	  double rayDirX = p->dirX + p->planeX * cameraX;
+	  double rayDirY = p->dirY + p->planeY * cameraX;
 
 	  //which box of the map we're in
 	  int mapX = int(rayPosX);
@@ -293,7 +260,7 @@ int main(int /*argc*/, char */*argv*/[])
 	      floorYWall = mapY + 1.0;
 	    }
 
-	  double distWall, distPlayer, currentDist;
+	  double distWall, distPlayer;
 
 	  distWall = perpWallDist;
 	  distPlayer = 0.0;
@@ -302,47 +269,53 @@ int main(int /*argc*/, char */*argv*/[])
 	  for(int y = drawEnd + 1; y < h; y++)
 	    {
 	      currentDist = h / (2.0 * y - h); //you could make a small lookup table for this instead
-
 	      double weight = (currentDist - distPlayer) / (distWall - distPlayer);
 
-	      double currentFloorX = weight * floorXWall + (1.0 - weight) * posX;
-	      double currentFloorY = weight * floorYWall + (1.0 - weight) * posY;
+	      double currentFloorX = weight * floorXWall + (1.0 - weight) * p->posX;
+	      double currentFloorY = weight * floorYWall + (1.0 - weight) * p->posY;
 
 	      int floorTexX, floorTexY;
 	      floorTexX = int(currentFloorX * texWidth) % texWidth;
 	      floorTexY = int(currentFloorY * texHeight) % texHeight;
-	      Uint32 floorColor = (texture[3][texWidth * floorTexY + floorTexX]>>1)&8355711;
-	      Uint32 ceilingColor = (texture[6][texWidth * floorTexY + floorTexX] >>1)&8355711;
-	      buffer[y][x] = floorColor;
-	      buffer[h - y][x] = ceilingColor;
+
+	      //floor
+	      buffer[y][x] = (texture[3][texWidth * floorTexY + floorTexX] >> 1) & 8355711;
+	      //ceiling (symmetrical!)
+	      buffer[h - y][x] = texture[6][texWidth * floorTexY + floorTexX];
+
 	    }
 	}
 
       //SPRITE CASTING
       //sort sprites from far to close
-      for(int i = 0; i < numEnemies; i++)
+      for(int i = 0; i < numObstacles; i++)
 	{
 	  spriteOrder[i] = i;
-	  spriteDistance[i] = ((posX - sprite[i].x) * (posX - sprite[i].x) + (posY - sprite[i].y) * (posY - sprite[i].y)); //sqrt not taken, unneeded
+	  spriteDistance[i] = ((p->posX - sprite[i]->x) * (p->posX - sprite[i]->x) + (p->posY - sprite[i]->y) * (p->posY - sprite[i]->y)); //sqrt not taken, unneeded
 	}
-      combSort(spriteOrder, spriteDistance, numEnemies);
+      combSort(spriteOrder, spriteDistance, numObstacles);
+
+      std::for_each(std::begin(sprite), std::end(sprite), [=](Obstacle* e)
+		    {
+		      e->update(p);
+		    });
 
       //after sorting the sprites, do the projection and draw them
-      for(int i = 0; i < numEnemies; i++)
+      for(int i = 0; i < numObstacles; i++)
 	{
 	  //translate sprite position to relative to camera
-	  double spriteX = sprite[spriteOrder[i]].x - posX;
-	  double spriteY = sprite[spriteOrder[i]].y - posY;
+	  double spriteX = sprite[spriteOrder[i]]->x - p->posX;
+	  double spriteY = sprite[spriteOrder[i]]->y - p->posY;
 
 	  //transform sprite with the inverse camera matrix
-	  // [ planeX   dirX ] -1                                       [ dirY      -dirX ]
-	  // [               ]       =  1/(planeX*dirY-dirX*planeY) *   [                 ]
-	  // [ planeY   dirY ]                                          [ -planeY  planeX ]
+	  // [ p->planeX   p->dirX ] -1                                       [ p->dirY      -p->dirX ]
+	  // [               ]       =  1/(p->planeX*p->dirY-p->dirX*p->planeY) *   [                 ]
+	  // [ p->planeY   p->dirY ]                                          [ -p->planeY  p->planeX ]
 
-	  double invDet = 1.0 / (planeX * dirY - dirX * planeY); //required for correct matrix multiplication
+	  double invDet = 1.0 / (p->planeX * p->dirY - p->dirX * p->planeY); //required for correct matrix multiplication
 
-	  double transformX = invDet * (dirY * spriteX - dirX * spriteY);
-	  double transformY = invDet * (-planeY * spriteX + planeX * spriteY); //this is actually the depth inside the screen, that what Z is in 3D
+	  double transformX = invDet * (p->dirY * spriteX - p->dirX * spriteY);
+	  double transformY = invDet * (-p->planeY * spriteX + p->planeX * spriteY); //this is actually the depth inside the screen, that what Z is in 3D
 
 	  int spriteScreenX = int((w / 2) * (1 + transformX / transformY));
 
@@ -370,7 +343,6 @@ int main(int /*argc*/, char */*argv*/[])
 	  //loop through every vertical stripe of the sprite on screen
 	  for(int stripe = drawStartX; stripe < drawEndX; stripe++)
 	    {
-	      int texX = int(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * texWidth / spriteWidth) / 256;
 	      //the conditions in the if are:
 	      //1) it's in front of camera plane so you don't see things behind you
 	      //2) it's on the screen (left)
@@ -380,69 +352,32 @@ int main(int /*argc*/, char */*argv*/[])
 		for(int y = drawStartY; y < drawEndY; y++) //for every pixel of the current stripe
 		  {
 		    int d = (y-vMoveScreen) * 256 - h * 128 + spriteHeight * 128; //256 and 128 factors to avoid floats
-		    int texY = ((d * texHeight) / spriteHeight) / 256;
-		    Uint32 color = texture[sprite[spriteOrder[i]].texture][texWidth * texY + texX]; //get current color from the texture
+		    int tex = sprite[spriteOrder[i]]->texture;
+		    int texY;
+		    int texX;
+		    texX = int(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * texWidth / spriteWidth) / 256;
+		    texY = ((d * enemyHeight) / spriteHeight) / 256;
+		    Uint32 color = texture[tex][texWidth * texY + texX]; //get current color from the texture
 		    if((color & 0x00FFFFFF) != 0) buffer[y][stripe] = color; //paint pixel if it isn't black, black is the invisible color
 		  }
 	    }
-	        for(int i = 0; i < numEnemies; i++){
-      }
-
 	}
 
-      drawBuffer(buffer[0]);
-      for(int x = 0; x < w; x++) for(int y = 0; y < h; y++) buffer[y][x] = 0; //clear the buffer instead cls of()
 
-      for(int i = 0; i < numEnemies; i++){
-	sprite[i].update(posX,posY);
-      }
+      drawBuffer(buffer[0]);
+      for(int x = 0; x < w; x++) for(int y = 0; y < h; y++) buffer[y][x] = 0; //clear the buffer instead of cls()
 
       //timing for input and FPS counter
       oldTime = time;
       time = getTicks();
       double frameTime = (time - oldTime) / 1000.0; //frametime is the time this frame has taken, in seconds
-      print(1.0 / frameTime); //FPS counter
       redraw();
 
 
       //speed modifiers
-      double moveSpeed = frameTime * 3.0; //the constant value is in squares/second
-      double rotSpeed = frameTime * 2.0; //the constant value is in radians/second
-      readKeys();
-      //move forward if no wall in front of you
-      if (keyDown(SDLK_UP))
-	{
-	  if(worldMap[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
-	  if(worldMap[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
-	}
-      //move backwards if no wall behind you
-      if (keyDown(SDLK_DOWN))
-	{
-	  if(worldMap[int(posX - dirX * moveSpeed)][int(posY)] == false) posX -= dirX * moveSpeed;
-	  if(worldMap[int(posX)][int(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
-	}
-      //rotate to the right
-      if (keyDown(SDLK_RIGHT))
-	{
-	  //both camera direction and camera plane must be rotated
-	  double oldDirX = dirX;
-	  dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
-	  dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
-	  double oldPlaneX = planeX;
-	  planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
-	  planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
-	}
-      //rotate to the left
-      if (keyDown(SDLK_LEFT))
-	{
-	  //both camera direction and camera plane must be rotated
-	  double oldDirX = dirX;
-	  dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
-	  dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
-	  double oldPlaneX = planeX;
-	  planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
-	  planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
-	}
+      p->moveSpeed = frameTime * 3.0; //the constant value is in squares/second
+      p->rotSpeed = frameTime * 2.0; //the constant value is in radians/second
+      p->update(worldMap);
     }
 }
 
