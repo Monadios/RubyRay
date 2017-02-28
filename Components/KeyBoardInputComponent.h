@@ -1,7 +1,7 @@
 #ifndef KeyBoardInputComponent_H
 #define KeyBoardInputComponent_H
 struct Player;
-#include "/home/gustav/raycastercpp/Player.h"
+#include "/home/gustav/raycastercpp/Classes/Player.h"
 #include <SDL/SDL.h>
 #include "../Utils/quickcg.h"
 struct KeyBoardInputComponent

@@ -7,7 +7,8 @@
 #include <iostream>
 #include <SDL/SDL.h>
 #include "Utils/quickcg.h"
-#include "Player.h"
+#include "Classes/Player.h"
+#include "Classes/GameObject.h"
 using namespace QuickCG;
 
 #define screenWidth 640
@@ -48,16 +49,8 @@ std::vector<std::vector<int>> worldMap
     {2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
   };
 
-struct Obstacle
-{
-  double x;
-  double y;
-  int texture;
 
-  virtual void update(Player* p)=0;
-};
-
-struct Enemy : public Obstacle
+struct Enemy : public GameObject
 {
   Enemy(double x, double y);
   void update(Player* p);
@@ -76,7 +69,7 @@ void Enemy::update(Player* p)
 
 #define numObstacles 2
 
-std::vector<Obstacle*> sprite;
+std::vector<GameObject*> sprite;
 
 Uint32 buffer[screenHeight][screenWidth];
 
@@ -295,7 +288,7 @@ int main(int /*argc*/, char */*argv*/[])
 	}
       combSort(spriteOrder, spriteDistance, numObstacles);
 
-      std::for_each(std::begin(sprite), std::end(sprite), [=](Obstacle* e)
+      std::for_each(std::begin(sprite), std::end(sprite), [=](GameObject* e)
 		    {
 		      e->update(p);
 		    });

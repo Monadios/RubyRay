@@ -1,0 +1,8 @@
+;;AI
+;;Animation
+;;Weapon
+;;Render Class
+;; World Class
+;;Components
+;; Add Event System -> more immutability
+;; Add Graphics Class and Draw() function instead of manual buffer mutation

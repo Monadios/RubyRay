@@ -1,4 +1,4 @@
-#include "/home/gustav/raycastercpp/Components/KeyBoardInputComponent.h"
+#include "./KeyBoardInputComponent.h"
 KeyBoardInputComponent::KeyBoardInputComponent()
 {
   keyboard = {};
