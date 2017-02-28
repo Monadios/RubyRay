@@ -8,6 +8,7 @@
 #include <SDL/SDL.h>
 #include "Utils/quickcg.h"
 #include "Classes/Player.h"
+#include "Classes/Enemy.h"
 #include "Classes/GameObject.h"
 using namespace QuickCG;
 
@@ -49,24 +50,6 @@ std::vector<std::vector<int>> worldMap
     {2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
   };
 
-
-struct Enemy : public GameObject
-{
-  Enemy(double x, double y);
-  void update(Player* p);
-};
-
-Enemy::Enemy(double x_, double y_)
-{
-  x = x_;
-  y = y_;
-  texture = 11;
-}
-
-void Enemy::update(Player* p)
-{
-}
-
 #define numObstacles 2
 
 std::vector<GameObject*> sprite;
@@ -99,22 +82,22 @@ int main(int /*argc*/, char */*argv*/[])
 
   //load some textures
   unsigned long tw, th, error = 0;
-  error |= loadImage(texture[0], tw, th, "pics/eagle.png");
-  error |= loadImage(texture[1], tw, th, "pics/redbrick.png");
-  error |= loadImage(texture[2], tw, th, "pics/purplestone.png");
-  error |= loadImage(texture[3], tw, th, "pics/greystone.png");
-  error |= loadImage(texture[4], tw, th, "pics/bluestone.png");
-  error |= loadImage(texture[5], tw, th, "pics/mossy.png");
-  error |= loadImage(texture[6], tw, th, "pics/wood.png");
-  error |= loadImage(texture[7], tw, th, "pics/colorstone.png");
+  error |= loadImage(texture[0], tw, th, "Media/eagle.png");
+  error |= loadImage(texture[1], tw, th, "Media/redbrick.png");
+  error |= loadImage(texture[2], tw, th, "Media/purplestone.png");
+  error |= loadImage(texture[3], tw, th, "Media/greystone.png");
+  error |= loadImage(texture[4], tw, th, "Media/bluestone.png");
+  error |= loadImage(texture[5], tw, th, "Media/mossy.png");
+  error |= loadImage(texture[6], tw, th, "Media/wood.png");
+  error |= loadImage(texture[7], tw, th, "Media/colorstone.png");
 
   //load some sprite textures
   unsigned long gw;
   unsigned long gh;
-  error |= loadImage(texture[8], tw, th, "pics/barrel.png");
-  error |= loadImage(texture[9], tw, th, "pics/pillar.png");
-  error |= loadImage(texture[10], tw, th, "pics/greenlight.png");
-  error |= loadImage(texture[11], tw, th, "pics/guard.png");
+  error |= loadImage(texture[8], tw, th, "Media/barrel.png");
+  error |= loadImage(texture[9], tw, th, "Media/pillar.png");
+  error |= loadImage(texture[10], tw, th, "Media/greenlight.png");
+  error |= loadImage(texture[11], tw, th, "Media/guard.png");
   if(error) { std::cout << "error loading images" << std::endl; return 1; }
 
   //start the main loop
