@@ -3,7 +3,7 @@
 struct Player;
 #include "/home/gustav/raycastercpp/Player.h"
 #include <SDL/SDL.h>
-#include "quickcg.h"
+#include "../Utils/quickcg.h"
 struct KeyBoardInputComponent
 {
   std::vector<std::vector<int>> worldMap;
