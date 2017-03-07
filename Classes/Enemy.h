@@ -1,11 +1,12 @@
-#ifndef ENEMY_H
-#define ENEMY_H
 #include "./GameObject.h"
 
-struct Enemy : GameObject
+#ifndef ENEMY_H
+#define ENEMY_H
+
+struct Enemy : public GameObject
 {
   Enemy(double x, double y);
-  void update(Player* p);
+  void update();
 };
 
 #endif

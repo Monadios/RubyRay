@@ -1,8 +1,12 @@
 ;;AI
 ;;Animation
 ;;Weapon
+;;Struct -> Class
 ;;Render Class
 ;; World Class
 ;;Components
 ;; Add Event System -> more immutability
 ;; Add Graphics Class and Draw() function instead of manual buffer mutation
+;;Data Driven Design
+;; Make Map and Enemies loaded from lua fil
+https://eliasdaler.wordpress.com/2015/08/10/using-lua-and-cpp-in-practice/

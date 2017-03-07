@@ -6,7 +6,7 @@ Enemy::Enemy(double x_, double y_)
   texture = 11;
 }
 
-void Enemy::update(Player* p)
+void Enemy::update()
 {
 }
 

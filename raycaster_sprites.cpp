@@ -273,7 +273,7 @@ int main(int /*argc*/, char */*argv*/[])
 
       std::for_each(std::begin(sprite), std::end(sprite), [=](GameObject* e)
 		    {
-		      e->update(p);
+		      e->update();
 		    });
 
       //after sorting the sprites, do the projection and draw them

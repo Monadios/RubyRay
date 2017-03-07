@@ -1,4 +1,5 @@
 #include "/home/gustav/raycastercpp/Player.h"
+
 Player::Player(double px, double py, double dx, double dy, double planX, double planY)
 {
   posX = px;
