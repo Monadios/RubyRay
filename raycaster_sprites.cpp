@@ -2,13 +2,16 @@
 #include <thread>
 #include <cmath>
 #include <string>
+#include <fstream>
 #include <vector>
 #include <iterator>
 #include <iostream>
 #include <SDL/SDL.h>
 #include "Utils/quickcg.h"
+#include "Utils/json/json.h"
 #include "Classes/Player.h"
 #include "Classes/Enemy.h"
+#include "Classes/Barrel.h"
 #include "Classes/GameObject.h"
 using namespace QuickCG;
 
@@ -16,9 +19,6 @@ using namespace QuickCG;
 #define screenHeight 480
 #define texWidth 64
 #define texHeight 64
-
-#define enemyHeight 128
-#define enemyWidth 128
 
 double currentDist;
 
@@ -73,10 +73,13 @@ int main(int /*argc*/, char */*argv*/[])
   double oldTime = 0; //time of previous frame
 
   sprite.push_back(new Enemy(18.5,11.5));
-  sprite.push_back(new Enemy(19.5,11.5));
+  sprite.push_back(new Barrel(19.5,11.5));
 
   std::vector<Uint32> texture[12];
   for(int i = 0; i < 11; i++) texture[i].resize(texWidth * texHeight);
+
+  Json::Value root;
+  std::ifstream config_doc("Data/test.json", std::ifstream::binary);
 
   screen(screenWidth,screenHeight, 0, "Raycaster");
 
@@ -332,7 +335,7 @@ int main(int /*argc*/, char */*argv*/[])
 		    int texY;
 		    int texX;
 		    texX = int(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * texWidth / spriteWidth) / 256;
-		    texY = ((d * enemyHeight) / spriteHeight) / 256;
+		    texY = ((d * texHeight) / spriteHeight) / 256;
 		    Uint32 color = texture[tex][texWidth * texY + texX]; //get current color from the texture
 		    if((color & 0x00FFFFFF) != 0) buffer[y][stripe] = color; //paint pixel if it isn't black, black is the invisible color
 		  }
