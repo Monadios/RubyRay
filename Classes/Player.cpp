@@ -12,7 +12,7 @@ Player::Player(double px, double py, double dx, double dy, double planX, double 
   _input = new KeyBoardInputComponent();
 }
 
-void Player::update(std::vector<std::vector<int>> map)
+void Player::update(const std::vector<std::vector<int>>& map)
 {
-  _input->update(this, map);
+  _input->update(this);
 }

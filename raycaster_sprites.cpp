@@ -22,8 +22,8 @@ using namespace QuickCG;
 
 double currentDist;
 
-std::vector<std::vector<int>> worldMap
-  {
+const std::vector<std::vector<int>> worldMap
+{
     {8,8,8,8,8,8,8,8,8,8,8,4,4,6,4,4,6,4,6,4,4,4,6,4},
     {8,0,0,0,0,0,0,0,0,0,8,4,0,0,0,0,0,0,0,0,0,0,0,4},
     {8,0,3,3,0,0,0,0,0,8,8,4,0,0,0,0,0,0,0,0,0,0,0,6},

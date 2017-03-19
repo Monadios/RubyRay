@@ -4,15 +4,16 @@
 struct KeyBoardInputComponent;
 #include "../Components/KeyBoardInputComponent.h"
 
-struct Player
+class Player
 {
+public:
   double posX,posY;
   double dirX, dirY; //initial direction vector
   double planeX, planeY = 0.66; //the 2d raycaster version of camera plane
   double rotSpeed;
   double moveSpeed;
   Player(double px, double py, double dx, double dy, double planX, double planY);
-  void update(std::vector<std::vector<int>> map);
+  void update(const std::vector<std::vector<int>>& map);
   KeyBoardInputComponent* _input;
 };
 #endif

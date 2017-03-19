@@ -5,8 +5,9 @@
 #include <string>
 #include <typeindex>
 
-struct GameObject
+class GameObject
 {
+public:
   double x;
   double y;
   int texture;

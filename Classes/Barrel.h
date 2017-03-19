@@ -3,8 +3,9 @@
 #ifndef BARREL_H
 #define BARREL_H
 
-struct Barrel : public GameObject
+class Barrel : public GameObject
 {
+public:
   Barrel(double x, double y);
   void update();
 };

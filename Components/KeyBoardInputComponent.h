@@ -1,14 +1,15 @@
 #ifndef KeyBoardInputComponent_H
 #define KeyBoardInputComponent_H
-struct Player;
-#include "/home/gustav/raycastercpp/Classes/Player.h"
+class Player;
+#include "../Classes/Player.h"
 #include <SDL/SDL.h>
 #include "../Utils/quickcg.h"
-struct KeyBoardInputComponent
+class KeyBoardInputComponent
 {
+public:
   std::vector<std::vector<int>> worldMap;
   KeyBoardInputComponent();
-  void update(Player* p,std::vector<std::vector<int>> map);
+  void update(Player* p);
   Uint8* keyboard;
 };
 

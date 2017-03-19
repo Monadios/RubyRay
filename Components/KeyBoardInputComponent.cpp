@@ -4,7 +4,7 @@ KeyBoardInputComponent::KeyBoardInputComponent()
   keyboard = {};
 }
 
-void KeyBoardInputComponent::update(Player* p, std::vector<std::vector<int>> worldMap)
+void KeyBoardInputComponent::update(Player* p)
 {
   SDL_PumpEvents();
   keyboard = SDL_GetKeyState(NULL);

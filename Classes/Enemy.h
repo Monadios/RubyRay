@@ -3,8 +3,9 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-struct Enemy : public GameObject
+class Enemy : public GameObject
 {
+public:
   Enemy(double x, double y);
   void update();
 };
