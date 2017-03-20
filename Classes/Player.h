@@ -2,6 +2,7 @@
 #define PLAYER_H
 #include <vector>
 struct KeyBoardInputComponent;
+class Camera;
 #include "../Components/KeyBoardInputComponent.h"
 #include "../Utils/Camera.h"
 
@@ -15,9 +16,9 @@ public:
   void update();
   double posX,posY;
   double dirX, dirY; //initial direction vector
-  double planeX, planeY = 0.66; //the 2d raycaster version of camera plane
+  Camera* camera;
+  bool moving = true;
 private:
   KeyBoardInputComponent* _input;
-
 };
 #endif

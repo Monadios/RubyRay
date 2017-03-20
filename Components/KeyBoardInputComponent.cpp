@@ -25,24 +25,24 @@ void KeyBoardInputComponent::update(Player* p)
   //rotate to the right
   if (keyboard[SDLK_RIGHT])
     {
-      //both camera p->direction and camera p->plane must be rotated
+      //both camera p->direction and camera p->camera->pl must be rotated
       double oldPosDirX = p->dirX;
       p->dirX = p->dirX * cos(-p->rotSpeed) - p->dirY * sin(-p->rotSpeed);
       p->dirY = oldPosDirX * sin(-p->rotSpeed) + p->dirY * cos(-p->rotSpeed);
-      double oldPosPlaneX = p->planeX;
-      p->planeX = p->planeX * cos(-p->rotSpeed) - p->planeY * sin(-p->rotSpeed);
-      p->planeY = oldPosPlaneX * sin(-p->rotSpeed) + p->planeY * cos(-p->rotSpeed);
+      double oldPosPlaneX = p->camera->plX;
+      p->camera->plX = p->camera->plX * cos(-p->rotSpeed) - p->camera->plY * sin(-p->rotSpeed);
+      p->camera->plY = oldPosPlaneX * sin(-p->rotSpeed) + p->camera->plY * cos(-p->rotSpeed);
     }
   //rotate to the left
   if (keyboard[SDLK_LEFT])
     {
-      //both camera p->direction and camera p->plane must be rotated
+      //both camera p->direction and camera p->camera->pl must be rotated
       double oldPosDirX = p->dirX;
       p->dirX = p->dirX * cos(p->rotSpeed) - p->dirY * sin(p->rotSpeed);
       p->dirY = oldPosDirX * sin(p->rotSpeed) + p->dirY * cos(p->rotSpeed);
-      double oldPosPlaneX = p->planeX;
-      p->planeX = p->planeX * cos(p->rotSpeed) - p->planeY * sin(p->rotSpeed);
-      p->planeY = oldPosPlaneX * sin(p->rotSpeed) + p->planeY * cos(p->rotSpeed);
+      double oldPosPlaneX = p->camera->plX;
+      p->camera->plX = p->camera->plX * cos(p->rotSpeed) - p->camera->plY * sin(p->rotSpeed);
+      p->camera->plY = oldPosPlaneX * sin(p->rotSpeed) + p->camera->plY * cos(p->rotSpeed);
     }
 
 }
