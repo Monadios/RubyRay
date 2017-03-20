@@ -43,10 +43,8 @@ const std::vector<std::vector<int>> worldMap
     {2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
   };
 
-std::vector<GameObject*> sprite;
+std::vector<GameObject*> sprites;
 
-//function used to sort the sprites
-void combSort(int* order, double* dist, int amount);
 
 int main(int /*argc*/, char */*argv*/[])
 {
@@ -55,8 +53,8 @@ int main(int /*argc*/, char */*argv*/[])
   double oldTime = 0; //time of previous frame
 
   Camera* cam = new Camera(p);
-  sprite.push_back(new Enemy(18.5,11.5));
-  sprite.push_back(new Barrel(19.5,11.5));
+  sprites.push_back(new Enemy(18.5,11.5));
+  sprites.push_back(new Barrel(19.5,11.5));
 
 
   //start the main loop
@@ -70,31 +68,7 @@ int main(int /*argc*/, char */*argv*/[])
       p->moveSpeed = frameTime * 3.0; //the constant value is in squares/second
       p->rotSpeed = frameTime * 2.0; //the constant value is in radians/second
       p->update();
-      cam->render(worldMap);
+      cam->render(worldMap, sprites);
     }
 }
 
-//sort algorithm
-void combSort(int* order, double* dist, int amount)
-{
-  int gap = amount;
-  bool swapped = false;
-  while(gap > 1 || swapped)
-    {
-      //shrink factor 1.3
-      gap = (gap * 10) / 13;
-      if(gap == 9 || gap == 10) gap = 11;
-      if (gap < 1) gap = 1;
-      swapped = false;
-      for (int i = 0; i < amount - gap; i++)
-	{
-	  int j = i + gap;
-	  if (dist[i] < dist[j])
-	    {
-	      std::swap(dist[i], dist[j]);
-	      std::swap(order[i], order[j]);
-	      swapped = true;
-	    }
-	}
-    }
-}

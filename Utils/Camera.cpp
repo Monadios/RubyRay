@@ -45,7 +45,8 @@ Camera::Camera(Player* p)
 
 }
 
-void Camera::render(const std::vector<std::vector<int>>& worldMap)
+void Camera::render(const std::vector<std::vector<int>>& worldMap,
+		    std::vector<GameObject*> sprites)
 {
   for(int x = 0; x < QuickCG::w; x++)
     {
@@ -210,14 +211,14 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap)
 
   //SPRITE CASTING
   //sort sprites from far to close
-  /*  for(int i = 0; i < numObstacles; i++)
+    for(int i = 0; i < numObstacles; i++)
     {
       spriteOrder[i] = i;
-      spriteDistance[i] = ((player->posX - sprite[i]->x) * (player->posX - sprite[i]->x) + (player->posY - sprite[i]->y) * (player->posY - sprite[i]->y)); //sqrt not taken, unneeded
+      spriteDistance[i] = ((player->posX - sprites[i]->x) * (player->posX - sprites[i]->x) + (player->posY - sprites[i]->y) * (player->posY - sprites[i]->y)); //sqrt not taken, unneeded
     }
   combSort(spriteOrder, spriteDistance, numObstacles);
 
-  std::for_each(std::begin(sprite), std::end(sprite), [=](GameObject* e)
+  std::for_each(std::begin(sprites), std::end(sprites), [=](GameObject* e)
 		{
 		  e->update();
 		});
@@ -226,8 +227,8 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap)
   for(int i = 0; i < numObstacles; i++)
     {
       //translate sprite position to relative to camera
-      double spriteX = sprite[spriteOrder[i]]->x - player->posX;
-      double spriteY = sprite[spriteOrder[i]]->y - player->posY;
+      double spriteX = sprites[spriteOrder[i]]->x - player->posX;
+      double spriteY = sprites[spriteOrder[i]]->y - player->posY;
 
       //transform sprite with the inverse camera matrix
       // [ player->planeX   player->dirX ] -1                                       [ player->dirY      -player->dirX ]
@@ -239,7 +240,7 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap)
       double transformX = invDet * (player->dirY * spriteX - player->dirX * spriteY);
       double transformY = invDet * (-player->planeY * spriteX + player->planeX * spriteY); //this is actually the depth inside the screen, that what Z is in 3D
 
-      int spriteScreenX = int((w / 2) * (1 + transformX / transformY));
+      int spriteScreenX = int((QuickCG::w / 2) * (1 + transformX / transformY));
 
       //parameters for scaling and moving the sprites
 #define uDiv 1
@@ -248,19 +249,19 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap)
       int vMoveScreen = int(vMove / transformY);
 
       //calculate height of the sprite on screen
-      int spriteHeight = abs(int(h / (transformY))) / vDiv; //using "transformY" instead of the real distance prevents fisheye
+      int spriteHeight = abs(int(QuickCG::h / (transformY))) / vDiv; //using "transformY" instead of the real distance prevents fisheye
       //calculate lowest and highest pixel to fill in current stripe
-      int drawStartY = -spriteHeight / 2 + h / 2 + vMoveScreen;
+      int drawStartY = -spriteHeight / 2 + QuickCG::h / 2 + vMoveScreen;
       if(drawStartY < 0) drawStartY = 0;
-      int drawEndY = spriteHeight / 2 + h / 2 + vMoveScreen;
-      if(drawEndY >= h) drawEndY = h - 1;
+      int drawEndY = spriteHeight / 2 + QuickCG::h / 2 + vMoveScreen;
+      if(drawEndY >= QuickCG::h) drawEndY = QuickCG::h - 1;
 
       //calculate width of the sprite
-      int spriteWidth = abs( int (h / (transformY))) / uDiv;
+      int spriteWidth = abs( int (QuickCG::h / (transformY))) / uDiv;
       int drawStartX = -spriteWidth / 2 + spriteScreenX;
       if(drawStartX < 0) drawStartX = 0;
       int drawEndX = spriteWidth / 2 + spriteScreenX;
-      if(drawEndX >= w) drawEndX = w - 1;
+      if(drawEndX >= QuickCG::w) drawEndX = QuickCG::w - 1;
 
       //loop through every vertical stripe of the sprite on screen
       for(int stripe = drawStartX; stripe < drawEndX; stripe++)
@@ -270,11 +271,11 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap)
 	  //2) it's on the screen (left)
 	  //3) it's on the screen (right)
 	  //4) ZBuffer, with perpendicular distance
-	  if(transformY > 0 && stripe > 0 && stripe < w && transformY < ZBuffer[stripe])
+	  if(transformY > 0 && stripe > 0 && stripe < QuickCG::w && transformY < ZBuffer[stripe])
 	    for(int y = drawStartY; y < drawEndY; y++) //for every pixel of the current stripe
 	      {
-		int d = (y-vMoveScreen) * 256 - h * 128 + spriteHeight * 128; //256 and 128 factors to avoid floats
-		int tex = sprite[spriteOrder[i]]->texture;
+		int d = (y-vMoveScreen) * 256 - QuickCG::h * 128 + spriteHeight * 128; //256 and 128 factors to avoid floats
+		int tex = sprites[spriteOrder[i]]->texture;
 		int texY;
 		int texX;
 		texX = int(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * texWidth / spriteWidth) / 256;
@@ -284,7 +285,6 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap)
 	      }
 	}
     }
-  */
 
 
   QuickCG::drawBuffer(buffer[0]);
@@ -292,3 +292,28 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap)
   //clear the buffer instead of cls()
   QuickCG::redraw();
 }
+
+void Camera::combSort(int* order, double* dist, int amount)
+{
+  int gap = amount;
+  bool swapped = false;
+  while(gap > 1 || swapped)
+    {
+      //shrink factor 1.3
+      gap = (gap * 10) / 13;
+      if(gap == 9 || gap == 10) gap = 11;
+      if (gap < 1) gap = 1;
+      swapped = false;
+      for (int i = 0; i < amount - gap; i++)
+	{
+	  int j = i + gap;
+	  if (dist[i] < dist[j])
+	    {
+	      std::swap(dist[i], dist[j]);
+	      std::swap(order[i], order[j]);
+	      swapped = true;
+	    }
+	}
+    }
+}
+
