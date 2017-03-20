@@ -1,15 +1,60 @@
 #include "./Utils/quickcg.h"
+#include "./Utils/json/json.h"
+#include "./Camera.h"
+#include <fstream>
+#include <iostream>
 
-void render()
+#define texWidth 64
+#define texHeight 64
+
+/*
+  Problems with this file:
+  Does not render sprites
+  Has way too much knowledge of player
+  Depends on player coordinates -- should update in main loop
+  Probably More
+ */
+
+Camera::Camera(Player* p)
 {
-  for(int x = 0; x < w; x++)
+  player = p;
+  for(int i = 0; i < 11; i++) texture[i].resize(texWidth * texHeight);
+
+  QuickCG::screen(screenWidth,screenHeight, 0, "Raycaster");
+
+  //load some textures
+  unsigned long tw, th, error = 0;
+  error |= QuickCG::loadImage(texture[0], tw, th, "Media/eagle.png");
+  error |= QuickCG::loadImage(texture[1], tw, th, "Media/redbrick.png");
+  error |= QuickCG::loadImage(texture[2], tw, th, "Media/purplestone.png");
+  error |= QuickCG::loadImage(texture[3], tw, th, "Media/greystone.png");
+  error |= QuickCG::loadImage(texture[4], tw, th, "Media/bluestone.png");
+  error |= QuickCG::loadImage(texture[5], tw, th, "Media/mossy.png");
+  error |= QuickCG::loadImage(texture[6], tw, th, "Media/wood.png");
+  error |= QuickCG::loadImage(texture[7], tw, th, "Media/colorstone.png");
+
+  //load some sprite textures
+  unsigned long gw;
+  unsigned long gh;
+  error |= QuickCG::loadImage(texture[8], tw, th, "Media/barrel.png");
+  error |= QuickCG::loadImage(texture[9], tw, th, "Media/pillar.png");
+  error |= QuickCG::loadImage(texture[10], tw, th, "Media/greenlight.png");
+  error |= QuickCG::loadImage(texture[11], tw, th, "Media/guard.png");
+  //TODO: Add actual error handling (throw exception)
+  if(error) { std::cout << "error loading images" << std::endl; }
+
+}
+
+void Camera::render(const std::vector<std::vector<int>>& worldMap)
+{
+  for(int x = 0; x < QuickCG::w; x++)
     {
       //calculate ray position and direction
-      double cameraX = 2 * x / double(w) - 1; //x-coordinate in camera space
-      double rayPosX = p->posX;
-      double rayPosY = p->posY;
-      double rayDirX = p->dirX + p->planeX * cameraX;
-      double rayDirY = p->dirY + p->planeY * cameraX;
+      double cameraX = 2 * x / double(QuickCG::w) - 1; //x-coordinate in camera space
+      double rayPosX = player->posX;
+      double rayPosY = player->posY;
+      double rayDirX = player->dirX + player->planeX * cameraX;
+      double rayDirY = player->dirY + player->planeY * cameraX;
 
       //which box of the map we're in
       int mapX = int(rayPosX);
@@ -77,13 +122,13 @@ void render()
       else           perpWallDist = (mapY - rayPosY + (1 - stepY) / 2) / rayDirY;
 
       //Calculate height of line to draw on screen
-      int lineHeight = (int)(h / perpWallDist);
+      int lineHeight = (int)(QuickCG::h / perpWallDist);
 
       //calculate lowest and highest pixel to fill in current stripe
-      int drawStart = -lineHeight / 2 + h / 2;
+      int drawStart = -lineHeight / 2 + QuickCG::h / 2;
       if(drawStart < 0) drawStart = 0;
-      int drawEnd = lineHeight / 2 + h / 2;
-      if(drawEnd >= h) drawEnd = h - 1;
+      int drawEnd = lineHeight / 2 + QuickCG::h / 2;
+      if(drawEnd >= QuickCG::h) drawEnd = QuickCG::h - 1;
       //texturing calculations
       int texNum = worldMap[mapX][mapY] - 1; //1 subtracted from it so that texture 0 can be used!
 
@@ -99,7 +144,7 @@ void render()
       if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
       for(int y = drawStart; y < drawEnd; y++)
 	{
-	  int d = y * 256 - h * 128 + lineHeight * 128; //256 and 128 factors to avoid floats
+	  int d = y * 256 - QuickCG::h * 128 + lineHeight * 128; //256 and 128 factors to avoid floats
 	  int texY = ((d * texHeight) / lineHeight) / 256;
 	  int color = texture[texNum][texWidth * texY + texX];
 	  //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
@@ -139,15 +184,15 @@ void render()
 
       distWall = perpWallDist;
       distPlayer = 0.0;
-      if (drawEnd < 0) drawEnd = h; //becomes < 0 when the integer overflows
+      if (drawEnd < 0) drawEnd = QuickCG::h; //becomes < 0 when the integer overflows
       //draw the floor from drawEnd to the bottom of the screen
-      for(int y = drawEnd + 1; y < h; y++)
+      for(int y = drawEnd + 1; y < QuickCG::h; y++)
 	{
-	  currentDist = h / (2.0 * y - h); //you could make a small lookup table for this instead
+	  currentDist = QuickCG::h / (2.0 * y - QuickCG::h); //you could make a small lookup table for this instead
 	  double weight = (currentDist - distPlayer) / (distWall - distPlayer);
 
-	  double currentFloorX = weight * floorXWall + (1.0 - weight) * p->posX;
-	  double currentFloorY = weight * floorYWall + (1.0 - weight) * p->posY;
+	  double currentFloorX = weight * floorXWall + (1.0 - weight) * player->posX;
+	  double currentFloorY = weight * floorYWall + (1.0 - weight) * player->posY;
 
 	  int floorTexX, floorTexY;
 	  floorTexX = int(currentFloorX * texWidth) % texWidth;
@@ -156,17 +201,19 @@ void render()
 	  //floor
 	  buffer[y][x] = (texture[3][texWidth * floorTexY + floorTexX] >> 1) & 8355711;
 	  //ceiling (symmetrical!)
-	  buffer[h - y][x] = texture[6][texWidth * floorTexY + floorTexX];
+	  buffer[QuickCG::h - y][x] = texture[6][texWidth * floorTexY + floorTexX];
 
 	}
     }
 
+  // TODO: Add Sprites
+
   //SPRITE CASTING
   //sort sprites from far to close
-  for(int i = 0; i < numObstacles; i++)
+  /*  for(int i = 0; i < numObstacles; i++)
     {
       spriteOrder[i] = i;
-      spriteDistance[i] = ((p->posX - sprite[i]->x) * (p->posX - sprite[i]->x) + (p->posY - sprite[i]->y) * (p->posY - sprite[i]->y)); //sqrt not taken, unneeded
+      spriteDistance[i] = ((player->posX - sprite[i]->x) * (player->posX - sprite[i]->x) + (player->posY - sprite[i]->y) * (player->posY - sprite[i]->y)); //sqrt not taken, unneeded
     }
   combSort(spriteOrder, spriteDistance, numObstacles);
 
@@ -179,18 +226,18 @@ void render()
   for(int i = 0; i < numObstacles; i++)
     {
       //translate sprite position to relative to camera
-      double spriteX = sprite[spriteOrder[i]]->x - p->posX;
-      double spriteY = sprite[spriteOrder[i]]->y - p->posY;
+      double spriteX = sprite[spriteOrder[i]]->x - player->posX;
+      double spriteY = sprite[spriteOrder[i]]->y - player->posY;
 
       //transform sprite with the inverse camera matrix
-      // [ p->planeX   p->dirX ] -1                                       [ p->dirY      -p->dirX ]
-      // [               ]       =  1/(p->planeX*p->dirY-p->dirX*p->planeY) *   [                 ]
-      // [ p->planeY   p->dirY ]                                          [ -p->planeY  p->planeX ]
+      // [ player->planeX   player->dirX ] -1                                       [ player->dirY      -player->dirX ]
+      // [               ]       =  1/(player->planeX*player->dirY-player->dirX*player->planeY) *   [                 ]
+      // [ player->planeY   player->dirY ]                                          [ -player->planeY  player->planeX ]
 
-      double invDet = 1.0 / (p->planeX * p->dirY - p->dirX * p->planeY); //required for correct matrix multiplication
+      double invDet = 1.0 / (player->planeX * player->dirY - player->dirX * player->planeY); //required for correct matrix multiplication
 
-      double transformX = invDet * (p->dirY * spriteX - p->dirX * spriteY);
-      double transformY = invDet * (-p->planeY * spriteX + p->planeX * spriteY); //this is actually the depth inside the screen, that what Z is in 3D
+      double transformX = invDet * (player->dirY * spriteX - player->dirX * spriteY);
+      double transformY = invDet * (-player->planeY * spriteX + player->planeX * spriteY); //this is actually the depth inside the screen, that what Z is in 3D
 
       int spriteScreenX = int((w / 2) * (1 + transformX / transformY));
 
@@ -237,10 +284,11 @@ void render()
 	      }
 	}
     }
+  */
 
 
-  drawBuffer(buffer[0]);
-  for(int x = 0; x < w; x++) for(int y = 0; y < h; y++) buffer[y][x] = 0;
+  QuickCG::drawBuffer(buffer[0]);
+  for(int x = 0; x < QuickCG::w; x++) for(int y = 0; y < QuickCG::h; y++) buffer[y][x] = 0;
   //clear the buffer instead of cls()
-  redraw();
+  QuickCG::redraw();
 }
