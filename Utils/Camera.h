@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "./Classes/Player.h"
+#include "../Classes/Player.h"
 
 #define numObstacles 2
 #define screenWidth 640

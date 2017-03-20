@@ -1,7 +1,9 @@
 #include "./KeyBoardInputComponent.h"
-KeyBoardInputComponent::KeyBoardInputComponent()
+
+KeyBoardInputComponent::KeyBoardInputComponent(std::vector<std::vector<int>> map)
 {
   keyboard = {};
+  worldMap = map;
 }
 
 void KeyBoardInputComponent::update(Player* p)

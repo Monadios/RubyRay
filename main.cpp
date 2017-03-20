@@ -12,7 +12,7 @@
 #include "Classes/Enemy.h"
 #include "Classes/Barrel.h"
 #include "Classes/GameObject.h"
-#include "Camera.h"
+#include "Utils/Camera.h"
 using namespace QuickCG;
 
 const std::vector<std::vector<int>> worldMap
@@ -50,7 +50,7 @@ void combSort(int* order, double* dist, int amount);
 
 int main(int /*argc*/, char */*argv*/[])
 {
-  Player* p = new Player(22,11,-1,0,0,0.66);
+  Player* p = new Player(22,11,-1,0,0,0.66,worldMap);
   double time = 0; //time of current frame
   double oldTime = 0; //time of previous frame
 
@@ -69,7 +69,7 @@ int main(int /*argc*/, char */*argv*/[])
       //speed modifiers
       p->moveSpeed = frameTime * 3.0; //the constant value is in squares/second
       p->rotSpeed = frameTime * 2.0; //the constant value is in radians/second
-      p->update(worldMap);
+      p->update();
       cam->render(worldMap);
     }
 }
