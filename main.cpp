@@ -52,7 +52,7 @@ int main(int /*argc*/, char */*argv*/[])
   double time = 0; //time of current frame
   double oldTime = 0; //time of previous frame
 
-  Camera* cam = new Camera(p);
+  Camera* cam = new Camera(p->posX, p->posY, p->dirX, p->dirY);
   sprites.push_back(new Enemy(18.5,11.5));
   sprites.push_back(new Barrel(19.5,11.5));
 
@@ -68,6 +68,7 @@ int main(int /*argc*/, char */*argv*/[])
       p->moveSpeed = frameTime * 3.0; //the constant value is in squares/second
       p->rotSpeed = frameTime * 2.0; //the constant value is in radians/second
       p->update();
+      cam->pX+=0.01;
       cam->render(worldMap, sprites);
     }
 }

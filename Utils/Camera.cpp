@@ -15,10 +15,15 @@
   Probably More
  */
 
-Camera::Camera(Player* p)
+Camera::Camera(double _x,double _y, double _dx, double _dy)
 {
-  player = p;
   for(int i = 0; i < 11; i++) texture[i].resize(texWidth * texHeight);
+  pX = _x;
+  pY = _y;
+  dX = _dx;
+  dY = _dy;
+  plX = 0.0;
+  plY = 0.66;
 
   QuickCG::screen(screenWidth,screenHeight, 0, "Raycaster");
 
@@ -48,14 +53,14 @@ Camera::Camera(Player* p)
 void Camera::render(const std::vector<std::vector<int>>& worldMap,
 		    std::vector<GameObject*> sprites)
 {
-  for(int x = 0; x < QuickCG::w; x++)
+  for(int _x = 0; _x < QuickCG::w; _x++)
     {
       //calculate ray position and direction
-      double cameraX = 2 * x / double(QuickCG::w) - 1; //x-coordinate in camera space
-      double rayPosX = player->posX;
-      double rayPosY = player->posY;
-      double rayDirX = player->dirX + player->planeX * cameraX;
-      double rayDirY = player->dirY + player->planeY * cameraX;
+      double cameraX = 2 * _x / double(QuickCG::w) - 1; //x-coordinate in camera space
+      double rayPosX = pX;
+      double rayPosY = pY;
+      double rayDirX = dX + plX * cameraX;
+      double rayDirY = dY + plY * cameraX;
 
       //which box of the map we're in
       int mapX = int(rayPosX);
@@ -150,11 +155,11 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
 	  int color = texture[texNum][texWidth * texY + texX];
 	  //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
 	  if(side == 1) color = (color >> 1) & 8355711;
-	  buffer[y][x] = color;
+	  buffer[y][_x] = color;
 	}
 
       //SET THE ZBUFFER FOR THE SPRITE CASTING
-      ZBuffer[x] = perpWallDist; //perpendicular distance is used
+      ZBuffer[_x] = perpWallDist; //perpendicular distance is used
 
       //FLOOR CASTING
       double floorXWall, floorYWall; //x, y position of the floor texel at the bottom of the wall
@@ -192,17 +197,17 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
 	  currentDist = QuickCG::h / (2.0 * y - QuickCG::h); //you could make a small lookup table for this instead
 	  double weight = (currentDist - distPlayer) / (distWall - distPlayer);
 
-	  double currentFloorX = weight * floorXWall + (1.0 - weight) * player->posX;
-	  double currentFloorY = weight * floorYWall + (1.0 - weight) * player->posY;
+	  double currentFloorX = weight * floorXWall + (1.0 - weight) * pX;
+	  double currentFloorY = weight * floorYWall + (1.0 - weight) * pY;
 
 	  int floorTexX, floorTexY;
 	  floorTexX = int(currentFloorX * texWidth) % texWidth;
 	  floorTexY = int(currentFloorY * texHeight) % texHeight;
 
 	  //floor
-	  buffer[y][x] = (texture[3][texWidth * floorTexY + floorTexX] >> 1) & 8355711;
+	  buffer[y][_x] = (texture[3][texWidth * floorTexY + floorTexX] >> 1) & 8355711;
 	  //ceiling (symmetrical!)
-	  buffer[QuickCG::h - y][x] = texture[6][texWidth * floorTexY + floorTexX];
+	  buffer[QuickCG::h - y][_x] = texture[6][texWidth * floorTexY + floorTexX];
 
 	}
     }
@@ -214,7 +219,7 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
     for(int i = 0; i < numObstacles; i++)
     {
       spriteOrder[i] = i;
-      spriteDistance[i] = ((player->posX - sprites[i]->x) * (player->posX - sprites[i]->x) + (player->posY - sprites[i]->y) * (player->posY - sprites[i]->y)); //sqrt not taken, unneeded
+      spriteDistance[i] = ((pX - sprites[i]->x) * (pX - sprites[i]->x) + (pY - sprites[i]->y) * (pY - sprites[i]->y)); //sqrt not taken, unneeded
     }
   combSort(spriteOrder, spriteDistance, numObstacles);
 
@@ -227,18 +232,13 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
   for(int i = 0; i < numObstacles; i++)
     {
       //translate sprite position to relative to camera
-      double spriteX = sprites[spriteOrder[i]]->x - player->posX;
-      double spriteY = sprites[spriteOrder[i]]->y - player->posY;
+      double spriteX = sprites[spriteOrder[i]]->x - pX;
+      double spriteY = sprites[spriteOrder[i]]->y - pY;
 
-      //transform sprite with the inverse camera matrix
-      // [ player->planeX   player->dirX ] -1                                       [ player->dirY      -player->dirX ]
-      // [               ]       =  1/(player->planeX*player->dirY-player->dirX*player->planeY) *   [                 ]
-      // [ player->planeY   player->dirY ]                                          [ -player->planeY  player->planeX ]
+      double invDet = 1.0 / (plX * dY - dX * plY); //required for correct matrix multiplication
 
-      double invDet = 1.0 / (player->planeX * player->dirY - player->dirX * player->planeY); //required for correct matrix multiplication
-
-      double transformX = invDet * (player->dirY * spriteX - player->dirX * spriteY);
-      double transformY = invDet * (-player->planeY * spriteX + player->planeX * spriteY); //this is actually the depth inside the screen, that what Z is in 3D
+      double transformX = invDet * (dY * spriteX - dX * spriteY);
+      double transformY = invDet * (-plY * spriteX + plX * spriteY); //this is actually the depth inside the screen, that what Z is in 3D
 
       int spriteScreenX = int((QuickCG::w / 2) * (1 + transformX / transformY));
 
