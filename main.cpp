@@ -45,7 +45,6 @@ const std::vector<std::vector<int>> worldMap
 
 std::vector<GameObject*> sprites;
 
-
 int main(int /*argc*/, char */*argv*/[])
 {
   Player* p = new Player(22,11,-1,0,0,0.66,worldMap);
@@ -63,7 +62,12 @@ int main(int /*argc*/, char */*argv*/[])
       oldTime = time;
       time = getTicks();
       double frameTime = (time - oldTime) / 1000.0; //frametime is the time this frame has taken, in seconds
-      //speed modifiers
+
+      std::for_each(std::begin(sprites), std::end(sprites), [=](GameObject* e)
+		    {
+		      e->update();
+		    });
+
       p->moveSpeed = frameTime * 3.0; //the constant value is in squares/second
       p->rotSpeed = frameTime * 2.0; //the constant value is in radians/second
       p->update();

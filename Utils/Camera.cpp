@@ -223,11 +223,6 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
     }
   combSort(spriteOrder, spriteDistance, numObstacles);
 
-  std::for_each(std::begin(sprites), std::end(sprites), [=](GameObject* e)
-		{
-		  e->update();
-		});
-
   //after sorting the sprites, do the projection and draw them
   for(int i = 0; i < numObstacles; i++)
     {
