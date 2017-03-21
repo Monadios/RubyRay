@@ -10,6 +10,7 @@ class GameObject
 public:
   double x;
   double y;
+  GameObject();
   int texture;
   std::map<std::type_index, Component*> components;
 
@@ -23,6 +24,9 @@ public:
     }
     return nullptr;
   }
+private:
+  static int idCounter;
+  int id;
 };
 
 #endif

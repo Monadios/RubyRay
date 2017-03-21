@@ -15,10 +15,12 @@
 ;; https://github.com/open-source-parsers/jsoncpp/wiki
 ;;Components
 ;; Add Event System -> more immutability
+;;  RegisterCallback
 ;; Add Graphics Class and Draw() function instead of manual buffer mutation
 ;;Weapon
 ;;Animation
 ;;Debug Console
+;;Entity ID's
 https://eliasdaler.wordpress.com/2015/08/10/using-lua-and-cpp-in-practice/
 
   {
