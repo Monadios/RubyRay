@@ -1,5 +1,6 @@
 #include "./RubyRay.h"
 #include <vector>
+#include <iostream>
 #include "../Classes/GameObject.h"
 #include "../Classes/Enemy.h"
 #include "../Classes/Barrel.h"
@@ -17,10 +18,16 @@ Game::Game()
     TODO: Add a LoadLevel(Filename) function
    */
 
-  Json::Value root;
   std::vector<std::vector<int>> worldMap {};
-  std::ifstream json_doc("../Data/map.json", std::ifstream::binary);
-  json_doc >> root;
+
+  Json::Value root;
+  Json::Reader reader;
+  std::ifstream json_doc("map.json", std::ifstream::binary);
+  bool success = reader.parse(json_doc, root, false);
+  if (!success){
+    std::cout << reader.getFormatedErrorMessages() << std::endl;
+  }
+  
   for(auto val : root["map"]){
     std::vector<int> temp;
     for(auto square : val){
