@@ -22,7 +22,7 @@ Game::Game()
   std::vector<std::vector<int>> worldMap {};
 
   Json::Value root;
-  std::ifstream json_doc("./Classes/map.json", std::ios::binary);
+  std::ifstream json_doc("./Data/map.json", std::ios::binary);
   json_doc >> root;
   for(auto val : root["map"]){
     std::vector<int> temp;
