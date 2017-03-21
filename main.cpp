@@ -15,6 +15,7 @@
 #include "Classes/GameObject.h"
 #include "Utils/Camera.h"
 #include "Utils/Level.h"
+#include "Classes/RubyRay.h"
 using namespace QuickCG;
 
 /*
@@ -27,45 +28,11 @@ std::vector<GameObject*> sprites;
 
 int main(int /*argc*/, char */*argv*/[])
 {
-  Json::Value root;
-  std::vector<std::vector<int>> worldMap {};
-  std::ifstream json_doc("Data/map.json", std::ifstream::binary);
-  json_doc >> root;
-  for(auto val : root["map"]){
-    std::vector<int> temp;
-    for(auto square : val){
-      temp.push_back(square.asInt());
-    }
-    worldMap.push_back(temp);
-    temp.clear();
-  }
-  std::vector<GameObject*> sprite;
-
-  Player* p = new Player(22,11,-1,0,0,0.66,worldMap);
-  double time = 0; //time of current frame
-  double oldTime = 0; //time of previous frame
-
-  sprites.push_back(new Enemy(18.5,11.5));
-  sprites.push_back(new Barrel(19.5,11.5));
-
-  Level* level = new Level(sprites, worldMap);
+  Game* game = new Game();
   //start the main loop
   while(!done())
     {
-      //timing for input and FPS counter
-      oldTime = time;
-      time = getTicks();
-      double frameTime = (time - oldTime) / 1000.0; //frametime is the time this frame has taken, in seconds
-
-      std::for_each(std::begin(sprites), std::end(sprites), [=](GameObject* e)
-		    {
-		      e->update();
-		    });
-
-      p->moveSpeed = frameTime * 3.0; //the constant value is in squares/second
-      p->rotSpeed = frameTime * 2.0; //the constant value is in radians/second
-      p->update();
-      p->camera->render(level->worldMap, level->sprites);
+      game->MainLoop();
     }
 }
 
