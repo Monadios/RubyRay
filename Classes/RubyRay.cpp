@@ -7,7 +7,8 @@
 #include "../Utils/json/json.h"
 #include "Utils/quickcg.h"
 #include <fstream>
-
+#include <streambuf>
+#include <string>
 Game::Game()
 {
   std::vector<GameObject*> sprites;
@@ -21,13 +22,8 @@ Game::Game()
   std::vector<std::vector<int>> worldMap {};
 
   Json::Value root;
-  Json::Reader reader;
-  std::ifstream json_doc("map.json", std::ifstream::binary);
-  bool success = reader.parse(json_doc, root, false);
-  if (!success){
-    std::cout << reader.getFormatedErrorMessages() << std::endl;
-  }
-  
+  std::ifstream json_doc("./Classes/map.json", std::ios::binary);
+  json_doc >> root;
   for(auto val : root["map"]){
     std::vector<int> temp;
     for(auto square : val){
