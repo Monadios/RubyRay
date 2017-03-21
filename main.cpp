@@ -18,21 +18,14 @@
 #include "Classes/RubyRay.h"
 using namespace QuickCG;
 
-/*
-  TODO: Check if map is valid i.e wall along every edge to avoid infinite rays
-  and crashing
- */
-
 
 std::vector<GameObject*> sprites;
 
 int main(int /*argc*/, char */*argv*/[])
 {
   Game* game = new Game();
-  //start the main loop
-  while(!done())
-    {
-      game->MainLoop();
-    }
+  std::vector<GameObject*> temp = game->level->sprites;
+
+  game->MainLoop();
 }
 

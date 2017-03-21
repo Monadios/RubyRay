@@ -12,6 +12,7 @@ public:
   double y;
   GameObject();
   int texture;
+  int id;
   std::map<std::type_index, Component*> components;
 
   void addComponent(std::type_index, Component* c);
@@ -26,7 +27,6 @@ public:
   }
 private:
   static int idCounter;
-  int id;
 };
 
 #endif

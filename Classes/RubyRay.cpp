@@ -9,6 +9,7 @@
 #include <fstream>
 #include <streambuf>
 #include <string>
+
 Game::Game()
 {
   std::vector<GameObject*> sprites;
@@ -16,8 +17,11 @@ Game::Game()
   sprites.push_back(new Barrel(19.5,11.5));
 
   /*
-    TODO: Add a LoadLevel(Filename) function
-   */
+    TODO:
+    Add a LoadLevel(Filename) function
+    Check if map is valid i.e wall along every edge to avoid infinite rays
+    and crashing
+  */
 
   std::vector<std::vector<int>> worldMap {};
 
@@ -33,25 +37,26 @@ Game::Game()
     temp.clear();
   }
 
-
   player = new Player(22,11,-1,0,0,0.66,worldMap);
   level = new Level(sprites, worldMap);
 }
 
 void Game::MainLoop()
 {
-  oldTime = time;
-  time = QuickCG::getTicks();
-  double frameTime = (time - oldTime) / 1000.0; //frametime is the time this frame has taken, in seconds
+  while(!QuickCG::done()){
+    oldTime = time;
+    time = QuickCG::getTicks();
+    double frameTime = (time - oldTime) / 1000.0; //frametime is the time this frame has taken, in seconds
 
-  player->moveSpeed = frameTime * 3.0; //the constant value is in squares/second
-  player->rotSpeed = frameTime * 2.0; //the constant value is in radians/second
-  player->update();
+    player->moveSpeed = frameTime * 3.0; //the constant value is in squares/second
+    player->rotSpeed = frameTime * 2.0; //the constant value is in radians/second
+    player->update();
 
-  std::for_each(std::begin(level->sprites), std::end(level->sprites), [=](GameObject* e)
-		{
-		  e->update();
-		});
+    std::for_each(std::begin(level->sprites), std::end(level->sprites), [=](GameObject* e)
+		  {
+		    e->update();
+		  });
 
-  player->camera->render(level->worldMap, level->sprites);
+    player->camera->render(level->worldMap, level->sprites);
+  }
 }
