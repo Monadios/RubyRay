@@ -25,6 +25,8 @@ Camera::Camera(double _x,double _y, double _dx, double _dy)
   plX = 0.0;
   plY = 0.66;
 
+  QuickCG::screen(screenWidth,screenHeight, 0, "Raycaster");
+
   //load some textures
   unsigned long tw, th, error = 0;
   error |= QuickCG::loadImage(texture[0], tw, th, "Media/eagle.png");
@@ -45,13 +47,12 @@ Camera::Camera(double _x,double _y, double _dx, double _dy)
   error |= QuickCG::loadImage(texture[11], tw, th, "Media/guard.png");
   //TODO: Add actual error handling (throw exception)
   if(error) { std::cout << "error loading images" << std::endl; }
+
 }
 
 void Camera::render(const std::vector<std::vector<int>>& worldMap,
 		    std::vector<GameObject*> sprites)
 {
-  QuickCG::screen(screenWidth,screenHeight, 0, "Raycaster");
-
   for(int _x = 0; _x < QuickCG::w; _x++)
     {
       //calculate ray position and direction
@@ -83,6 +84,48 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
 
       //calculate step and initial sideDist
       if (rayDirX < 0)
+	{
+	  stepX = -1;
+	  sideDistX = (rayPosX - mapX) * deltaDistX;
+	}
+      else
+	{
+	  stepX = 1;
+	  sideDistX = (mapX + 1.0 - rayPosX) * deltaDistX;
+	}
+      if (rayDirY < 0)
+	{
+	  stepY = -1;
+	  sideDistY = (rayPosY - mapY) * deltaDistY;
+	}
+      else
+	{
+	  stepY = 1;
+	  sideDistY = (mapY + 1.0 - rayPosY) * deltaDistY;
+	}
+      //perform DDA
+      while (hit == 0)
+	{
+	  //jump to next map square, OR in x-direction, OR in y-direction
+	  if (sideDistX < sideDistY)
+	    {
+	      sideDistX += deltaDistX;
+	      mapX += stepX;
+	      side = 0;
+	    }
+	  else
+	    {
+	      sideDistY += deltaDistY;
+	      mapY += stepY;
+	      side = 1;
+	    }
+	  //Check if ray has hit a wall
+	  if (worldMap[mapX][mapY] > 0) hit = 1;
+	}
+
+      //Calculate distance of perpendicular ray (oblique distance will give fisheye effect!)
+      if (side == 0) perpWallDist = (mapX - rayPosX + (1 - stepX) / 2) / rayDirX;
+      else           perpWallDist = (mapY - rayPosY + (1 - stepY) / 2) / rayDirY;
 
       //Calculate height of line to draw on screen
       int lineHeight = (int)(QuickCG::h / perpWallDist);
