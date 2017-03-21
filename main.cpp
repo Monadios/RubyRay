@@ -14,6 +14,7 @@
 #include "Classes/Barrel.h"
 #include "Classes/GameObject.h"
 #include "Utils/Camera.h"
+#include "Utils/Level.h"
 using namespace QuickCG;
 
 /*
@@ -21,14 +22,13 @@ using namespace QuickCG;
   and crashing
  */
 
-std::vector<std::vector<int>> worldMap {};
 
 std::vector<GameObject*> sprites;
 
 int main(int /*argc*/, char */*argv*/[])
 {
   Json::Value root;
-
+  std::vector<std::vector<int>> worldMap {};
   std::ifstream json_doc("Data/map.json", std::ifstream::binary);
   json_doc >> root;
   for(auto val : root["map"]){
@@ -39,6 +39,7 @@ int main(int /*argc*/, char */*argv*/[])
     worldMap.push_back(temp);
     temp.clear();
   }
+  std::vector<GameObject*> sprite;
 
   Player* p = new Player(22,11,-1,0,0,0.66,worldMap);
   double time = 0; //time of current frame
@@ -47,8 +48,7 @@ int main(int /*argc*/, char */*argv*/[])
   sprites.push_back(new Enemy(18.5,11.5));
   sprites.push_back(new Barrel(19.5,11.5));
 
-  std::cout << worldMap[22][11] << std::endl;
-
+  Level* level = new Level(sprites, worldMap);
   //start the main loop
   while(!done())
     {
@@ -65,7 +65,7 @@ int main(int /*argc*/, char */*argv*/[])
       p->moveSpeed = frameTime * 3.0; //the constant value is in squares/second
       p->rotSpeed = frameTime * 2.0; //the constant value is in radians/second
       p->update();
-      p->camera->render(worldMap, sprites);
+      p->camera->render(level->worldMap, level->sprites);
     }
 }
 
