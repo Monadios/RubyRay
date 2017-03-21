@@ -27,10 +27,9 @@ std::vector<GameObject*> sprites;
 
 int main(int /*argc*/, char */*argv*/[])
 {
-
   Json::Value root;
 
-  std::ifstream json_doc("Data/test.json", std::ifstream::binary);
+  std::ifstream json_doc("Data/map.json", std::ifstream::binary);
   json_doc >> root;
   for(auto val : root["map"]){
     std::vector<int> temp;
