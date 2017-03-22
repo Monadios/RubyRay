@@ -24,3 +24,25 @@
 ;;Debug Console
 ;;Entity ID's
 https://eliasdaler.wordpress.com/2015/08/10/using-lua-and-cpp-in-practice/
+
+Event Handling:
+
+class Object
+      handleevent() = {
+      		      switch(event.type):
+			case: 
+      		      };
+end
+
+EventManager.subscribe(Object, eventype);
+EventQueue = [Event1,Event2,...]
+EventManager.handle(event) = {
+				listeners = findGameObjectsByEventType(event.type);
+				for listener in listeners:
+				    listener.handleevent(event)
+			     }
+
+
+{
+	events = ["PlayerShotEvent"]
+}
