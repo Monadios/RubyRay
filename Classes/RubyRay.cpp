@@ -26,7 +26,8 @@ Game::Game()
 
   std::vector<std::vector<int>> worldMap {};
   ConfigFileParser parser = ConfigFileParser();
-  Json::Value root = parser.loadFile("./Data/map.json");
+  //  std::cout << parser.get<Enemy>() << std::endl;
+  Json::Value root = parser.loadFile("map.json");
   for(auto val : root["map"]){
     std::vector<int> temp;
     for(auto square : val){
