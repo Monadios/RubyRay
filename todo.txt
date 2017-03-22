@@ -12,7 +12,8 @@
 ;;  scripted events files
 ;;Data Driven Design
 ;; Make Map and Enemies loaded from lua file
-;; https://github.com/open-source-parsers/jsoncpp/wiki
+https://github.com/open-source-parsers/jsoncpp/wiki
+https://eliasdaler.wordpress.com/2015/08/10/using-lua-and-cpp-in-practice/
 ;;Components
 ;; Add Event System -> more immutability
 ;;  RegisterCallback
@@ -25,7 +26,8 @@
 ;;Entity ID's
 ;;Make Component Data only -- add systems (ECS)
 ;;Improve Directory Structure
-https://eliasdaler.wordpress.com/2015/08/10/using-lua-and-cpp-in-practice/
+;;ConfigFileParser
+http://www.danielsoltyka.com/programming/2011/04/15/simple-class-serialization-with-jsoncpp/
 
 Event Handling:
 

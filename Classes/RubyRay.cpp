@@ -5,6 +5,7 @@
 #include "../Classes/Enemy.h"
 #include "../Classes/Barrel.h"
 #include "../Utils/json/json.h"
+#include "../Utils/ConfigFileParser.h"
 #include "Utils/quickcg.h"
 #include <fstream>
 #include <streambuf>
@@ -24,10 +25,8 @@ Game::Game()
   */
 
   std::vector<std::vector<int>> worldMap {};
-
-  Json::Value root;
-  std::ifstream json_doc("./Data/map.json", std::ios::binary);
-  json_doc >> root;
+  ConfigFileParser parser = ConfigFileParser();
+  Json::Value root = parser.loadFile("../Data/map.json");
   for(auto val : root["map"]){
     std::vector<int> temp;
     for(auto square : val){
