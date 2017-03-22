@@ -44,6 +44,7 @@ Game::Game()
 void Game::MainLoop()
 {
   while(!QuickCG::done()){
+    SDL_Delay(5); //so it consumes less processing power
     oldTime = time;
     time = QuickCG::getTicks();
     double frameTime = (time - oldTime) / 1000.0; //frametime is the time this frame has taken, in seconds
