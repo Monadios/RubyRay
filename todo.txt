@@ -24,6 +24,7 @@
 ;;Debug Console
 ;;Entity ID's
 ;;Make Component Data only -- add systems (ECS)
+;;Improve Directory Structure
 https://eliasdaler.wordpress.com/2015/08/10/using-lua-and-cpp-in-practice/
 
 Event Handling:

@@ -281,11 +281,25 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
 	}
     }
 
-
+  //clearScreen();
   QuickCG::drawBuffer(buffer[0]);
-  for(int x = 0; x < QuickCG::w; x++) for(int y = 0; y < QuickCG::h; y++) buffer[y][x] = 0;
-  //clear the buffer instead of cls()
+}
+
+void Camera::updateScreen()
+{
   QuickCG::redraw();
+}
+
+void Camera::clearScreen()
+{
+  for(int x = 0; x < QuickCG::w; x++) for(int y = 0; y < QuickCG::h; y++){
+      buffer[y][x] = 0;
+    }
+}
+
+void Camera::drawMiniMap(const std::vector<std::vector<int>>& worldMap)
+{
+  // To implement or not to implement... that is the question
 }
 
 void Camera::combSort(int* order, double* dist, int amount)

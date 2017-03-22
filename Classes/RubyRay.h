@@ -9,7 +9,7 @@ class Game
 public:
   Game();
   Player* player;
-  Level* level;
+  Level* curLevel; // This should be a list of levels
   void MainLoop();
 private:
   double time = 0; //time of current frame

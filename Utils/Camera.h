@@ -15,6 +15,14 @@ public:
   Camera(double _x,double _y, double _dx, double _dy);
   void render(const std::vector<std::vector<int>>& worldMap,
 	      std::vector<GameObject*> sprites);
+  void drawMiniMap(const std::vector<std::vector<int>>& worldMap);
+
+  /*
+    Note: these to functions should proably be made private
+   */
+
+  void clearScreen();
+  void updateScreen();
 
   double pX,pY;
   double dX,dY;

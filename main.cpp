@@ -24,8 +24,6 @@ std::vector<GameObject*> sprites;
 int main(int /*argc*/, char */*argv*/[])
 {
   Game* game = new Game();
-  std::vector<GameObject*> temp = game->level->sprites;
-
   game->MainLoop();
 }
 

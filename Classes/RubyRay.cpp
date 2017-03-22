@@ -38,7 +38,7 @@ Game::Game()
   }
 
   player = new Player(22,11,-1,0,0,0.66,worldMap);
-  level = new Level(sprites, worldMap);
+  curLevel = new Level(sprites, worldMap);
 }
 
 void Game::MainLoop()
@@ -53,11 +53,14 @@ void Game::MainLoop()
     player->rotSpeed = frameTime * 2.0; //the constant value is in radians/second
     player->update();
 
-    std::for_each(std::begin(level->sprites), std::end(level->sprites), [=](GameObject* e)
+    std::for_each(std::begin(curLevel->sprites), std::end(curLevel->sprites), [=](GameObject* e)
 		  {
 		    e->update();
 		  });
 
-    player->camera->render(level->worldMap, level->sprites);
+    player->camera->render(curLevel->worldMap, curLevel->sprites);
+    player->camera->drawMiniMap(curLevel->worldMap);
+    player->camera->clearScreen();
+    player->camera->updateScreen();
   }
 }
