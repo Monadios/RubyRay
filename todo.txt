@@ -1,5 +1,5 @@
 ;; Public -> private
-;;Immutability
+;; Immutability
 ;; Enemy rendering fix
 ;;AI
 ;;Transform class -> Position, Rotation
