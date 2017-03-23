@@ -12,5 +12,15 @@ Json::Value ConfigFileParser::loadFile(std::string path)
   return root;
 }
 
+Json::Value ConfigFileParser::get(std::string key)
+{
+  return root.get(key, VALUE_NOT_FOUND);
+}
+
+Json::Value ConfigFileParser::get(std::string key, Json::Value notfound)
+{
+  return root.get(key, notfound);
+}
+
 const std::string ConfigFileParser::DATA_FOLDER = "./Data/";
-const int ConfigFileParser::VALUE_NOT_FOUND = -1;
+const Json::Value ConfigFileParser::VALUE_NOT_FOUND = Json::Value::null;
