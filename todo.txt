@@ -24,9 +24,12 @@ https://eliasdaler.wordpress.com/2015/08/10/using-lua-and-cpp-in-practice/
 ;;Animation
 ;;Debug Console
 ;;Entity ID's
+;;Make it easier to place player.
 ;;Make Component Data only -- add systems (ECS)
 ;;Improve Directory Structure
 ;;ConfigFileParser
+;;Menu screen (stack loaded from file)
+http://gamedev.stackexchange.com/questions/72878/how-can-i-implement-a-main-menu
 http://www.danielsoltyka.com/programming/2011/04/15/simple-class-serialization-with-jsoncpp/
 
 Event Handling:

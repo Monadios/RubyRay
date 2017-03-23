@@ -28,6 +28,7 @@ Game::Game()
   ConfigFileParser parser = ConfigFileParser();
   parser.loadFile("map.json");
   Json::Value map = parser.get("map");
+  // TODO FIgure out what to do with failure
   if(map == ConfigFileParser::VALUE_NOT_FOUND){
     std::cout << "hello\n";
   }
@@ -40,7 +41,13 @@ Game::Game()
     temp.clear();
   }
 
-  player = new Player(22,11,-1,0,0,0.66,worldMap);
+  std::vector<int> coords;
+  
+  Json::Value playerPos = parser.get("player");
+  for(auto coord : playerPos){
+    coords.push_back(coord.asInt());
+  }
+  player = new Player(coords[0],coords[1],-1,0,0,0.66,worldMap);
   curLevel = new Level(sprites, worldMap);
 }
 
