@@ -24,7 +24,6 @@ https://eliasdaler.wordpress.com/2015/08/10/using-lua-and-cpp-in-practice/
 ;;Animation
 ;;Debug Console
 ;;Entity ID's
-;;Make it easier to place player.
 ;;Make Component Data only -- add systems (ECS)
 ;;Improve Directory Structure
 ;;ConfigFileParser
