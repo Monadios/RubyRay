@@ -1,12 +1,11 @@
 #include "./KeyBoardInputComponent.h"
 
-KeyBoardInputComponent::KeyBoardInputComponent(std::vector<std::vector<int>> map)
+KeyBoardInputComponent::KeyBoardInputComponent()
 {
   keyboard = {};
-  worldMap = map;
 }
 
-void KeyBoardInputComponent::update(Player* p)
+void KeyBoardInputComponent::update(Player* p, const std::vector<std::vector<int>>& worldMap)
 {
   SDL_PumpEvents();
   keyboard = SDL_GetKeyState(NULL);
@@ -44,5 +43,9 @@ void KeyBoardInputComponent::update(Player* p)
       p->camera->plX = p->camera->plX * cos(p->rotSpeed) - p->camera->plY * sin(p->rotSpeed);
       p->camera->plY = oldPosPlaneX * sin(p->rotSpeed) + p->camera->plY * cos(p->rotSpeed);
     }
+
+  if(keyboard[SDLK_SPACE]){
+    p->shoot = true;
+  }
 
 }

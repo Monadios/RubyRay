@@ -47,7 +47,7 @@ Game::Game()
   for(auto coord : playerPos){
     coords.push_back(coord.asInt());
   }
-  player = new Player(coords[0],coords[1],-1,0,0,0.66,worldMap);
+  player = new Player(coords[0],coords[1],-1,0,0,0.66);
   curLevel = new Level(sprites, worldMap);
 }
 
@@ -61,7 +61,7 @@ void Game::MainLoop()
 
     player->moveSpeed = frameTime * 3.0; //the constant value is in squares/second
     player->rotSpeed = frameTime * 2.0; //the constant value is in radians/second
-    player->update();
+    player->update(curLevel->worldMap);
 
     std::for_each(std::begin(curLevel->sprites), std::end(curLevel->sprites), [=](GameObject* e)
 		  {
@@ -72,5 +72,9 @@ void Game::MainLoop()
     player->camera->drawMiniMap(curLevel->worldMap);
     player->camera->clearScreen();
     player->camera->updateScreen();
+    if(player->shoot){
+      curLevel->worldMap[int(player->posX)+1][int(player->posY)] = 0;
+      player->shoot = false;
+    }
   }
 }

@@ -8,8 +8,8 @@ class KeyBoardInputComponent
 {
 public:
   std::vector<std::vector<int>> worldMap;
-  KeyBoardInputComponent( std::vector<std::vector<int>> map);
-  void update(Player* p);
+  KeyBoardInputComponent( );
+  void update(Player* p, const std::vector<std::vector<int>>& map);
   Uint8* keyboard;
 };
 
