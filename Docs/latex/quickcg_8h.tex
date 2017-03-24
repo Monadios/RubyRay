@@ -1,0 +1,164 @@
+\hypertarget{quickcg_8h}{\section{Utils/quickcg.h File Reference}
+\label{quickcg_8h}\index{Utils/quickcg.\-h@{Utils/quickcg.\-h}}
+}
+{\ttfamily \#include $<$S\-D\-L/\-S\-D\-L.\-h$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include $<$iomanip$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structQuickCG_1_1ColorRGB}{Quick\-C\-G\-::\-Color\-R\-G\-B}
+\item 
+struct \hyperlink{structQuickCG_1_1ColorRGB8bit}{Quick\-C\-G\-::\-Color\-R\-G\-B8bit}
+\item 
+struct \hyperlink{structQuickCG_1_1ColorHSL}{Quick\-C\-G\-::\-Color\-H\-S\-L}
+\item 
+struct \hyperlink{structQuickCG_1_1ColorHSV}{Quick\-C\-G\-::\-Color\-H\-S\-V}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceQuickCG}{Quick\-C\-G}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\const T \hyperlink{namespaceQuickCG_ac1a231e2857d21dae271a40e9832512a}{Quick\-C\-G\-::template\-\_\-abs} (const T \&a)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\-::string \hyperlink{namespaceQuickCG_a636cd1485648787aabf790a0f479bf4a}{Quick\-C\-G\-::valtostr} (const T \&val)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \hyperlink{namespaceQuickCG_aa5e87cb12327ca23aaa732a3aa8386aa}{Quick\-C\-G\-::strtoval} (const std\-::string \&s)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\-::string \hyperlink{namespaceQuickCG_a09e2d278caef33b316b15830f70ce1bd}{Quick\-C\-G\-::valtostr} (const T \&val, int length, bool fixed=true)
+\item 
+Color\-R\-G\-B \hyperlink{namespaceQuickCG_a910a9f0a870972575c3627e141e01a68}{Quick\-C\-G\-::operator+} (const Color\-R\-G\-B \&color, const Color\-R\-G\-B \&color2)
+\item 
+Color\-R\-G\-B \hyperlink{namespaceQuickCG_ab46d60da5dd5ec38e88a2676cc5a2825}{Quick\-C\-G\-::operator-\/} (const Color\-R\-G\-B \&color, const Color\-R\-G\-B \&color2)
+\item 
+Color\-R\-G\-B \hyperlink{namespaceQuickCG_a5ae0f52520fe1606bb9c9de7adb321ed}{Quick\-C\-G\-::operator$\ast$} (const Color\-R\-G\-B \&color, int a)
+\item 
+Color\-R\-G\-B \hyperlink{namespaceQuickCG_a46f3904adc4c12e4e4586784e03c35cc}{Quick\-C\-G\-::operator$\ast$} (int a, const Color\-R\-G\-B \&color)
+\item 
+Color\-R\-G\-B \hyperlink{namespaceQuickCG_af6948c5888f2777b73f5e9af0adb0000}{Quick\-C\-G\-::operator/} (const Color\-R\-G\-B \&color, int a)
+\item 
+bool \hyperlink{namespaceQuickCG_a4d855b23bc84fe6621a224404843738d}{Quick\-C\-G\-::operator==} (const Color\-R\-G\-B \&color, const Color\-R\-G\-B \&color2)
+\item 
+bool \hyperlink{namespaceQuickCG_acda02e6695432056866eef615f73ee75}{Quick\-C\-G\-::operator!=} (const Color\-R\-G\-B \&color, const Color\-R\-G\-B \&color2)
+\item 
+bool \hyperlink{namespaceQuickCG_a3329a7af20dfe853cb5aa4476e12a6fc}{Quick\-C\-G\-::key\-Down} (int key)
+\item 
+bool \hyperlink{namespaceQuickCG_af364edceae6d91568589973b352f418e}{Quick\-C\-G\-::key\-Pressed} (int key)
+\item 
+void \hyperlink{namespaceQuickCG_ab709f7bbf43f41108128b0e82b88ac8e}{Quick\-C\-G\-::screen} (int width, int height, bool fullscreen, const std\-::string \&text)
+\item 
+void \hyperlink{namespaceQuickCG_a647150b9ad0e184c2db64880f02f9165}{Quick\-C\-G\-::lock} ()
+\item 
+void \hyperlink{namespaceQuickCG_ab9196e3f3753545b5bee982b4c589966}{Quick\-C\-G\-::unlock} ()
+\item 
+void \hyperlink{namespaceQuickCG_a5cb5ee8eac050ffb902ac96942cebc9f}{Quick\-C\-G\-::redraw} ()
+\item 
+void \hyperlink{namespaceQuickCG_aecc5906ca7d961e3a399af585c6573fc}{Quick\-C\-G\-::cls} (const Color\-R\-G\-B \&color)
+\item 
+void \hyperlink{namespaceQuickCG_a547bd88946eb65c1b9e1c8ddbd531e7f}{Quick\-C\-G\-::pset} (int x, int y, const Color\-R\-G\-B \&color)
+\item 
+Color\-R\-G\-B \hyperlink{namespaceQuickCG_ad609e260b8ddad24e1c4c5ac4d7b28b5}{Quick\-C\-G\-::pget} (int x, int y)
+\item 
+void \hyperlink{namespaceQuickCG_af12d4c92530c77cae9950bc293a6c605}{Quick\-C\-G\-::draw\-Buffer} (Uint32 $\ast$buffer)
+\item 
+bool \hyperlink{namespaceQuickCG_ac55d9505ff5750289d64a6986e8277a1}{Quick\-C\-G\-::on\-Screen} (int x, int y)
+\item 
+void \hyperlink{namespaceQuickCG_a5270b33c0975788752bf72ebbe72f812}{Quick\-C\-G\-::sleep} ()
+\item 
+void \hyperlink{namespaceQuickCG_a6d02c6302052c17f6edd76371d4ea56c}{Quick\-C\-G\-::sleep} (double seconds)
+\item 
+void \hyperlink{namespaceQuickCG_a414c0c6537c4f468aac581f513ff8773}{Quick\-C\-G\-::wait\-Frame} (double old\-Time, double frame\-Duration)
+\item 
+bool \hyperlink{namespaceQuickCG_aa67a7a5cf114a4cdd48b9d76645aedbb}{Quick\-C\-G\-::done} (bool quit\-\_\-if\-\_\-esc, bool delay)
+\item 
+void \hyperlink{namespaceQuickCG_a3f2f6f46ae7da8905177080c7a6697bb}{Quick\-C\-G\-::end} ()
+\item 
+void \hyperlink{namespaceQuickCG_a9c9bf2da1e2577f8143f828525be7de1}{Quick\-C\-G\-::read\-Keys} ()
+\item 
+void \hyperlink{namespaceQuickCG_a5ea3f31f493e54c0640735580000787f}{Quick\-C\-G\-::get\-Mouse\-State} (int \&mouse\-X, int \&mouse\-Y)
+\item 
+void \hyperlink{namespaceQuickCG_a5ebca8699dfd7a607931e4d648534a2b}{Quick\-C\-G\-::get\-Mouse\-State} (int \&mouse\-X, int \&mouse\-Y, bool \&L\-M\-B, bool \&R\-M\-B)
+\item 
+unsigned long \hyperlink{namespaceQuickCG_a83e125bfed1df906c2e65690780c02f9}{Quick\-C\-G\-::get\-Ticks} ()
+\item 
+double \hyperlink{namespaceQuickCG_a484df0e7cbe743fcb4ef2ee2b663cd33}{Quick\-C\-G\-::get\-Time} ()
+\item 
+bool \hyperlink{namespaceQuickCG_a49f1bead8769fec578f753ee9484a4a7}{Quick\-C\-G\-::hor\-Line} (int y, int x1, int x2, const Color\-R\-G\-B \&color)
+\item 
+bool \hyperlink{namespaceQuickCG_a90e37f3314b8241e48379258ddae7870}{Quick\-C\-G\-::ver\-Line} (int x, int y1, int y2, const Color\-R\-G\-B \&color)
+\item 
+bool \hyperlink{namespaceQuickCG_a1d0cad1b7d56d0e72be33e60f1ca35d3}{Quick\-C\-G\-::draw\-Line} (int x1, int y1, int x2, int y2, const Color\-R\-G\-B \&color)
+\item 
+bool \hyperlink{namespaceQuickCG_a208916a2a9a13b0ecd23d0d0056ceb90}{Quick\-C\-G\-::draw\-Circle} (int xc, int yc, int radius, const Color\-R\-G\-B \&color)
+\item 
+bool \hyperlink{namespaceQuickCG_a586900f2d3ea8ed8a6d7e96f53ecdb1d}{Quick\-C\-G\-::draw\-Disk} (int xc, int yc, int radius, const Color\-R\-G\-B \&color)
+\item 
+bool \hyperlink{namespaceQuickCG_ab38d4ebc9445ace135d23e70bedd84a0}{Quick\-C\-G\-::draw\-Rect} (int x1, int y1, int x2, int y2, const Color\-R\-G\-B \&color)
+\item 
+bool \hyperlink{namespaceQuickCG_afe23902e64e75a0d1219145fb5d9b76c}{Quick\-C\-G\-::clip\-Line} (int x1, int y1, int x2, int y2, int \&x3, int \&y3, int \&x4, int \&y4)
+\item 
+Color\-H\-S\-L \hyperlink{namespaceQuickCG_a7f5e5aa8098d7678eef30a2c611b2059}{Quick\-C\-G\-::\-R\-G\-Bto\-H\-S\-L} (const Color\-R\-G\-B \&color\-R\-G\-B)
+\item 
+Color\-R\-G\-B \hyperlink{namespaceQuickCG_a0630eff24e04496bad465837297f6881}{Quick\-C\-G\-::\-H\-S\-Lto\-R\-G\-B} (const Color\-H\-S\-L \&color\-H\-S\-L)
+\item 
+Color\-H\-S\-V \hyperlink{namespaceQuickCG_a8c175a9cd1517065dffdf5e8def8ca5e}{Quick\-C\-G\-::\-R\-G\-Bto\-H\-S\-V} (const Color\-R\-G\-B \&color\-R\-G\-B)
+\item 
+Color\-R\-G\-B \hyperlink{namespaceQuickCG_ae04752d2d91945cedd08ed0819c7c601}{Quick\-C\-G\-::\-H\-S\-Vto\-R\-G\-B} (const Color\-H\-S\-V \&color\-H\-S\-V)
+\item 
+Uint32 \hyperlink{namespaceQuickCG_aed6c6f3c85a31c02ecc08a9c45a93b55}{Quick\-C\-G\-::\-R\-G\-Bto\-I\-N\-T} (const Color\-R\-G\-B \&color\-R\-G\-B)
+\item 
+Color\-R\-G\-B \hyperlink{namespaceQuickCG_aea7f7dab16942a019049d07b66bfadd5}{Quick\-C\-G\-::\-I\-N\-Tto\-R\-G\-B} (Uint32 color\-I\-N\-T)
+\item 
+void \hyperlink{namespaceQuickCG_a07d193f2bfde52cf679bb98281f2918c}{Quick\-C\-G\-::load\-File} (std\-::vector$<$ unsigned char $>$ \&buffer, const std\-::string \&filename)
+\item 
+void \hyperlink{namespaceQuickCG_a90d00feaf86f1886e3a4696851b88078}{Quick\-C\-G\-::save\-File} (const std\-::vector$<$ unsigned char $>$ \&buffer, const std\-::string \&filename)
+\item 
+int \hyperlink{namespaceQuickCG_a4631b7b1384ebab6765068ab1289e43d}{Quick\-C\-G\-::load\-Image} (std\-::vector$<$ Color\-R\-G\-B $>$ \&out, unsigned long \&w, unsigned long \&h, const std\-::string \&filename)
+\item 
+int \hyperlink{namespaceQuickCG_aeb1d2c3be8339130a5e3746bdc4650f4}{Quick\-C\-G\-::load\-Image} (std\-::vector$<$ Uint32 $>$ \&out, unsigned long \&w, unsigned long \&h, const std\-::string \&filename)
+\item 
+int \hyperlink{namespaceQuickCG_a5c2363e8d760153fd27022d870a2ac38}{Quick\-C\-G\-::decode\-P\-N\-G} (std\-::vector$<$ unsigned char $>$ \&out\-\_\-image, unsigned long \&image\-\_\-width, unsigned long \&image\-\_\-height, const unsigned char $\ast$in\-\_\-png, size\-\_\-t in\-\_\-size, bool convert\-\_\-to\-\_\-rgba32)
+\item 
+int \hyperlink{namespaceQuickCG_a04e7c604481711a0a3904607e4f82c9e}{Quick\-C\-G\-::decode\-P\-N\-G} (std\-::vector$<$ unsigned char $>$ \&out\-\_\-image\-\_\-32bit, unsigned long \&image\-\_\-width, unsigned long \&image\-\_\-height, const std\-::vector$<$ unsigned char $>$ \&in\-\_\-png)
+\item 
+void \hyperlink{namespaceQuickCG_a60e0daa6a95f2a5766788557ff11ed34}{Quick\-C\-G\-::draw\-Letter} (unsigned char n, int x, int y, const Color\-R\-G\-B \&color, bool bg, const Color\-R\-G\-B \&color2)
+\item 
+int \hyperlink{namespaceQuickCG_a06e4ce5924754ec94c89be69ed2b8806}{Quick\-C\-G\-::print\-String} (const std\-::string \&text, int x, int y, const Color\-R\-G\-B \&color, bool bg, const Color\-R\-G\-B \&color2, int force\-Length)
+\item 
+{\footnotesize template$<$typename T $>$ }\\int \hyperlink{namespaceQuickCG_a1712cf129e6bce7fa7b21edc32b49026}{Quick\-C\-G\-::print} (const T \&val, int x=0, int y=0, const Color\-R\-G\-B \&color=R\-G\-B\-\_\-\-White, bool bg=0, const Color\-R\-G\-B \&color2=R\-G\-B\-\_\-\-Black, int force\-Length=0)
+\item 
+{\footnotesize template$<$typename T $>$ }\\int \hyperlink{namespaceQuickCG_ad7d6143c1d4e0c1851290912bac33d69}{Quick\-C\-G\-::fprint} (const T \&val, int length, int x=0, int y=0, const Color\-R\-G\-B \&color=R\-G\-B\-\_\-\-White, bool bg=0, const Color\-R\-G\-B \&color2=R\-G\-B\-\_\-\-Black, int force\-Length=0)
+\item 
+Uint8 \hyperlink{namespaceQuickCG_ac6c5d61da454168eb90504f525e9c038}{Quick\-C\-G\-::get\-Input\-Character} ()
+\item 
+void \hyperlink{namespaceQuickCG_a48166a7d3d6279491fbc869928b50416}{Quick\-C\-G\-::get\-Input\-String} (std\-::string \&text, const std\-::string \&message, bool clear, int x, int y, const Color\-R\-G\-B \&color, bool bg, const Color\-R\-G\-B \&color2)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \hyperlink{namespaceQuickCG_a060284f149586fc828dc3b69b4ed192e}{Quick\-C\-G\-::get\-Input} (const std\-::string \&message=\char`\"{}\char`\"{}, bool clear=false, int x=0, int y=0, const Color\-R\-G\-B \&color=R\-G\-B\-\_\-\-White, bool bg=0, const Color\-R\-G\-B \&color2=R\-G\-B\-\_\-\-Black)
+\item 
+int \hyperlink{namespaceQuickCG_ae5966f7415b22412d861e47958d4f5db}{Quick\-C\-G\-::audio\-Open} (int samplerate, int framesize)
+\item 
+void \hyperlink{namespaceQuickCG_a7553e7725f3705b87a391dbca2cfe236}{Quick\-C\-G\-::audio\-Close} ()
+\item 
+int \hyperlink{namespaceQuickCG_a201d151e8bc1ec58ba4378dc7cfdf5f2}{Quick\-C\-G\-::audio\-Re\-Open} ()
+\item 
+void \hyperlink{namespaceQuickCG_a90c3e59d89a886ab6603c2ca1a44dd29}{Quick\-C\-G\-::audio\-Push\-Samples} (const std\-::vector$<$ double $>$ \&samples, size\-\_\-t pos, size\-\_\-t end)
+\item 
+size\-\_\-t \hyperlink{namespaceQuickCG_ab3f49f0d65cf44604dc58bdaf2142a37}{Quick\-C\-G\-::audio\-Samples\-Shortage} ()
+\item 
+size\-\_\-t \hyperlink{namespaceQuickCG_aa3009029d7a860f0b889ed6c11b9385b}{Quick\-C\-G\-::audio\-Samples\-Overflow} ()
+\item 
+void \hyperlink{namespaceQuickCG_af653bab27b0d113307c7bf0e0d9168ad}{Quick\-C\-G\-::audio\-Set\-Buffer\-Samples\-Range} (size\-\_\-t min\-\_\-samples, size\-\_\-t max\-\_\-samples)
+\item 
+void \hyperlink{namespaceQuickCG_afa7b6514ece0f5f331ee8ff11f741d38}{Quick\-C\-G\-::audio\-Play} (const std\-::vector$<$ double $>$ \&samples)
+\item 
+void \hyperlink{namespaceQuickCG_a173f56daf3d8be71fea4164db2b49638}{Quick\-C\-G\-::audio\-Set\-Mode} (int mode)
+\item 
+void \hyperlink{namespaceQuickCG_a0c553a6b56b23a8c880f0e4717b4040c}{Quick\-C\-G\-::audio\-Set\-Volume} (double volume)
+\end{DoxyCompactItemize}

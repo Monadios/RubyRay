@@ -1,0 +1,109 @@
+\hypertarget{classGameObject}{\section{Game\-Object Class Reference}
+\label{classGameObject}\index{Game\-Object@{Game\-Object}}
+}
+
+
+This is the base class for any interactable object in the game.  
+
+
+
+
+{\ttfamily \#include $<$Game\-Object.\-h$>$}
+
+Inheritance diagram for Game\-Object\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classGameObject}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGameObject_a0348e3ee2e83d56eafca7a3547f432c4}{Game\-Object} ()
+\item 
+void \hyperlink{classGameObject_aec6d8e80fc3b484b5664630f2c33a19c}{add\-Component} (std\-::type\-\_\-index, \hyperlink{classComponent}{Component} $\ast$c)
+\item 
+virtual void \hyperlink{classGameObject_ae83128d0e0efef691417779605ee037c}{update} ()=0
+\item 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \hyperlink{classGameObject_ac9ae1908800a5bb242a999ee76dd96b5}{get} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classGameObject_a77ae10ff022a6cfe7419d4acdcffe2a4}{x}
+\item 
+double \hyperlink{classGameObject_af3f4a42c92fa6f6ac04d57bf4b11d43f}{y}
+\item 
+int \hyperlink{classGameObject_a1d4d998891f953e4a4f15d7372a0d9e3}{texture}
+\item 
+int \hyperlink{classGameObject_a98291c60da12d9036e1ad24cfebcf6b3}{id}
+\item 
+std\-::map$<$ std\-::type\-\_\-index, \\*
+\hyperlink{classComponent}{Component} $\ast$ $>$ \hyperlink{classGameObject_a665551395d1403714708bedd897cc9a3}{components}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the base class for any interactable object in the game. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGameObject_a0348e3ee2e83d56eafca7a3547f432c4}{\index{Game\-Object@{Game\-Object}!Game\-Object@{Game\-Object}}
+\index{Game\-Object@{Game\-Object}!GameObject@{Game\-Object}}
+\subsubsection[{Game\-Object}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object\-::\-Game\-Object (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGameObject_a0348e3ee2e83d56eafca7a3547f432c4}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGameObject_aec6d8e80fc3b484b5664630f2c33a19c}{\index{Game\-Object@{Game\-Object}!add\-Component@{add\-Component}}
+\index{add\-Component@{add\-Component}!GameObject@{Game\-Object}}
+\subsubsection[{add\-Component}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::add\-Component (
+\begin{DoxyParamCaption}
+\item[{std\-::type\-\_\-index}]{, }
+\item[{{\bf Component} $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{classGameObject_aec6d8e80fc3b484b5664630f2c33a19c}
+\hypertarget{classGameObject_ac9ae1908800a5bb242a999ee76dd96b5}{\index{Game\-Object@{Game\-Object}!get@{get}}
+\index{get@{get}!GameObject@{Game\-Object}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ T$\ast$ Game\-Object\-::get (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGameObject_ac9ae1908800a5bb242a999ee76dd96b5}
+\hypertarget{classGameObject_ae83128d0e0efef691417779605ee037c}{\index{Game\-Object@{Game\-Object}!update@{update}}
+\index{update@{update}!GameObject@{Game\-Object}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Game\-Object\-::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classGameObject_ae83128d0e0efef691417779605ee037c}
+
+
+Implemented in \hyperlink{classBarrel_a8bfe8eeb51338bca08e3a18cb2e21460}{Barrel}, and \hyperlink{classEnemy_ad55ee71b5a8c23fbd00b3c368b90cc64}{Enemy}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classGameObject_a665551395d1403714708bedd897cc9a3}{\index{Game\-Object@{Game\-Object}!components@{components}}
+\index{components@{components}!GameObject@{Game\-Object}}
+\subsubsection[{components}]{\setlength{\rightskip}{0pt plus 5cm}std\-::map$<$std\-::type\-\_\-index, {\bf Component}$\ast$$>$ Game\-Object\-::components}}\label{classGameObject_a665551395d1403714708bedd897cc9a3}
+\hypertarget{classGameObject_a98291c60da12d9036e1ad24cfebcf6b3}{\index{Game\-Object@{Game\-Object}!id@{id}}
+\index{id@{id}!GameObject@{Game\-Object}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}int Game\-Object\-::id}}\label{classGameObject_a98291c60da12d9036e1ad24cfebcf6b3}
+\hypertarget{classGameObject_a1d4d998891f953e4a4f15d7372a0d9e3}{\index{Game\-Object@{Game\-Object}!texture@{texture}}
+\index{texture@{texture}!GameObject@{Game\-Object}}
+\subsubsection[{texture}]{\setlength{\rightskip}{0pt plus 5cm}int Game\-Object\-::texture}}\label{classGameObject_a1d4d998891f953e4a4f15d7372a0d9e3}
+\hypertarget{classGameObject_a77ae10ff022a6cfe7419d4acdcffe2a4}{\index{Game\-Object@{Game\-Object}!x@{x}}
+\index{x@{x}!GameObject@{Game\-Object}}
+\subsubsection[{x}]{\setlength{\rightskip}{0pt plus 5cm}double Game\-Object\-::x}}\label{classGameObject_a77ae10ff022a6cfe7419d4acdcffe2a4}
+\hypertarget{classGameObject_af3f4a42c92fa6f6ac04d57bf4b11d43f}{\index{Game\-Object@{Game\-Object}!y@{y}}
+\index{y@{y}!GameObject@{Game\-Object}}
+\subsubsection[{y}]{\setlength{\rightskip}{0pt plus 5cm}double Game\-Object\-::y}}\label{classGameObject_af3f4a42c92fa6f6ac04d57bf4b11d43f}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Classes/\hyperlink{GameObject_8h}{Game\-Object.\-h}\item 
+Classes/\hyperlink{GameObject_8cpp}{Game\-Object.\-cpp}\end{DoxyCompactItemize}

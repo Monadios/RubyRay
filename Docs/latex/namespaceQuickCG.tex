@@ -1,0 +1,905 @@
+\hypertarget{namespaceQuickCG}{\section{Quick\-C\-G Namespace Reference}
+\label{namespaceQuickCG}\index{Quick\-C\-G@{Quick\-C\-G}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structQuickCG_1_1GenerateFont}{Generate\-Font}
+\item 
+struct \hyperlink{structQuickCG_1_1MutexFactory}{Mutex\-Factory}
+\item 
+struct \hyperlink{structQuickCG_1_1Mutex}{Mutex}
+\item 
+struct \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B}
+\item 
+struct \hyperlink{structQuickCG_1_1ColorRGB8bit}{Color\-R\-G\-B8bit}
+\item 
+struct \hyperlink{structQuickCG_1_1ColorHSL}{Color\-H\-S\-L}
+\item 
+struct \hyperlink{structQuickCG_1_1ColorHSV}{Color\-H\-S\-V}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespaceQuickCG_a3329a7af20dfe853cb5aa4476e12a6fc}{key\-Down} (int key)
+\item 
+bool \hyperlink{namespaceQuickCG_af364edceae6d91568589973b352f418e}{key\-Pressed} (int key)
+\item 
+void \hyperlink{namespaceQuickCG_ab709f7bbf43f41108128b0e82b88ac8e}{screen} (int width, int height, bool fullscreen, const std\-::string \&text)
+\item 
+void \hyperlink{namespaceQuickCG_a647150b9ad0e184c2db64880f02f9165}{lock} ()
+\item 
+void \hyperlink{namespaceQuickCG_ab9196e3f3753545b5bee982b4c589966}{unlock} ()
+\item 
+void \hyperlink{namespaceQuickCG_a5cb5ee8eac050ffb902ac96942cebc9f}{redraw} ()
+\item 
+void \hyperlink{namespaceQuickCG_aecc5906ca7d961e3a399af585c6573fc}{cls} (const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color)
+\item 
+void \hyperlink{namespaceQuickCG_a547bd88946eb65c1b9e1c8ddbd531e7f}{pset} (int x, int y, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color)
+\item 
+\hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \hyperlink{namespaceQuickCG_ad609e260b8ddad24e1c4c5ac4d7b28b5}{pget} (int x, int y)
+\item 
+void \hyperlink{namespaceQuickCG_af12d4c92530c77cae9950bc293a6c605}{draw\-Buffer} (Uint32 $\ast$buffer)
+\item 
+void \hyperlink{namespaceQuickCG_a0e35a53fcdf7b29b3754645b84bc6df7}{get\-Screen\-Buffer} (std\-::vector$<$ Uint32 $>$ \&buffer)
+\item 
+bool \hyperlink{namespaceQuickCG_ac55d9505ff5750289d64a6986e8277a1}{on\-Screen} (int x, int y)
+\item 
+void \hyperlink{namespaceQuickCG_a5270b33c0975788752bf72ebbe72f812}{sleep} ()
+\item 
+void \hyperlink{namespaceQuickCG_a6d02c6302052c17f6edd76371d4ea56c}{sleep} (double seconds)
+\item 
+void \hyperlink{namespaceQuickCG_a414c0c6537c4f468aac581f513ff8773}{wait\-Frame} (double old\-Time, double frame\-Duration)
+\item 
+bool \hyperlink{namespaceQuickCG_aa67a7a5cf114a4cdd48b9d76645aedbb}{done} (bool quit\-\_\-if\-\_\-esc, bool delay)
+\item 
+void \hyperlink{namespaceQuickCG_a3f2f6f46ae7da8905177080c7a6697bb}{end} ()
+\item 
+void \hyperlink{namespaceQuickCG_a9c9bf2da1e2577f8143f828525be7de1}{read\-Keys} ()
+\item 
+void \hyperlink{namespaceQuickCG_a5ea3f31f493e54c0640735580000787f}{get\-Mouse\-State} (int \&mouse\-X, int \&mouse\-Y)
+\item 
+void \hyperlink{namespaceQuickCG_a5ebca8699dfd7a607931e4d648534a2b}{get\-Mouse\-State} (int \&mouse\-X, int \&mouse\-Y, bool \&L\-M\-B, bool \&R\-M\-B)
+\item 
+unsigned long \hyperlink{namespaceQuickCG_a83e125bfed1df906c2e65690780c02f9}{get\-Ticks} ()
+\item 
+bool \hyperlink{namespaceQuickCG_a49f1bead8769fec578f753ee9484a4a7}{hor\-Line} (int y, int x1, int x2, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color)
+\item 
+bool \hyperlink{namespaceQuickCG_a90e37f3314b8241e48379258ddae7870}{ver\-Line} (int x, int y1, int y2, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color)
+\item 
+bool \hyperlink{namespaceQuickCG_a1d0cad1b7d56d0e72be33e60f1ca35d3}{draw\-Line} (int x1, int y1, int x2, int y2, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color)
+\item 
+bool \hyperlink{namespaceQuickCG_a208916a2a9a13b0ecd23d0d0056ceb90}{draw\-Circle} (int xc, int yc, int radius, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color)
+\item 
+bool \hyperlink{namespaceQuickCG_a586900f2d3ea8ed8a6d7e96f53ecdb1d}{draw\-Disk} (int xc, int yc, int radius, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color)
+\item 
+bool \hyperlink{namespaceQuickCG_ab38d4ebc9445ace135d23e70bedd84a0}{draw\-Rect} (int x1, int y1, int x2, int y2, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color)
+\item 
+int \hyperlink{namespaceQuickCG_a746be355c06de9c0984428821c354c62}{find\-Region} (int x, int y)
+\item 
+bool \hyperlink{namespaceQuickCG_afe23902e64e75a0d1219145fb5d9b76c}{clip\-Line} (int x1, int y1, int x2, int y2, int \&x3, int \&y3, int \&x4, int \&y4)
+\item 
+\hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \hyperlink{namespaceQuickCG_a910a9f0a870972575c3627e141e01a68}{operator+} (const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color2)
+\item 
+\hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \hyperlink{namespaceQuickCG_ab46d60da5dd5ec38e88a2676cc5a2825}{operator-\/} (const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color2)
+\item 
+\hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \hyperlink{namespaceQuickCG_a5ae0f52520fe1606bb9c9de7adb321ed}{operator$\ast$} (const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color, int a)
+\item 
+\hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \hyperlink{namespaceQuickCG_a46f3904adc4c12e4e4586784e03c35cc}{operator$\ast$} (int a, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color)
+\item 
+\hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \hyperlink{namespaceQuickCG_af6948c5888f2777b73f5e9af0adb0000}{operator/} (const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color, int a)
+\item 
+bool \hyperlink{namespaceQuickCG_a4d855b23bc84fe6621a224404843738d}{operator==} (const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color2)
+\item 
+bool \hyperlink{namespaceQuickCG_acda02e6695432056866eef615f73ee75}{operator!=} (const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color2)
+\item 
+\hyperlink{structQuickCG_1_1ColorHSL}{Color\-H\-S\-L} \hyperlink{namespaceQuickCG_a7f5e5aa8098d7678eef30a2c611b2059}{R\-G\-Bto\-H\-S\-L} (const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color\-R\-G\-B)
+\item 
+\hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \hyperlink{namespaceQuickCG_a0630eff24e04496bad465837297f6881}{H\-S\-Lto\-R\-G\-B} (const \hyperlink{structQuickCG_1_1ColorHSL}{Color\-H\-S\-L} \&color\-H\-S\-L)
+\item 
+\hyperlink{structQuickCG_1_1ColorHSV}{Color\-H\-S\-V} \hyperlink{namespaceQuickCG_a8c175a9cd1517065dffdf5e8def8ca5e}{R\-G\-Bto\-H\-S\-V} (const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color\-R\-G\-B)
+\item 
+\hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \hyperlink{namespaceQuickCG_ae04752d2d91945cedd08ed0819c7c601}{H\-S\-Vto\-R\-G\-B} (const \hyperlink{structQuickCG_1_1ColorHSV}{Color\-H\-S\-V} \&color\-H\-S\-V)
+\item 
+Uint32 \hyperlink{namespaceQuickCG_aed6c6f3c85a31c02ecc08a9c45a93b55}{R\-G\-Bto\-I\-N\-T} (const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color\-R\-G\-B)
+\item 
+\hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \hyperlink{namespaceQuickCG_aea7f7dab16942a019049d07b66bfadd5}{I\-N\-Tto\-R\-G\-B} (Uint32 color\-I\-N\-T)
+\item 
+void \hyperlink{namespaceQuickCG_a07d193f2bfde52cf679bb98281f2918c}{load\-File} (std\-::vector$<$ unsigned char $>$ \&buffer, const std\-::string \&filename)
+\item 
+void \hyperlink{namespaceQuickCG_a90d00feaf86f1886e3a4696851b88078}{save\-File} (const std\-::vector$<$ unsigned char $>$ \&buffer, const std\-::string \&filename)
+\item 
+int \hyperlink{namespaceQuickCG_a4631b7b1384ebab6765068ab1289e43d}{load\-Image} (std\-::vector$<$ \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} $>$ \&out, unsigned long \&\hyperlink{namespaceQuickCG_aee0a81fa45305d0058f5270e1acd6356}{w}, unsigned long \&\hyperlink{namespaceQuickCG_ae460032287c9d51b4883aa9a6d7906ab}{h}, const std\-::string \&filename)
+\item 
+int \hyperlink{namespaceQuickCG_aeb1d2c3be8339130a5e3746bdc4650f4}{load\-Image} (std\-::vector$<$ Uint32 $>$ \&out, unsigned long \&\hyperlink{namespaceQuickCG_aee0a81fa45305d0058f5270e1acd6356}{w}, unsigned long \&\hyperlink{namespaceQuickCG_ae460032287c9d51b4883aa9a6d7906ab}{h}, const std\-::string \&filename)
+\item 
+void \hyperlink{namespaceQuickCG_a60e0daa6a95f2a5766788557ff11ed34}{draw\-Letter} (unsigned char n, int x, int y, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color, bool bg, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color2)
+\item 
+int \hyperlink{namespaceQuickCG_a06e4ce5924754ec94c89be69ed2b8806}{print\-String} (const std\-::string \&text, int x, int y, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color, bool bg, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color2, int force\-Length)
+\item 
+Uint8 \hyperlink{namespaceQuickCG_ac6c5d61da454168eb90504f525e9c038}{get\-Input\-Character} ()
+\item 
+void \hyperlink{namespaceQuickCG_a48166a7d3d6279491fbc869928b50416}{get\-Input\-String} (std\-::string \&text, const std\-::string \&message, bool clear, int x, int y, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color, bool bg, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color2)
+\item 
+void \hyperlink{namespaceQuickCG_a47a098aae8382e561e2f41c3cab13aae}{encode\-Base64} (const std\-::vector$<$ unsigned char $>$ \&in, std\-::string \&out)
+\item 
+void \hyperlink{namespaceQuickCG_a92ab4bdbd0a3c996ec65424ed385710f}{decode\-Base64} (std\-::vector$<$ unsigned char $>$ \&out, const std\-::string \&in)
+\item 
+int \hyperlink{namespaceQuickCG_a5c2363e8d760153fd27022d870a2ac38}{decode\-P\-N\-G} (std\-::vector$<$ unsigned char $>$ \&out\-\_\-image, unsigned long \&image\-\_\-width, unsigned long \&image\-\_\-height, const unsigned char $\ast$in\-\_\-png, size\-\_\-t in\-\_\-size, bool convert\-\_\-to\-\_\-rgba32)
+\item 
+int \hyperlink{namespaceQuickCG_a04e7c604481711a0a3904607e4f82c9e}{decode\-P\-N\-G} (std\-::vector$<$ unsigned char $>$ \&out\-\_\-image\-\_\-32bit, unsigned long \&image\-\_\-width, unsigned long \&image\-\_\-height, const std\-::vector$<$ unsigned char $>$ \&in\-\_\-png)
+\item 
+void \hyperlink{namespaceQuickCG_af653bab27b0d113307c7bf0e0d9168ad}{audio\-Set\-Buffer\-Samples\-Range} (size\-\_\-t min\-\_\-samples, size\-\_\-t max\-\_\-samples)
+\item 
+void \hyperlink{namespaceQuickCG_a173f56daf3d8be71fea4164db2b49638}{audio\-Set\-Mode} (int mode)
+\item 
+void \hyperlink{namespaceQuickCG_a0c553a6b56b23a8c880f0e4717b4040c}{audio\-Set\-Volume} (double volume)
+\item 
+std\-::vector$<$ double $>$ \hyperlink{namespaceQuickCG_a77f091287a743507c7ed336fa1727361}{audio\-\_\-data} (\hyperlink{namespaceQuickCG_aff1dcb3d84732f1501f618bae7a211d3}{audio\-\_\-min\-\_\-samples}, 0)
+\item 
+size\-\_\-t \hyperlink{namespaceQuickCG_ab3f49f0d65cf44604dc58bdaf2142a37}{audio\-Samples\-Shortage} ()
+\item 
+size\-\_\-t \hyperlink{namespaceQuickCG_aa3009029d7a860f0b889ed6c11b9385b}{audio\-Samples\-Overflow} ()
+\item 
+void \hyperlink{namespaceQuickCG_a16f75e263e20fd38624e968afd791d19}{audio\-Callback} (void $\ast$, Uint8 $\ast$stream, int len)
+\item 
+int \hyperlink{namespaceQuickCG_ae5966f7415b22412d861e47958d4f5db}{audio\-Open} (int samplerate, int framesize)
+\item 
+void \hyperlink{namespaceQuickCG_a7553e7725f3705b87a391dbca2cfe236}{audio\-Close} ()
+\item 
+int \hyperlink{namespaceQuickCG_a201d151e8bc1ec58ba4378dc7cfdf5f2}{audio\-Re\-Open} ()
+\item 
+void \hyperlink{namespaceQuickCG_a90c3e59d89a886ab6603c2ca1a44dd29}{audio\-Push\-Samples} (const std\-::vector$<$ double $>$ \&samples, size\-\_\-t pos, size\-\_\-t \hyperlink{namespaceQuickCG_a3f2f6f46ae7da8905177080c7a6697bb}{end})
+\item 
+void \hyperlink{namespaceQuickCG_afa7b6514ece0f5f331ee8ff11f741d38}{audio\-Play} (const std\-::vector$<$ double $>$ \&samples)
+\item 
+{\footnotesize template$<$typename T $>$ }\\const T \hyperlink{namespaceQuickCG_ac1a231e2857d21dae271a40e9832512a}{template\-\_\-abs} (const T \&a)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\-::string \hyperlink{namespaceQuickCG_a636cd1485648787aabf790a0f479bf4a}{valtostr} (const T \&val)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \hyperlink{namespaceQuickCG_aa5e87cb12327ca23aaa732a3aa8386aa}{strtoval} (const std\-::string \&s)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\-::string \hyperlink{namespaceQuickCG_a09e2d278caef33b316b15830f70ce1bd}{valtostr} (const T \&val, int length, bool fixed=true)
+\item 
+double \hyperlink{namespaceQuickCG_a484df0e7cbe743fcb4ef2ee2b663cd33}{get\-Time} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\int \hyperlink{namespaceQuickCG_a1712cf129e6bce7fa7b21edc32b49026}{print} (const T \&val, int x=0, int y=0, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color=R\-G\-B\-\_\-\-White, bool bg=0, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color2=R\-G\-B\-\_\-\-Black, int force\-Length=0)
+\item 
+{\footnotesize template$<$typename T $>$ }\\int \hyperlink{namespaceQuickCG_ad7d6143c1d4e0c1851290912bac33d69}{fprint} (const T \&val, int length, int x=0, int y=0, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color=R\-G\-B\-\_\-\-White, bool bg=0, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color2=R\-G\-B\-\_\-\-Black, int force\-Length=0)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \hyperlink{namespaceQuickCG_a060284f149586fc828dc3b69b4ed192e}{get\-Input} (const std\-::string \&message=\char`\"{}\char`\"{}, bool clear=false, int x=0, int y=0, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color=R\-G\-B\-\_\-\-White, bool bg=0, const \hyperlink{structQuickCG_1_1ColorRGB}{Color\-R\-G\-B} \&color2=R\-G\-B\-\_\-\-Black)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{namespaceQuickCG_aee0a81fa45305d0058f5270e1acd6356}{w}
+\item 
+int \hyperlink{namespaceQuickCG_ae460032287c9d51b4883aa9a6d7906ab}{h}
+\item 
+std\-::map$<$ int, bool $>$ \hyperlink{namespaceQuickCG_afeaf9bfd3381e8615f172e026420afee}{keypressed}
+\item 
+S\-D\-L\-\_\-\-Surface $\ast$ \hyperlink{namespaceQuickCG_a69ab27a13de5285d506fab8d5cf51f86}{scr}
+\item 
+Uint8 $\ast$ \hyperlink{namespaceQuickCG_ad8b8e937433a800f9bd0bf81faff4312}{inkeys}
+\item 
+S\-D\-L\-\_\-\-Event \hyperlink{namespaceQuickCG_a11407295e1307c55e0db667e09055365}{event} = \{0\}
+\item 
+const int \hyperlink{namespaceQuickCG_a653347727493ee70ad64734222449ab6}{A\-S\-C\-I\-I\-\_\-\-E\-N\-T\-E\-R} = 13
+\item 
+const int \hyperlink{namespaceQuickCG_a1471d38830e46d9549694c38f89f2a33}{A\-S\-C\-I\-I\-\_\-\-B\-A\-C\-K\-S\-P\-A\-C\-E} = 8
+\item 
+const int \hyperlink{namespaceQuickCG_ab7680b1029dfc3e65d17e184d26698c5}{A\-S\-C\-I\-I\-\_\-\-S\-P\-A\-C\-E} = 32
+\item 
+bool \hyperlink{namespaceQuickCG_a82a95aabb0ab79dafa6c2409d0718434}{font} \mbox{[}256\mbox{]}\mbox{[}8\mbox{]}\mbox{[}8\mbox{]}
+\item 
+\hyperlink{structQuickCG_1_1GenerateFont}{Generate\-Font} \hyperlink{namespaceQuickCG_a6d5d49731a3a613a4940d2f0b22a2c55}{generate\-Font}
+\item 
+\hyperlink{structQuickCG_1_1MutexFactory}{Mutex\-Factory} \hyperlink{namespaceQuickCG_aeaff2ca660279a53258f4868679c69f8}{mutex\-Factory}
+\item 
+size\-\_\-t \hyperlink{namespaceQuickCG_aff1dcb3d84732f1501f618bae7a211d3}{audio\-\_\-min\-\_\-samples} = 4096
+\item 
+size\-\_\-t \hyperlink{namespaceQuickCG_af934d17a78d6c65e321e148158f63421}{audio\-\_\-max\-\_\-samples} = 8192
+\item 
+double \hyperlink{namespaceQuickCG_ad6ea0eb1c2ae4140c72859770e194eba}{audio\-\_\-volume} = 1.\-0
+\item 
+int \hyperlink{namespaceQuickCG_a26db757b0d9a686d14c1f271d91d4d34}{audio\-\_\-mode} = 2
+\item 
+S\-D\-L\-\_\-mutex $\ast$ \hyperlink{namespaceQuickCG_aebfd1d5f928c98978dd58d6a640356b3}{audio\-\_\-lock} = mutex\-Factory.\-create\-Mutex()
+\item 
+S\-D\-L\-\_\-\-Audio\-Spec \hyperlink{namespaceQuickCG_a65b3a8aa3b5ceec9c5bbcee730765075}{audiospec\-\_\-wanted}
+\item 
+S\-D\-L\-\_\-\-Audio\-Spec \hyperlink{namespaceQuickCG_ab1c0f30c0e3fc0863cfb58d665c4bdd4}{audiospec\-\_\-obtained}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceQuickCG_a77f091287a743507c7ed336fa1727361}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-\_\-data@{audio\-\_\-data}}
+\index{audio\-\_\-data@{audio\-\_\-data}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$double$>$ Quick\-C\-G\-::audio\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{audio\-\_\-min\-\_\-samples}]{, }
+\item[{0}]{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a77f091287a743507c7ed336fa1727361}
+\hypertarget{namespaceQuickCG_a16f75e263e20fd38624e968afd791d19}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-Callback@{audio\-Callback}}
+\index{audio\-Callback@{audio\-Callback}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::audio\-Callback (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{, }
+\item[{Uint8 $\ast$}]{stream, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a16f75e263e20fd38624e968afd791d19}
+\hypertarget{namespaceQuickCG_a7553e7725f3705b87a391dbca2cfe236}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-Close@{audio\-Close}}
+\index{audio\-Close@{audio\-Close}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-Close}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::audio\-Close (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a7553e7725f3705b87a391dbca2cfe236}
+\hypertarget{namespaceQuickCG_ae5966f7415b22412d861e47958d4f5db}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-Open@{audio\-Open}}
+\index{audio\-Open@{audio\-Open}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-Open}]{\setlength{\rightskip}{0pt plus 5cm}int Quick\-C\-G\-::audio\-Open (
+\begin{DoxyParamCaption}
+\item[{int}]{samplerate, }
+\item[{int}]{framesize}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_ae5966f7415b22412d861e47958d4f5db}
+\hypertarget{namespaceQuickCG_afa7b6514ece0f5f331ee8ff11f741d38}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-Play@{audio\-Play}}
+\index{audio\-Play@{audio\-Play}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-Play}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::audio\-Play (
+\begin{DoxyParamCaption}
+\item[{const std\-::vector$<$ double $>$ \&}]{samples}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_afa7b6514ece0f5f331ee8ff11f741d38}
+\hypertarget{namespaceQuickCG_a90c3e59d89a886ab6603c2ca1a44dd29}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-Push\-Samples@{audio\-Push\-Samples}}
+\index{audio\-Push\-Samples@{audio\-Push\-Samples}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-Push\-Samples}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::audio\-Push\-Samples (
+\begin{DoxyParamCaption}
+\item[{const std\-::vector$<$ double $>$ \&}]{samples, }
+\item[{size\-\_\-t}]{pos, }
+\item[{size\-\_\-t}]{end}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a90c3e59d89a886ab6603c2ca1a44dd29}
+\hypertarget{namespaceQuickCG_a201d151e8bc1ec58ba4378dc7cfdf5f2}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-Re\-Open@{audio\-Re\-Open}}
+\index{audio\-Re\-Open@{audio\-Re\-Open}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-Re\-Open}]{\setlength{\rightskip}{0pt plus 5cm}int Quick\-C\-G\-::audio\-Re\-Open (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a201d151e8bc1ec58ba4378dc7cfdf5f2}
+\hypertarget{namespaceQuickCG_aa3009029d7a860f0b889ed6c11b9385b}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-Samples\-Overflow@{audio\-Samples\-Overflow}}
+\index{audio\-Samples\-Overflow@{audio\-Samples\-Overflow}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-Samples\-Overflow}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t Quick\-C\-G\-::audio\-Samples\-Overflow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_aa3009029d7a860f0b889ed6c11b9385b}
+\hypertarget{namespaceQuickCG_ab3f49f0d65cf44604dc58bdaf2142a37}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-Samples\-Shortage@{audio\-Samples\-Shortage}}
+\index{audio\-Samples\-Shortage@{audio\-Samples\-Shortage}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-Samples\-Shortage}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t Quick\-C\-G\-::audio\-Samples\-Shortage (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_ab3f49f0d65cf44604dc58bdaf2142a37}
+\hypertarget{namespaceQuickCG_af653bab27b0d113307c7bf0e0d9168ad}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-Set\-Buffer\-Samples\-Range@{audio\-Set\-Buffer\-Samples\-Range}}
+\index{audio\-Set\-Buffer\-Samples\-Range@{audio\-Set\-Buffer\-Samples\-Range}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-Set\-Buffer\-Samples\-Range}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::audio\-Set\-Buffer\-Samples\-Range (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{min\-\_\-samples, }
+\item[{size\-\_\-t}]{max\-\_\-samples}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_af653bab27b0d113307c7bf0e0d9168ad}
+\hypertarget{namespaceQuickCG_a173f56daf3d8be71fea4164db2b49638}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-Set\-Mode@{audio\-Set\-Mode}}
+\index{audio\-Set\-Mode@{audio\-Set\-Mode}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-Set\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::audio\-Set\-Mode (
+\begin{DoxyParamCaption}
+\item[{int}]{mode}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a173f56daf3d8be71fea4164db2b49638}
+\hypertarget{namespaceQuickCG_a0c553a6b56b23a8c880f0e4717b4040c}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-Set\-Volume@{audio\-Set\-Volume}}
+\index{audio\-Set\-Volume@{audio\-Set\-Volume}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-Set\-Volume}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::audio\-Set\-Volume (
+\begin{DoxyParamCaption}
+\item[{double}]{volume}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a0c553a6b56b23a8c880f0e4717b4040c}
+\hypertarget{namespaceQuickCG_afe23902e64e75a0d1219145fb5d9b76c}{\index{Quick\-C\-G@{Quick\-C\-G}!clip\-Line@{clip\-Line}}
+\index{clip\-Line@{clip\-Line}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{clip\-Line}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::clip\-Line (
+\begin{DoxyParamCaption}
+\item[{int}]{x1, }
+\item[{int}]{y1, }
+\item[{int}]{x2, }
+\item[{int}]{y2, }
+\item[{int \&}]{x3, }
+\item[{int \&}]{y3, }
+\item[{int \&}]{x4, }
+\item[{int \&}]{y4}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_afe23902e64e75a0d1219145fb5d9b76c}
+\hypertarget{namespaceQuickCG_aecc5906ca7d961e3a399af585c6573fc}{\index{Quick\-C\-G@{Quick\-C\-G}!cls@{cls}}
+\index{cls@{cls}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{cls}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::cls (
+\begin{DoxyParamCaption}
+\item[{const Color\-R\-G\-B \&}]{color}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_aecc5906ca7d961e3a399af585c6573fc}
+\hypertarget{namespaceQuickCG_a92ab4bdbd0a3c996ec65424ed385710f}{\index{Quick\-C\-G@{Quick\-C\-G}!decode\-Base64@{decode\-Base64}}
+\index{decode\-Base64@{decode\-Base64}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{decode\-Base64}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::decode\-Base64 (
+\begin{DoxyParamCaption}
+\item[{std\-::vector$<$ unsigned char $>$ \&}]{out, }
+\item[{const std\-::string \&}]{in}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a92ab4bdbd0a3c996ec65424ed385710f}
+\hypertarget{namespaceQuickCG_a5c2363e8d760153fd27022d870a2ac38}{\index{Quick\-C\-G@{Quick\-C\-G}!decode\-P\-N\-G@{decode\-P\-N\-G}}
+\index{decode\-P\-N\-G@{decode\-P\-N\-G}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{decode\-P\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}int Quick\-C\-G\-::decode\-P\-N\-G (
+\begin{DoxyParamCaption}
+\item[{std\-::vector$<$ unsigned char $>$ \&}]{out\-\_\-image, }
+\item[{unsigned long \&}]{image\-\_\-width, }
+\item[{unsigned long \&}]{image\-\_\-height, }
+\item[{const unsigned char $\ast$}]{in\-\_\-png, }
+\item[{size\-\_\-t}]{in\-\_\-size, }
+\item[{bool}]{convert\-\_\-to\-\_\-rgba32}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a5c2363e8d760153fd27022d870a2ac38}
+\hypertarget{namespaceQuickCG_a04e7c604481711a0a3904607e4f82c9e}{\index{Quick\-C\-G@{Quick\-C\-G}!decode\-P\-N\-G@{decode\-P\-N\-G}}
+\index{decode\-P\-N\-G@{decode\-P\-N\-G}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{decode\-P\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}int Quick\-C\-G\-::decode\-P\-N\-G (
+\begin{DoxyParamCaption}
+\item[{std\-::vector$<$ unsigned char $>$ \&}]{out\-\_\-image\-\_\-32bit, }
+\item[{unsigned long \&}]{image\-\_\-width, }
+\item[{unsigned long \&}]{image\-\_\-height, }
+\item[{const std\-::vector$<$ unsigned char $>$ \&}]{in\-\_\-png}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a04e7c604481711a0a3904607e4f82c9e}
+\hypertarget{namespaceQuickCG_aa67a7a5cf114a4cdd48b9d76645aedbb}{\index{Quick\-C\-G@{Quick\-C\-G}!done@{done}}
+\index{done@{done}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{done}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::done (
+\begin{DoxyParamCaption}
+\item[{bool}]{quit\-\_\-if\-\_\-esc, }
+\item[{bool}]{delay}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_aa67a7a5cf114a4cdd48b9d76645aedbb}
+\hypertarget{namespaceQuickCG_af12d4c92530c77cae9950bc293a6c605}{\index{Quick\-C\-G@{Quick\-C\-G}!draw\-Buffer@{draw\-Buffer}}
+\index{draw\-Buffer@{draw\-Buffer}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{draw\-Buffer}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::draw\-Buffer (
+\begin{DoxyParamCaption}
+\item[{Uint32 $\ast$}]{buffer}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_af12d4c92530c77cae9950bc293a6c605}
+\hypertarget{namespaceQuickCG_a208916a2a9a13b0ecd23d0d0056ceb90}{\index{Quick\-C\-G@{Quick\-C\-G}!draw\-Circle@{draw\-Circle}}
+\index{draw\-Circle@{draw\-Circle}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{draw\-Circle}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::draw\-Circle (
+\begin{DoxyParamCaption}
+\item[{int}]{xc, }
+\item[{int}]{yc, }
+\item[{int}]{radius, }
+\item[{const Color\-R\-G\-B \&}]{color}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a208916a2a9a13b0ecd23d0d0056ceb90}
+\hypertarget{namespaceQuickCG_a586900f2d3ea8ed8a6d7e96f53ecdb1d}{\index{Quick\-C\-G@{Quick\-C\-G}!draw\-Disk@{draw\-Disk}}
+\index{draw\-Disk@{draw\-Disk}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{draw\-Disk}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::draw\-Disk (
+\begin{DoxyParamCaption}
+\item[{int}]{xc, }
+\item[{int}]{yc, }
+\item[{int}]{radius, }
+\item[{const Color\-R\-G\-B \&}]{color}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a586900f2d3ea8ed8a6d7e96f53ecdb1d}
+\hypertarget{namespaceQuickCG_a60e0daa6a95f2a5766788557ff11ed34}{\index{Quick\-C\-G@{Quick\-C\-G}!draw\-Letter@{draw\-Letter}}
+\index{draw\-Letter@{draw\-Letter}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{draw\-Letter}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::draw\-Letter (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{n, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{const Color\-R\-G\-B \&}]{color, }
+\item[{bool}]{bg, }
+\item[{const Color\-R\-G\-B \&}]{color2}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a60e0daa6a95f2a5766788557ff11ed34}
+\hypertarget{namespaceQuickCG_a1d0cad1b7d56d0e72be33e60f1ca35d3}{\index{Quick\-C\-G@{Quick\-C\-G}!draw\-Line@{draw\-Line}}
+\index{draw\-Line@{draw\-Line}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{draw\-Line}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::draw\-Line (
+\begin{DoxyParamCaption}
+\item[{int}]{x1, }
+\item[{int}]{y1, }
+\item[{int}]{x2, }
+\item[{int}]{y2, }
+\item[{const Color\-R\-G\-B \&}]{color}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a1d0cad1b7d56d0e72be33e60f1ca35d3}
+\hypertarget{namespaceQuickCG_ab38d4ebc9445ace135d23e70bedd84a0}{\index{Quick\-C\-G@{Quick\-C\-G}!draw\-Rect@{draw\-Rect}}
+\index{draw\-Rect@{draw\-Rect}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{draw\-Rect}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::draw\-Rect (
+\begin{DoxyParamCaption}
+\item[{int}]{x1, }
+\item[{int}]{y1, }
+\item[{int}]{x2, }
+\item[{int}]{y2, }
+\item[{const Color\-R\-G\-B \&}]{color}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_ab38d4ebc9445ace135d23e70bedd84a0}
+\hypertarget{namespaceQuickCG_a47a098aae8382e561e2f41c3cab13aae}{\index{Quick\-C\-G@{Quick\-C\-G}!encode\-Base64@{encode\-Base64}}
+\index{encode\-Base64@{encode\-Base64}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{encode\-Base64}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::encode\-Base64 (
+\begin{DoxyParamCaption}
+\item[{const std\-::vector$<$ unsigned char $>$ \&}]{in, }
+\item[{std\-::string \&}]{out}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a47a098aae8382e561e2f41c3cab13aae}
+\hypertarget{namespaceQuickCG_a3f2f6f46ae7da8905177080c7a6697bb}{\index{Quick\-C\-G@{Quick\-C\-G}!end@{end}}
+\index{end@{end}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a3f2f6f46ae7da8905177080c7a6697bb}
+\hypertarget{namespaceQuickCG_a746be355c06de9c0984428821c354c62}{\index{Quick\-C\-G@{Quick\-C\-G}!find\-Region@{find\-Region}}
+\index{find\-Region@{find\-Region}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{find\-Region}]{\setlength{\rightskip}{0pt plus 5cm}int Quick\-C\-G\-::find\-Region (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a746be355c06de9c0984428821c354c62}
+\hypertarget{namespaceQuickCG_ad7d6143c1d4e0c1851290912bac33d69}{\index{Quick\-C\-G@{Quick\-C\-G}!fprint@{fprint}}
+\index{fprint@{fprint}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{fprint}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ int Quick\-C\-G\-::fprint (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{val, }
+\item[{int}]{length, }
+\item[{int}]{x = {\ttfamily 0}, }
+\item[{int}]{y = {\ttfamily 0}, }
+\item[{const Color\-R\-G\-B \&}]{color = {\ttfamily RGB\-\_\-White}, }
+\item[{bool}]{bg = {\ttfamily 0}, }
+\item[{const Color\-R\-G\-B \&}]{color2 = {\ttfamily RGB\-\_\-Black}, }
+\item[{int}]{force\-Length = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_ad7d6143c1d4e0c1851290912bac33d69}
+\hypertarget{namespaceQuickCG_a060284f149586fc828dc3b69b4ed192e}{\index{Quick\-C\-G@{Quick\-C\-G}!get\-Input@{get\-Input}}
+\index{get\-Input@{get\-Input}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{get\-Input}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ T Quick\-C\-G\-::get\-Input (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{message = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{bool}]{clear = {\ttfamily false}, }
+\item[{int}]{x = {\ttfamily 0}, }
+\item[{int}]{y = {\ttfamily 0}, }
+\item[{const Color\-R\-G\-B \&}]{color = {\ttfamily RGB\-\_\-White}, }
+\item[{bool}]{bg = {\ttfamily 0}, }
+\item[{const Color\-R\-G\-B \&}]{color2 = {\ttfamily RGB\-\_\-Black}}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a060284f149586fc828dc3b69b4ed192e}
+\hypertarget{namespaceQuickCG_ac6c5d61da454168eb90504f525e9c038}{\index{Quick\-C\-G@{Quick\-C\-G}!get\-Input\-Character@{get\-Input\-Character}}
+\index{get\-Input\-Character@{get\-Input\-Character}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{get\-Input\-Character}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 Quick\-C\-G\-::get\-Input\-Character (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_ac6c5d61da454168eb90504f525e9c038}
+\hypertarget{namespaceQuickCG_a48166a7d3d6279491fbc869928b50416}{\index{Quick\-C\-G@{Quick\-C\-G}!get\-Input\-String@{get\-Input\-String}}
+\index{get\-Input\-String@{get\-Input\-String}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{get\-Input\-String}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::get\-Input\-String (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{text, }
+\item[{const std\-::string \&}]{message, }
+\item[{bool}]{clear, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{const Color\-R\-G\-B \&}]{color, }
+\item[{bool}]{bg, }
+\item[{const Color\-R\-G\-B \&}]{color2}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a48166a7d3d6279491fbc869928b50416}
+\hypertarget{namespaceQuickCG_a5ea3f31f493e54c0640735580000787f}{\index{Quick\-C\-G@{Quick\-C\-G}!get\-Mouse\-State@{get\-Mouse\-State}}
+\index{get\-Mouse\-State@{get\-Mouse\-State}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{get\-Mouse\-State}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::get\-Mouse\-State (
+\begin{DoxyParamCaption}
+\item[{int \&}]{mouse\-X, }
+\item[{int \&}]{mouse\-Y}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a5ea3f31f493e54c0640735580000787f}
+\hypertarget{namespaceQuickCG_a5ebca8699dfd7a607931e4d648534a2b}{\index{Quick\-C\-G@{Quick\-C\-G}!get\-Mouse\-State@{get\-Mouse\-State}}
+\index{get\-Mouse\-State@{get\-Mouse\-State}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{get\-Mouse\-State}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::get\-Mouse\-State (
+\begin{DoxyParamCaption}
+\item[{int \&}]{mouse\-X, }
+\item[{int \&}]{mouse\-Y, }
+\item[{bool \&}]{L\-M\-B, }
+\item[{bool \&}]{R\-M\-B}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a5ebca8699dfd7a607931e4d648534a2b}
+\hypertarget{namespaceQuickCG_a0e35a53fcdf7b29b3754645b84bc6df7}{\index{Quick\-C\-G@{Quick\-C\-G}!get\-Screen\-Buffer@{get\-Screen\-Buffer}}
+\index{get\-Screen\-Buffer@{get\-Screen\-Buffer}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{get\-Screen\-Buffer}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::get\-Screen\-Buffer (
+\begin{DoxyParamCaption}
+\item[{std\-::vector$<$ Uint32 $>$ \&}]{buffer}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a0e35a53fcdf7b29b3754645b84bc6df7}
+\hypertarget{namespaceQuickCG_a83e125bfed1df906c2e65690780c02f9}{\index{Quick\-C\-G@{Quick\-C\-G}!get\-Ticks@{get\-Ticks}}
+\index{get\-Ticks@{get\-Ticks}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{get\-Ticks}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long Quick\-C\-G\-::get\-Ticks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a83e125bfed1df906c2e65690780c02f9}
+\hypertarget{namespaceQuickCG_a484df0e7cbe743fcb4ef2ee2b663cd33}{\index{Quick\-C\-G@{Quick\-C\-G}!get\-Time@{get\-Time}}
+\index{get\-Time@{get\-Time}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{get\-Time}]{\setlength{\rightskip}{0pt plus 5cm}double Quick\-C\-G\-::get\-Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceQuickCG_a484df0e7cbe743fcb4ef2ee2b663cd33}
+\hypertarget{namespaceQuickCG_a49f1bead8769fec578f753ee9484a4a7}{\index{Quick\-C\-G@{Quick\-C\-G}!hor\-Line@{hor\-Line}}
+\index{hor\-Line@{hor\-Line}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{hor\-Line}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::hor\-Line (
+\begin{DoxyParamCaption}
+\item[{int}]{y, }
+\item[{int}]{x1, }
+\item[{int}]{x2, }
+\item[{const Color\-R\-G\-B \&}]{color}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a49f1bead8769fec578f753ee9484a4a7}
+\hypertarget{namespaceQuickCG_a0630eff24e04496bad465837297f6881}{\index{Quick\-C\-G@{Quick\-C\-G}!H\-S\-Lto\-R\-G\-B@{H\-S\-Lto\-R\-G\-B}}
+\index{H\-S\-Lto\-R\-G\-B@{H\-S\-Lto\-R\-G\-B}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{H\-S\-Lto\-R\-G\-B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color\-R\-G\-B} Quick\-C\-G\-::\-H\-S\-Lto\-R\-G\-B (
+\begin{DoxyParamCaption}
+\item[{const Color\-H\-S\-L \&}]{color\-H\-S\-L}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a0630eff24e04496bad465837297f6881}
+\hypertarget{namespaceQuickCG_ae04752d2d91945cedd08ed0819c7c601}{\index{Quick\-C\-G@{Quick\-C\-G}!H\-S\-Vto\-R\-G\-B@{H\-S\-Vto\-R\-G\-B}}
+\index{H\-S\-Vto\-R\-G\-B@{H\-S\-Vto\-R\-G\-B}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{H\-S\-Vto\-R\-G\-B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color\-R\-G\-B} Quick\-C\-G\-::\-H\-S\-Vto\-R\-G\-B (
+\begin{DoxyParamCaption}
+\item[{const Color\-H\-S\-V \&}]{color\-H\-S\-V}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_ae04752d2d91945cedd08ed0819c7c601}
+\hypertarget{namespaceQuickCG_aea7f7dab16942a019049d07b66bfadd5}{\index{Quick\-C\-G@{Quick\-C\-G}!I\-N\-Tto\-R\-G\-B@{I\-N\-Tto\-R\-G\-B}}
+\index{I\-N\-Tto\-R\-G\-B@{I\-N\-Tto\-R\-G\-B}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{I\-N\-Tto\-R\-G\-B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color\-R\-G\-B} Quick\-C\-G\-::\-I\-N\-Tto\-R\-G\-B (
+\begin{DoxyParamCaption}
+\item[{Uint32}]{color\-I\-N\-T}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_aea7f7dab16942a019049d07b66bfadd5}
+\hypertarget{namespaceQuickCG_a3329a7af20dfe853cb5aa4476e12a6fc}{\index{Quick\-C\-G@{Quick\-C\-G}!key\-Down@{key\-Down}}
+\index{key\-Down@{key\-Down}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{key\-Down}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::key\-Down (
+\begin{DoxyParamCaption}
+\item[{int}]{key}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a3329a7af20dfe853cb5aa4476e12a6fc}
+\hypertarget{namespaceQuickCG_af364edceae6d91568589973b352f418e}{\index{Quick\-C\-G@{Quick\-C\-G}!key\-Pressed@{key\-Pressed}}
+\index{key\-Pressed@{key\-Pressed}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{key\-Pressed}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::key\-Pressed (
+\begin{DoxyParamCaption}
+\item[{int}]{key}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_af364edceae6d91568589973b352f418e}
+\hypertarget{namespaceQuickCG_a07d193f2bfde52cf679bb98281f2918c}{\index{Quick\-C\-G@{Quick\-C\-G}!load\-File@{load\-File}}
+\index{load\-File@{load\-File}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{load\-File}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::load\-File (
+\begin{DoxyParamCaption}
+\item[{std\-::vector$<$ unsigned char $>$ \&}]{buffer, }
+\item[{const std\-::string \&}]{filename}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a07d193f2bfde52cf679bb98281f2918c}
+\hypertarget{namespaceQuickCG_a4631b7b1384ebab6765068ab1289e43d}{\index{Quick\-C\-G@{Quick\-C\-G}!load\-Image@{load\-Image}}
+\index{load\-Image@{load\-Image}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{load\-Image}]{\setlength{\rightskip}{0pt plus 5cm}int Quick\-C\-G\-::load\-Image (
+\begin{DoxyParamCaption}
+\item[{std\-::vector$<$ Color\-R\-G\-B $>$ \&}]{out, }
+\item[{unsigned long \&}]{w, }
+\item[{unsigned long \&}]{h, }
+\item[{const std\-::string \&}]{filename}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a4631b7b1384ebab6765068ab1289e43d}
+\hypertarget{namespaceQuickCG_aeb1d2c3be8339130a5e3746bdc4650f4}{\index{Quick\-C\-G@{Quick\-C\-G}!load\-Image@{load\-Image}}
+\index{load\-Image@{load\-Image}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{load\-Image}]{\setlength{\rightskip}{0pt plus 5cm}int Quick\-C\-G\-::load\-Image (
+\begin{DoxyParamCaption}
+\item[{std\-::vector$<$ Uint32 $>$ \&}]{out, }
+\item[{unsigned long \&}]{w, }
+\item[{unsigned long \&}]{h, }
+\item[{const std\-::string \&}]{filename}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_aeb1d2c3be8339130a5e3746bdc4650f4}
+\hypertarget{namespaceQuickCG_a647150b9ad0e184c2db64880f02f9165}{\index{Quick\-C\-G@{Quick\-C\-G}!lock@{lock}}
+\index{lock@{lock}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::lock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a647150b9ad0e184c2db64880f02f9165}
+\hypertarget{namespaceQuickCG_ac55d9505ff5750289d64a6986e8277a1}{\index{Quick\-C\-G@{Quick\-C\-G}!on\-Screen@{on\-Screen}}
+\index{on\-Screen@{on\-Screen}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{on\-Screen}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::on\-Screen (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_ac55d9505ff5750289d64a6986e8277a1}
+\hypertarget{namespaceQuickCG_acda02e6695432056866eef615f73ee75}{\index{Quick\-C\-G@{Quick\-C\-G}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::operator!= (
+\begin{DoxyParamCaption}
+\item[{const Color\-R\-G\-B \&}]{color, }
+\item[{const Color\-R\-G\-B \&}]{color2}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_acda02e6695432056866eef615f73ee75}
+\hypertarget{namespaceQuickCG_a5ae0f52520fe1606bb9c9de7adb321ed}{\index{Quick\-C\-G@{Quick\-C\-G}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color\-R\-G\-B} Quick\-C\-G\-::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const Color\-R\-G\-B \&}]{color, }
+\item[{int}]{a}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a5ae0f52520fe1606bb9c9de7adb321ed}
+\hypertarget{namespaceQuickCG_a46f3904adc4c12e4e4586784e03c35cc}{\index{Quick\-C\-G@{Quick\-C\-G}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color\-R\-G\-B} Quick\-C\-G\-::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{int}]{a, }
+\item[{const Color\-R\-G\-B \&}]{color}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a46f3904adc4c12e4e4586784e03c35cc}
+\hypertarget{namespaceQuickCG_a910a9f0a870972575c3627e141e01a68}{\index{Quick\-C\-G@{Quick\-C\-G}!operator+@{operator+}}
+\index{operator+@{operator+}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color\-R\-G\-B} Quick\-C\-G\-::operator+ (
+\begin{DoxyParamCaption}
+\item[{const Color\-R\-G\-B \&}]{color, }
+\item[{const Color\-R\-G\-B \&}]{color2}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a910a9f0a870972575c3627e141e01a68}
+\hypertarget{namespaceQuickCG_ab46d60da5dd5ec38e88a2676cc5a2825}{\index{Quick\-C\-G@{Quick\-C\-G}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color\-R\-G\-B} Quick\-C\-G\-::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const Color\-R\-G\-B \&}]{color, }
+\item[{const Color\-R\-G\-B \&}]{color2}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_ab46d60da5dd5ec38e88a2676cc5a2825}
+\hypertarget{namespaceQuickCG_af6948c5888f2777b73f5e9af0adb0000}{\index{Quick\-C\-G@{Quick\-C\-G}!operator/@{operator/}}
+\index{operator/@{operator/}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color\-R\-G\-B} Quick\-C\-G\-::operator/ (
+\begin{DoxyParamCaption}
+\item[{const Color\-R\-G\-B \&}]{color, }
+\item[{int}]{a}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_af6948c5888f2777b73f5e9af0adb0000}
+\hypertarget{namespaceQuickCG_a4d855b23bc84fe6621a224404843738d}{\index{Quick\-C\-G@{Quick\-C\-G}!operator==@{operator==}}
+\index{operator==@{operator==}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::operator== (
+\begin{DoxyParamCaption}
+\item[{const Color\-R\-G\-B \&}]{color, }
+\item[{const Color\-R\-G\-B \&}]{color2}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a4d855b23bc84fe6621a224404843738d}
+\hypertarget{namespaceQuickCG_ad609e260b8ddad24e1c4c5ac4d7b28b5}{\index{Quick\-C\-G@{Quick\-C\-G}!pget@{pget}}
+\index{pget@{pget}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{pget}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color\-R\-G\-B} Quick\-C\-G\-::pget (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_ad609e260b8ddad24e1c4c5ac4d7b28b5}
+\hypertarget{namespaceQuickCG_a1712cf129e6bce7fa7b21edc32b49026}{\index{Quick\-C\-G@{Quick\-C\-G}!print@{print}}
+\index{print@{print}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ int Quick\-C\-G\-::print (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{val, }
+\item[{int}]{x = {\ttfamily 0}, }
+\item[{int}]{y = {\ttfamily 0}, }
+\item[{const Color\-R\-G\-B \&}]{color = {\ttfamily RGB\-\_\-White}, }
+\item[{bool}]{bg = {\ttfamily 0}, }
+\item[{const Color\-R\-G\-B \&}]{color2 = {\ttfamily RGB\-\_\-Black}, }
+\item[{int}]{force\-Length = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a1712cf129e6bce7fa7b21edc32b49026}
+\hypertarget{namespaceQuickCG_a06e4ce5924754ec94c89be69ed2b8806}{\index{Quick\-C\-G@{Quick\-C\-G}!print\-String@{print\-String}}
+\index{print\-String@{print\-String}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{print\-String}]{\setlength{\rightskip}{0pt plus 5cm}int Quick\-C\-G\-::print\-String (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{text, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{const Color\-R\-G\-B \&}]{color, }
+\item[{bool}]{bg, }
+\item[{const Color\-R\-G\-B \&}]{color2, }
+\item[{int}]{force\-Length}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a06e4ce5924754ec94c89be69ed2b8806}
+\hypertarget{namespaceQuickCG_a547bd88946eb65c1b9e1c8ddbd531e7f}{\index{Quick\-C\-G@{Quick\-C\-G}!pset@{pset}}
+\index{pset@{pset}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{pset}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::pset (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{const Color\-R\-G\-B \&}]{color}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a547bd88946eb65c1b9e1c8ddbd531e7f}
+\hypertarget{namespaceQuickCG_a9c9bf2da1e2577f8143f828525be7de1}{\index{Quick\-C\-G@{Quick\-C\-G}!read\-Keys@{read\-Keys}}
+\index{read\-Keys@{read\-Keys}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{read\-Keys}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::read\-Keys (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a9c9bf2da1e2577f8143f828525be7de1}
+\hypertarget{namespaceQuickCG_a5cb5ee8eac050ffb902ac96942cebc9f}{\index{Quick\-C\-G@{Quick\-C\-G}!redraw@{redraw}}
+\index{redraw@{redraw}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{redraw}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::redraw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a5cb5ee8eac050ffb902ac96942cebc9f}
+\hypertarget{namespaceQuickCG_a7f5e5aa8098d7678eef30a2c611b2059}{\index{Quick\-C\-G@{Quick\-C\-G}!R\-G\-Bto\-H\-S\-L@{R\-G\-Bto\-H\-S\-L}}
+\index{R\-G\-Bto\-H\-S\-L@{R\-G\-Bto\-H\-S\-L}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{R\-G\-Bto\-H\-S\-L}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color\-H\-S\-L} Quick\-C\-G\-::\-R\-G\-Bto\-H\-S\-L (
+\begin{DoxyParamCaption}
+\item[{const Color\-R\-G\-B \&}]{color\-R\-G\-B}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a7f5e5aa8098d7678eef30a2c611b2059}
+\hypertarget{namespaceQuickCG_a8c175a9cd1517065dffdf5e8def8ca5e}{\index{Quick\-C\-G@{Quick\-C\-G}!R\-G\-Bto\-H\-S\-V@{R\-G\-Bto\-H\-S\-V}}
+\index{R\-G\-Bto\-H\-S\-V@{R\-G\-Bto\-H\-S\-V}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{R\-G\-Bto\-H\-S\-V}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color\-H\-S\-V} Quick\-C\-G\-::\-R\-G\-Bto\-H\-S\-V (
+\begin{DoxyParamCaption}
+\item[{const Color\-R\-G\-B \&}]{color\-R\-G\-B}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a8c175a9cd1517065dffdf5e8def8ca5e}
+\hypertarget{namespaceQuickCG_aed6c6f3c85a31c02ecc08a9c45a93b55}{\index{Quick\-C\-G@{Quick\-C\-G}!R\-G\-Bto\-I\-N\-T@{R\-G\-Bto\-I\-N\-T}}
+\index{R\-G\-Bto\-I\-N\-T@{R\-G\-Bto\-I\-N\-T}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{R\-G\-Bto\-I\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}Uint32 Quick\-C\-G\-::\-R\-G\-Bto\-I\-N\-T (
+\begin{DoxyParamCaption}
+\item[{const Color\-R\-G\-B \&}]{color\-R\-G\-B}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_aed6c6f3c85a31c02ecc08a9c45a93b55}
+\hypertarget{namespaceQuickCG_a90d00feaf86f1886e3a4696851b88078}{\index{Quick\-C\-G@{Quick\-C\-G}!save\-File@{save\-File}}
+\index{save\-File@{save\-File}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{save\-File}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::save\-File (
+\begin{DoxyParamCaption}
+\item[{const std\-::vector$<$ unsigned char $>$ \&}]{buffer, }
+\item[{const std\-::string \&}]{filename}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a90d00feaf86f1886e3a4696851b88078}
+\hypertarget{namespaceQuickCG_ab709f7bbf43f41108128b0e82b88ac8e}{\index{Quick\-C\-G@{Quick\-C\-G}!screen@{screen}}
+\index{screen@{screen}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{screen}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::screen (
+\begin{DoxyParamCaption}
+\item[{int}]{width, }
+\item[{int}]{height, }
+\item[{bool}]{fullscreen, }
+\item[{const std\-::string \&}]{text}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_ab709f7bbf43f41108128b0e82b88ac8e}
+\hypertarget{namespaceQuickCG_a5270b33c0975788752bf72ebbe72f812}{\index{Quick\-C\-G@{Quick\-C\-G}!sleep@{sleep}}
+\index{sleep@{sleep}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{sleep}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::sleep (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a5270b33c0975788752bf72ebbe72f812}
+\hypertarget{namespaceQuickCG_a6d02c6302052c17f6edd76371d4ea56c}{\index{Quick\-C\-G@{Quick\-C\-G}!sleep@{sleep}}
+\index{sleep@{sleep}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{sleep}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::sleep (
+\begin{DoxyParamCaption}
+\item[{double}]{seconds}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a6d02c6302052c17f6edd76371d4ea56c}
+\hypertarget{namespaceQuickCG_aa5e87cb12327ca23aaa732a3aa8386aa}{\index{Quick\-C\-G@{Quick\-C\-G}!strtoval@{strtoval}}
+\index{strtoval@{strtoval}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{strtoval}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ T Quick\-C\-G\-::strtoval (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{s}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_aa5e87cb12327ca23aaa732a3aa8386aa}
+\hypertarget{namespaceQuickCG_ac1a231e2857d21dae271a40e9832512a}{\index{Quick\-C\-G@{Quick\-C\-G}!template\-\_\-abs@{template\-\_\-abs}}
+\index{template\-\_\-abs@{template\-\_\-abs}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{template\-\_\-abs}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ const T Quick\-C\-G\-::template\-\_\-abs (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{a}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_ac1a231e2857d21dae271a40e9832512a}
+\hypertarget{namespaceQuickCG_ab9196e3f3753545b5bee982b4c589966}{\index{Quick\-C\-G@{Quick\-C\-G}!unlock@{unlock}}
+\index{unlock@{unlock}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{unlock}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::unlock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_ab9196e3f3753545b5bee982b4c589966}
+\hypertarget{namespaceQuickCG_a636cd1485648787aabf790a0f479bf4a}{\index{Quick\-C\-G@{Quick\-C\-G}!valtostr@{valtostr}}
+\index{valtostr@{valtostr}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{valtostr}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ std\-::string Quick\-C\-G\-::valtostr (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{val}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a636cd1485648787aabf790a0f479bf4a}
+\hypertarget{namespaceQuickCG_a09e2d278caef33b316b15830f70ce1bd}{\index{Quick\-C\-G@{Quick\-C\-G}!valtostr@{valtostr}}
+\index{valtostr@{valtostr}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{valtostr}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ std\-::string Quick\-C\-G\-::valtostr (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{val, }
+\item[{int}]{length, }
+\item[{bool}]{fixed = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a09e2d278caef33b316b15830f70ce1bd}
+\hypertarget{namespaceQuickCG_a90e37f3314b8241e48379258ddae7870}{\index{Quick\-C\-G@{Quick\-C\-G}!ver\-Line@{ver\-Line}}
+\index{ver\-Line@{ver\-Line}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{ver\-Line}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::ver\-Line (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y1, }
+\item[{int}]{y2, }
+\item[{const Color\-R\-G\-B \&}]{color}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a90e37f3314b8241e48379258ddae7870}
+\hypertarget{namespaceQuickCG_a414c0c6537c4f468aac581f513ff8773}{\index{Quick\-C\-G@{Quick\-C\-G}!wait\-Frame@{wait\-Frame}}
+\index{wait\-Frame@{wait\-Frame}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{wait\-Frame}]{\setlength{\rightskip}{0pt plus 5cm}void Quick\-C\-G\-::wait\-Frame (
+\begin{DoxyParamCaption}
+\item[{double}]{old\-Time, }
+\item[{double}]{frame\-Duration}
+\end{DoxyParamCaption}
+)}}\label{namespaceQuickCG_a414c0c6537c4f468aac581f513ff8773}
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespaceQuickCG_a1471d38830e46d9549694c38f89f2a33}{\index{Quick\-C\-G@{Quick\-C\-G}!A\-S\-C\-I\-I\-\_\-\-B\-A\-C\-K\-S\-P\-A\-C\-E@{A\-S\-C\-I\-I\-\_\-\-B\-A\-C\-K\-S\-P\-A\-C\-E}}
+\index{A\-S\-C\-I\-I\-\_\-\-B\-A\-C\-K\-S\-P\-A\-C\-E@{A\-S\-C\-I\-I\-\_\-\-B\-A\-C\-K\-S\-P\-A\-C\-E}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{A\-S\-C\-I\-I\-\_\-\-B\-A\-C\-K\-S\-P\-A\-C\-E}]{\setlength{\rightskip}{0pt plus 5cm}const int Quick\-C\-G\-::\-A\-S\-C\-I\-I\-\_\-\-B\-A\-C\-K\-S\-P\-A\-C\-E = 8}}\label{namespaceQuickCG_a1471d38830e46d9549694c38f89f2a33}
+\hypertarget{namespaceQuickCG_a653347727493ee70ad64734222449ab6}{\index{Quick\-C\-G@{Quick\-C\-G}!A\-S\-C\-I\-I\-\_\-\-E\-N\-T\-E\-R@{A\-S\-C\-I\-I\-\_\-\-E\-N\-T\-E\-R}}
+\index{A\-S\-C\-I\-I\-\_\-\-E\-N\-T\-E\-R@{A\-S\-C\-I\-I\-\_\-\-E\-N\-T\-E\-R}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{A\-S\-C\-I\-I\-\_\-\-E\-N\-T\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}const int Quick\-C\-G\-::\-A\-S\-C\-I\-I\-\_\-\-E\-N\-T\-E\-R = 13}}\label{namespaceQuickCG_a653347727493ee70ad64734222449ab6}
+\hypertarget{namespaceQuickCG_ab7680b1029dfc3e65d17e184d26698c5}{\index{Quick\-C\-G@{Quick\-C\-G}!A\-S\-C\-I\-I\-\_\-\-S\-P\-A\-C\-E@{A\-S\-C\-I\-I\-\_\-\-S\-P\-A\-C\-E}}
+\index{A\-S\-C\-I\-I\-\_\-\-S\-P\-A\-C\-E@{A\-S\-C\-I\-I\-\_\-\-S\-P\-A\-C\-E}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{A\-S\-C\-I\-I\-\_\-\-S\-P\-A\-C\-E}]{\setlength{\rightskip}{0pt plus 5cm}const int Quick\-C\-G\-::\-A\-S\-C\-I\-I\-\_\-\-S\-P\-A\-C\-E = 32}}\label{namespaceQuickCG_ab7680b1029dfc3e65d17e184d26698c5}
+\hypertarget{namespaceQuickCG_aebfd1d5f928c98978dd58d6a640356b3}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-\_\-lock@{audio\-\_\-lock}}
+\index{audio\-\_\-lock@{audio\-\_\-lock}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-\_\-lock}]{\setlength{\rightskip}{0pt plus 5cm}S\-D\-L\-\_\-mutex$\ast$ Quick\-C\-G\-::audio\-\_\-lock = mutex\-Factory.\-create\-Mutex()}}\label{namespaceQuickCG_aebfd1d5f928c98978dd58d6a640356b3}
+\hypertarget{namespaceQuickCG_af934d17a78d6c65e321e148158f63421}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-\_\-max\-\_\-samples@{audio\-\_\-max\-\_\-samples}}
+\index{audio\-\_\-max\-\_\-samples@{audio\-\_\-max\-\_\-samples}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-\_\-max\-\_\-samples}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t Quick\-C\-G\-::audio\-\_\-max\-\_\-samples = 8192}}\label{namespaceQuickCG_af934d17a78d6c65e321e148158f63421}
+\hypertarget{namespaceQuickCG_aff1dcb3d84732f1501f618bae7a211d3}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-\_\-min\-\_\-samples@{audio\-\_\-min\-\_\-samples}}
+\index{audio\-\_\-min\-\_\-samples@{audio\-\_\-min\-\_\-samples}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-\_\-min\-\_\-samples}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t Quick\-C\-G\-::audio\-\_\-min\-\_\-samples = 4096}}\label{namespaceQuickCG_aff1dcb3d84732f1501f618bae7a211d3}
+\hypertarget{namespaceQuickCG_a26db757b0d9a686d14c1f271d91d4d34}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-\_\-mode@{audio\-\_\-mode}}
+\index{audio\-\_\-mode@{audio\-\_\-mode}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}int Quick\-C\-G\-::audio\-\_\-mode = 2}}\label{namespaceQuickCG_a26db757b0d9a686d14c1f271d91d4d34}
+\hypertarget{namespaceQuickCG_ad6ea0eb1c2ae4140c72859770e194eba}{\index{Quick\-C\-G@{Quick\-C\-G}!audio\-\_\-volume@{audio\-\_\-volume}}
+\index{audio\-\_\-volume@{audio\-\_\-volume}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audio\-\_\-volume}]{\setlength{\rightskip}{0pt plus 5cm}double Quick\-C\-G\-::audio\-\_\-volume = 1.\-0}}\label{namespaceQuickCG_ad6ea0eb1c2ae4140c72859770e194eba}
+\hypertarget{namespaceQuickCG_ab1c0f30c0e3fc0863cfb58d665c4bdd4}{\index{Quick\-C\-G@{Quick\-C\-G}!audiospec\-\_\-obtained@{audiospec\-\_\-obtained}}
+\index{audiospec\-\_\-obtained@{audiospec\-\_\-obtained}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audiospec\-\_\-obtained}]{\setlength{\rightskip}{0pt plus 5cm}S\-D\-L\-\_\-\-Audio\-Spec Quick\-C\-G\-::audiospec\-\_\-obtained}}\label{namespaceQuickCG_ab1c0f30c0e3fc0863cfb58d665c4bdd4}
+\hypertarget{namespaceQuickCG_a65b3a8aa3b5ceec9c5bbcee730765075}{\index{Quick\-C\-G@{Quick\-C\-G}!audiospec\-\_\-wanted@{audiospec\-\_\-wanted}}
+\index{audiospec\-\_\-wanted@{audiospec\-\_\-wanted}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{audiospec\-\_\-wanted}]{\setlength{\rightskip}{0pt plus 5cm}S\-D\-L\-\_\-\-Audio\-Spec Quick\-C\-G\-::audiospec\-\_\-wanted}}\label{namespaceQuickCG_a65b3a8aa3b5ceec9c5bbcee730765075}
+\hypertarget{namespaceQuickCG_a11407295e1307c55e0db667e09055365}{\index{Quick\-C\-G@{Quick\-C\-G}!event@{event}}
+\index{event@{event}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{event}]{\setlength{\rightskip}{0pt plus 5cm}S\-D\-L\-\_\-\-Event Quick\-C\-G\-::event = \{0\}}}\label{namespaceQuickCG_a11407295e1307c55e0db667e09055365}
+\hypertarget{namespaceQuickCG_a82a95aabb0ab79dafa6c2409d0718434}{\index{Quick\-C\-G@{Quick\-C\-G}!font@{font}}
+\index{font@{font}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{font}]{\setlength{\rightskip}{0pt plus 5cm}bool Quick\-C\-G\-::font}}\label{namespaceQuickCG_a82a95aabb0ab79dafa6c2409d0718434}
+\hypertarget{namespaceQuickCG_a6d5d49731a3a613a4940d2f0b22a2c55}{\index{Quick\-C\-G@{Quick\-C\-G}!generate\-Font@{generate\-Font}}
+\index{generate\-Font@{generate\-Font}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{generate\-Font}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Generate\-Font} Quick\-C\-G\-::generate\-Font}}\label{namespaceQuickCG_a6d5d49731a3a613a4940d2f0b22a2c55}
+\hypertarget{namespaceQuickCG_ae460032287c9d51b4883aa9a6d7906ab}{\index{Quick\-C\-G@{Quick\-C\-G}!h@{h}}
+\index{h@{h}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{h}]{\setlength{\rightskip}{0pt plus 5cm}int Quick\-C\-G\-::h}}\label{namespaceQuickCG_ae460032287c9d51b4883aa9a6d7906ab}
+\hypertarget{namespaceQuickCG_ad8b8e937433a800f9bd0bf81faff4312}{\index{Quick\-C\-G@{Quick\-C\-G}!inkeys@{inkeys}}
+\index{inkeys@{inkeys}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{inkeys}]{\setlength{\rightskip}{0pt plus 5cm}Uint8$\ast$ Quick\-C\-G\-::inkeys}}\label{namespaceQuickCG_ad8b8e937433a800f9bd0bf81faff4312}
+\hypertarget{namespaceQuickCG_afeaf9bfd3381e8615f172e026420afee}{\index{Quick\-C\-G@{Quick\-C\-G}!keypressed@{keypressed}}
+\index{keypressed@{keypressed}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{keypressed}]{\setlength{\rightskip}{0pt plus 5cm}std\-::map$<$int, bool$>$ Quick\-C\-G\-::keypressed}}\label{namespaceQuickCG_afeaf9bfd3381e8615f172e026420afee}
+\hypertarget{namespaceQuickCG_aeaff2ca660279a53258f4868679c69f8}{\index{Quick\-C\-G@{Quick\-C\-G}!mutex\-Factory@{mutex\-Factory}}
+\index{mutex\-Factory@{mutex\-Factory}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{mutex\-Factory}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mutex\-Factory} Quick\-C\-G\-::mutex\-Factory}}\label{namespaceQuickCG_aeaff2ca660279a53258f4868679c69f8}
+\hypertarget{namespaceQuickCG_a69ab27a13de5285d506fab8d5cf51f86}{\index{Quick\-C\-G@{Quick\-C\-G}!scr@{scr}}
+\index{scr@{scr}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{scr}]{\setlength{\rightskip}{0pt plus 5cm}S\-D\-L\-\_\-\-Surface$\ast$ Quick\-C\-G\-::scr}}\label{namespaceQuickCG_a69ab27a13de5285d506fab8d5cf51f86}
+\hypertarget{namespaceQuickCG_aee0a81fa45305d0058f5270e1acd6356}{\index{Quick\-C\-G@{Quick\-C\-G}!w@{w}}
+\index{w@{w}!QuickCG@{Quick\-C\-G}}
+\subsubsection[{w}]{\setlength{\rightskip}{0pt plus 5cm}int Quick\-C\-G\-::w}}\label{namespaceQuickCG_aee0a81fa45305d0058f5270e1acd6356}

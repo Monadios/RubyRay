@@ -1,0 +1,107 @@
+\hypertarget{classJson_1_1OurReader}{\section{Json\-:\-:Our\-Reader Class Reference}
+\label{classJson_1_1OurReader}\index{Json\-::\-Our\-Reader@{Json\-::\-Our\-Reader}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structJson_1_1OurReader_1_1StructuredError}{Structured\-Error}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef char \hyperlink{classJson_1_1OurReader_a0cd0bab4caa66594ab843ccd5f9dc239}{Char}
+\item 
+typedef const \hyperlink{classJson_1_1OurReader_a0cd0bab4caa66594ab843ccd5f9dc239}{Char} $\ast$ \hyperlink{classJson_1_1OurReader_a1bdc7bbc52ba87cae6b19746f2ee0189}{Location}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classJson_1_1OurReader_a48a850914b9c8d7781be172930c478e5}{Our\-Reader} (\hyperlink{classJson_1_1OurFeatures}{Our\-Features} const \&features)
+\item 
+bool \hyperlink{classJson_1_1OurReader_aba4f8749aab7f02ec17f107e392caf80}{parse} (const char $\ast$begin\-Doc, const char $\ast$end\-Doc, Value \&root, bool collect\-Comments=true)
+\item 
+J\-S\-O\-N\-C\-P\-P\-\_\-\-S\-T\-R\-I\-N\-G \hyperlink{classJson_1_1OurReader_a61b627b274f3bf110d559e4ab50e29b8}{get\-Formatted\-Error\-Messages} () const 
+\item 
+std\-::vector$<$ \hyperlink{structJson_1_1OurReader_1_1StructuredError}{Structured\-Error} $>$ \hyperlink{classJson_1_1OurReader_a02ef7871af3706754a233c36e6d489e9}{get\-Structured\-Errors} () const 
+\item 
+bool \hyperlink{classJson_1_1OurReader_a700e9d8e0977fa7e0375d26690d7025f}{push\-Error} (const Value \&value, const J\-S\-O\-N\-C\-P\-P\-\_\-\-S\-T\-R\-I\-N\-G \&message)
+\item 
+bool \hyperlink{classJson_1_1OurReader_addccecfca74b79adaad6115ddd614477}{push\-Error} (const Value \&value, const J\-S\-O\-N\-C\-P\-P\-\_\-\-S\-T\-R\-I\-N\-G \&message, const Value \&extra)
+\item 
+bool \hyperlink{classJson_1_1OurReader_a048346238d703ad9aed06beb686e6102}{good} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classJson_1_1OurReader_a0cd0bab4caa66594ab843ccd5f9dc239}{\index{Json\-::\-Our\-Reader@{Json\-::\-Our\-Reader}!Char@{Char}}
+\index{Char@{Char}!Json::OurReader@{Json\-::\-Our\-Reader}}
+\subsubsection[{Char}]{\setlength{\rightskip}{0pt plus 5cm}typedef char {\bf Json\-::\-Our\-Reader\-::\-Char}}}\label{classJson_1_1OurReader_a0cd0bab4caa66594ab843ccd5f9dc239}
+\hypertarget{classJson_1_1OurReader_a1bdc7bbc52ba87cae6b19746f2ee0189}{\index{Json\-::\-Our\-Reader@{Json\-::\-Our\-Reader}!Location@{Location}}
+\index{Location@{Location}!Json::OurReader@{Json\-::\-Our\-Reader}}
+\subsubsection[{Location}]{\setlength{\rightskip}{0pt plus 5cm}typedef const {\bf Char}$\ast$ {\bf Json\-::\-Our\-Reader\-::\-Location}}}\label{classJson_1_1OurReader_a1bdc7bbc52ba87cae6b19746f2ee0189}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classJson_1_1OurReader_a48a850914b9c8d7781be172930c478e5}{\index{Json\-::\-Our\-Reader@{Json\-::\-Our\-Reader}!Our\-Reader@{Our\-Reader}}
+\index{Our\-Reader@{Our\-Reader}!Json::OurReader@{Json\-::\-Our\-Reader}}
+\subsubsection[{Our\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}Json\-::\-Our\-Reader\-::\-Our\-Reader (
+\begin{DoxyParamCaption}
+\item[{{\bf Our\-Features} const \&}]{features}
+\end{DoxyParamCaption}
+)}}\label{classJson_1_1OurReader_a48a850914b9c8d7781be172930c478e5}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classJson_1_1OurReader_a61b627b274f3bf110d559e4ab50e29b8}{\index{Json\-::\-Our\-Reader@{Json\-::\-Our\-Reader}!get\-Formatted\-Error\-Messages@{get\-Formatted\-Error\-Messages}}
+\index{get\-Formatted\-Error\-Messages@{get\-Formatted\-Error\-Messages}!Json::OurReader@{Json\-::\-Our\-Reader}}
+\subsubsection[{get\-Formatted\-Error\-Messages}]{\setlength{\rightskip}{0pt plus 5cm}J\-S\-O\-N\-C\-P\-P\-\_\-\-S\-T\-R\-I\-N\-G Json\-::\-Our\-Reader\-::get\-Formatted\-Error\-Messages (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classJson_1_1OurReader_a61b627b274f3bf110d559e4ab50e29b8}
+\hypertarget{classJson_1_1OurReader_a02ef7871af3706754a233c36e6d489e9}{\index{Json\-::\-Our\-Reader@{Json\-::\-Our\-Reader}!get\-Structured\-Errors@{get\-Structured\-Errors}}
+\index{get\-Structured\-Errors@{get\-Structured\-Errors}!Json::OurReader@{Json\-::\-Our\-Reader}}
+\subsubsection[{get\-Structured\-Errors}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ {\bf Our\-Reader\-::\-Structured\-Error} $>$ Json\-::\-Our\-Reader\-::get\-Structured\-Errors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classJson_1_1OurReader_a02ef7871af3706754a233c36e6d489e9}
+\hypertarget{classJson_1_1OurReader_a048346238d703ad9aed06beb686e6102}{\index{Json\-::\-Our\-Reader@{Json\-::\-Our\-Reader}!good@{good}}
+\index{good@{good}!Json::OurReader@{Json\-::\-Our\-Reader}}
+\subsubsection[{good}]{\setlength{\rightskip}{0pt plus 5cm}bool Json\-::\-Our\-Reader\-::good (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classJson_1_1OurReader_a048346238d703ad9aed06beb686e6102}
+\hypertarget{classJson_1_1OurReader_aba4f8749aab7f02ec17f107e392caf80}{\index{Json\-::\-Our\-Reader@{Json\-::\-Our\-Reader}!parse@{parse}}
+\index{parse@{parse}!Json::OurReader@{Json\-::\-Our\-Reader}}
+\subsubsection[{parse}]{\setlength{\rightskip}{0pt plus 5cm}bool Json\-::\-Our\-Reader\-::parse (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{begin\-Doc, }
+\item[{const char $\ast$}]{end\-Doc, }
+\item[{Value \&}]{root, }
+\item[{bool}]{collect\-Comments = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}\label{classJson_1_1OurReader_aba4f8749aab7f02ec17f107e392caf80}
+\hypertarget{classJson_1_1OurReader_a700e9d8e0977fa7e0375d26690d7025f}{\index{Json\-::\-Our\-Reader@{Json\-::\-Our\-Reader}!push\-Error@{push\-Error}}
+\index{push\-Error@{push\-Error}!Json::OurReader@{Json\-::\-Our\-Reader}}
+\subsubsection[{push\-Error}]{\setlength{\rightskip}{0pt plus 5cm}bool Json\-::\-Our\-Reader\-::push\-Error (
+\begin{DoxyParamCaption}
+\item[{const Value \&}]{value, }
+\item[{const J\-S\-O\-N\-C\-P\-P\-\_\-\-S\-T\-R\-I\-N\-G \&}]{message}
+\end{DoxyParamCaption}
+)}}\label{classJson_1_1OurReader_a700e9d8e0977fa7e0375d26690d7025f}
+\hypertarget{classJson_1_1OurReader_addccecfca74b79adaad6115ddd614477}{\index{Json\-::\-Our\-Reader@{Json\-::\-Our\-Reader}!push\-Error@{push\-Error}}
+\index{push\-Error@{push\-Error}!Json::OurReader@{Json\-::\-Our\-Reader}}
+\subsubsection[{push\-Error}]{\setlength{\rightskip}{0pt plus 5cm}bool Json\-::\-Our\-Reader\-::push\-Error (
+\begin{DoxyParamCaption}
+\item[{const Value \&}]{value, }
+\item[{const J\-S\-O\-N\-C\-P\-P\-\_\-\-S\-T\-R\-I\-N\-G \&}]{message, }
+\item[{const Value \&}]{extra}
+\end{DoxyParamCaption}
+)}}\label{classJson_1_1OurReader_addccecfca74b79adaad6115ddd614477}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Utils/\hyperlink{jsoncpp_8cpp}{jsoncpp.\-cpp}\end{DoxyCompactItemize}
