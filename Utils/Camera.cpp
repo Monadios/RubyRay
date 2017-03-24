@@ -1,8 +1,9 @@
-#include "./Utils/quickcg.h"
-#include "./Utils/json/json.h"
-#include "./Camera.h"
 #include <fstream>
 #include <iostream>
+
+#include "../Utils/quickcg.h"
+#include "../Utils/json/json.h"
+#include "../Utils/Camera.h"
 
 #define texWidth 64
 #define texHeight 64

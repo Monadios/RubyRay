@@ -1,4 +1,4 @@
-#include "./Barrel.h"
+#include "../Classes/Barrel.h"
 
 Barrel::Barrel(double _x, double _y)
 {

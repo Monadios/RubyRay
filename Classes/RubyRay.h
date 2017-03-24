@@ -1,7 +1,7 @@
 #ifndef RUBY_RAY_H
 #define RUBY_RAY_H
 
-#include "Player.h"
+#include "../Classes/Player.h"
 #include "../Utils/Level.h"
 
 class Game

@@ -11,7 +11,11 @@
 ;; Cutscenes = Move Camera Independently
 ;;  scripted events files
 ;;Data Driven Design
-;; Make Map and Enemies loaded from lua file
+;; Make Enemies load from lua file
+;; Make Components easier to load from file
+
+Enemy = new GameObject([new Position(x,y), new Health(100), ...]);
+
 https://github.com/open-source-parsers/jsoncpp/wiki
 https://eliasdaler.wordpress.com/2015/08/10/using-lua-and-cpp-in-practice/
 ;;Components
@@ -21,7 +25,9 @@ https://eliasdaler.wordpress.com/2015/08/10/using-lua-and-cpp-in-practice/
 ;;Weapon
 ;;Enemy types
 ;;Door + Secret Area (gst)
+;; Wall Class
 ;;Animation
+;;currentDist lookuptable
 ;;Debug Console
 ;;Entity ID's
 ;;Make Component Data only -- add systems (ECS)

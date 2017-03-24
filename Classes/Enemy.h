@@ -1,4 +1,4 @@
-#include "./GameObject.h"
+#include "../Classes/GameObject.h"
 
 #ifndef ENEMY_H
 #define ENEMY_H

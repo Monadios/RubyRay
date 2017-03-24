@@ -1,10 +1,12 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include <cmath>
+
 #include "../Classes/Player.h"
 #include "../Classes/GameObject.h"
 #include "../Utils/quickcg.h"
-#include <cmath>
+
 #define numObstacles 2
 #define screenWidth 640
 #define screenHeight 480

@@ -1,4 +1,4 @@
-#include "./GameObject.h"
+#include "../Classes/GameObject.h"
 
 #ifndef BARREL_H
 #define BARREL_H

@@ -1,4 +1,5 @@
-#include "./Player.h"
+#include "../Classes/Player.h"
+
 Player::Player(double px, double py, double dx, double dy, double planX, double
 planY)
 {

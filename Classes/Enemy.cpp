@@ -1,4 +1,5 @@
-#include "./Enemy.h"
+#include "../Classes/Enemy.h"
+
 Enemy::Enemy(double x_, double y_)
 {
   x = x_;

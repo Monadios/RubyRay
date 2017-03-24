@@ -1,11 +1,12 @@
 #ifndef CONFIG_FILE_PARSER_H
 #define CONFIG_FILE_PARSER_H
 
-#include "./json/json.h"
-#include "./Classes/Enemy.h"
 #include <map>
 #include <string>
 #include <typeindex>
+
+#include "../Utils/json/json.h"
+#include "../Classes/Enemy.h"
 
 class ConfigFileParser
 {

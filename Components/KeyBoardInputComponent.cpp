@@ -1,4 +1,4 @@
-#include "./KeyBoardInputComponent.h"
+#include "../Components/KeyBoardInputComponent.h"
 
 KeyBoardInputComponent::KeyBoardInputComponent()
 {

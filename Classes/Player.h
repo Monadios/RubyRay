@@ -1,8 +1,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
+
 #include <vector>
+
 struct KeyBoardInputComponent;
 class Camera;
+
 #include "../Components/KeyBoardInputComponent.h"
 #include "../Utils/Camera.h"
 

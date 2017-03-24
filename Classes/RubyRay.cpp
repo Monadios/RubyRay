@@ -1,15 +1,13 @@
-#include "./RubyRay.h"
 #include <vector>
 #include <iostream>
+
+#include "./RubyRay.h"
 #include "../Classes/GameObject.h"
 #include "../Classes/Enemy.h"
 #include "../Classes/Barrel.h"
 #include "../Utils/json/json.h"
 #include "../Utils/ConfigFileParser.h"
-#include "Utils/quickcg.h"
-#include <fstream>
-#include <streambuf>
-#include <string>
+#include "../Utils/quickcg.h"
 
 Game::Game()
 {
@@ -42,7 +40,6 @@ Game::Game()
   }
 
   std::vector<int> coords;
-  
   Json::Value playerPos = parser.get("player");
   for(auto coord : playerPos){
     coords.push_back(coord.asInt());
@@ -73,8 +70,8 @@ void Game::MainLoop()
     player->camera->clearScreen();
     player->camera->updateScreen();
     if(player->shoot){
-      curLevel->worldMap[int(player->posX)+1][int(player->posY)] = 0;
       player->shoot = false;
     }
   }
 }
+
