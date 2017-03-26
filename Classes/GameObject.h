@@ -17,6 +17,7 @@ public:
   double y;
   GameObject();
   int texY;
+  int width;
   int texture;
   int id;
   std::map<std::type_index, Component*> components;

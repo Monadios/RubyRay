@@ -1,12 +1,12 @@
 #include "../Components/KeyBoardInputComponent.h"
-
-KeyBoardInputComponent::KeyBoardInputComponent()
+#include<iostream>
+void KeyBoardInputComponent::update()
 {
-  keyboard = {};
-}
 
-void KeyBoardInputComponent::update(Player* p, const std::vector<std::vector<int>>& worldMap)
-{
+  /*
+    Should Use event system here
+    allow for user mapping of controls
+   */
   SDL_PumpEvents();
   keyboard = SDL_GetKeyState(NULL);
 

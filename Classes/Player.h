@@ -3,26 +3,24 @@
 
 #include <vector>
 
-struct KeyBoardInputComponent;
 class Camera;
+class KeyBoardInputComponent;
 
-#include "../Components/KeyBoardInputComponent.h"
+#include "../Classes/GameObject.h"
 #include "../Utils/Camera.h"
+#include "../Components/KeyBoardInputComponent.h"
 
-class Player
+class Player : public GameObject
 {
 public:
   double rotSpeed;
   double moveSpeed;
-  Player(double px, double py, double dx, double dy, double planX,
-	 double planY);
-  void update(const std::vector<std::vector<int>>& map);
+  Player(double px, double py, double dx, double dy, double planX, double planY);
+  void update();
   double posX,posY;
   double dirX, dirY; //initial direction vector
   Camera* camera;
   bool moving = true;
   bool shoot = false;
-private:
-  KeyBoardInputComponent* _input;
 };
 #endif

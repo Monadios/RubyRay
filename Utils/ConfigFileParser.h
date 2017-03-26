@@ -17,7 +17,7 @@ public:
   static const std::string DATA_FOLDER;
   Json::Value get(std::string key);
   Json::Value get(std::string key, Json::Value notfound);
-  
+  void reloadFile();
   /*
     TODO: Should probably add a get<Type>(variable) function so clients don't
     have to convert it manually every time. At least for simple types i.e built
@@ -25,5 +25,8 @@ public:
    */
 
   Json::Value root;
+
+private:
+  std::string pathName;
 };
 #endif

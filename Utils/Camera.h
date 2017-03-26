@@ -3,9 +3,11 @@
 
 #include <cmath>
 
-#include "../Classes/Player.h"
+class Player;
+
 #include "../Classes/GameObject.h"
 #include "../Utils/quickcg.h"
+#include "../Classes/Player.h"
 
 #define numObstacles 2
 #define screenWidth 640
@@ -24,7 +26,7 @@ public:
    */
 
   void clearScreen();
-  void updateScreen();
+  void updateScreen() const;
 
   double pX,pY;
   double dX,dY;

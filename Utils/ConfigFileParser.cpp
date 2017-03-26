@@ -9,6 +9,7 @@ ConfigFileParser::ConfigFileParser()
 Json::Value ConfigFileParser::loadFile(std::string path)
 {
   std::ifstream config_file(DATA_FOLDER + path, std::ios::binary);
+  pathName = path;
   config_file >> root;
   return root;
 }
@@ -21,6 +22,12 @@ Json::Value ConfigFileParser::get(std::string key)
 Json::Value ConfigFileParser::get(std::string key, Json::Value notfound)
 {
   return root.get(key, notfound);
+}
+
+void ConfigFileParser::reloadFile()
+{
+  std::ifstream config_file(DATA_FOLDER + pathName, std::ios::binary);
+  config_file >> root;
 }
 
 /*

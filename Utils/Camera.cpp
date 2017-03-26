@@ -4,6 +4,7 @@
 #include "../Utils/quickcg.h"
 #include "../Utils/json/json.h"
 #include "../Utils/Camera.h"
+#include "../Utils/ConfigFileParser.h"
 
 #define texWidth 64
 #define texHeight 64
@@ -29,6 +30,10 @@ Camera::Camera(double _x,double _y, double _dx, double _dy)
   QuickCG::screen(screenWidth,screenHeight, 0, "Raycaster");
 
   //load some textures
+  /*
+    TODO: should probably find a better way of loading textures
+    possibly automatic parsing of media folder
+   */
   unsigned long tw, th, error = 0;
   error |= QuickCG::loadImage(texture[0], tw, th, "Media/eagle.png");
   error |= QuickCG::loadImage(texture[1], tw, th, "Media/redbrick.png");
@@ -237,7 +242,6 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
       int spriteScreenX = int((QuickCG::w / 2) * (1 + transformX / transformY));
 
       //parameters for scaling and moving the sprites
-#define uDiv 1
 #define vDiv 1
 #define vMove 0.0
       int vMoveScreen = int(vMove / transformY);
@@ -251,7 +255,7 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
       if(drawEndY >= QuickCG::h) drawEndY = QuickCG::h - 1;
 
       //calculate width of the sprite
-      int spriteWidth = abs( int (QuickCG::h / (transformY))) / uDiv;
+      int spriteWidth = abs( int (QuickCG::h / (transformY))) / sprites[spriteOrder[i]]->width;
       int drawStartX = -spriteWidth / 2 + spriteScreenX;
       if(drawStartX < 0) drawStartX = 0;
       int drawEndX = spriteWidth / 2 + spriteScreenX;
@@ -284,7 +288,7 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
   QuickCG::drawBuffer(buffer[0]);
 }
 
-void Camera::updateScreen()
+void Camera::updateScreen() const
 {
   QuickCG::redraw();
 }

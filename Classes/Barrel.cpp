@@ -6,6 +6,7 @@ Barrel::Barrel(double _x, double _y)
   y = _y;
   texture = 8;
   texY = 1;
+  width = 1;
 }
 
 void Barrel::update()

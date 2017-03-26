@@ -1,13 +1,14 @@
 #include <vector>
 #include <iostream>
 
-#include "./RubyRay.h"
+#include "../Classes/RubyRay.h"
 #include "../Classes/GameObject.h"
 #include "../Classes/Enemy.h"
 #include "../Classes/Barrel.h"
 #include "../Utils/json/json.h"
 #include "../Utils/ConfigFileParser.h"
 #include "../Utils/quickcg.h"
+#include "../Classes/Player.h"
 
 Game::Game()
 {
@@ -45,6 +46,8 @@ Game::Game()
     coords.push_back(coord.asInt());
   }
   player = new Player(coords[0],coords[1],-1,0,0,0.66);
+  player->addComponent(std::type_index(typeid(KeyBoardInputComponent)),
+		       new KeyBoardInputComponent(player,worldMap));
   curLevel = new Level(sprites, worldMap);
 }
 
@@ -58,7 +61,7 @@ void Game::MainLoop()
 
     player->moveSpeed = frameTime * 3.0; //the constant value is in squares/second
     player->rotSpeed = frameTime * 2.0; //the constant value is in radians/second
-    player->update(curLevel->worldMap);
+    player->update();
 
     std::for_each(std::begin(curLevel->sprites), std::end(curLevel->sprites), [=](GameObject* e)
 		  {
