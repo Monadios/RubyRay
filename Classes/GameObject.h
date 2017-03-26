@@ -16,6 +16,7 @@ public:
   double x;
   double y;
   GameObject();
+  int texY;
   int texture;
   int id;
   std::map<std::type_index, Component*> components;

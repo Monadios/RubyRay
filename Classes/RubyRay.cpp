@@ -12,7 +12,7 @@
 Game::Game()
 {
   std::vector<GameObject*> sprites;
-  sprites.push_back(new Enemy(18.5,11.5));
+  sprites.push_back(new Enemy(18.5,12));
   sprites.push_back(new Barrel(19.5,11.5));
 
   /*

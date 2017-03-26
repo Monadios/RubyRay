@@ -213,8 +213,6 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
 	}
     }
 
-  // TODO: Add Sprites
-
   //SPRITE CASTING
   //sort sprites from far to close
     for(int i = 0; i < numObstacles; i++)
@@ -275,7 +273,7 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
 		int texY;
 		int texX;
 		texX = int(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * texWidth / spriteWidth) / 256;
-		texY = ((d * texHeight) / spriteHeight) / 256;
+		texY = ((d * texHeight) / spriteHeight) / (256 / sprites[spriteOrder[i]]->texY);
 		Uint32 color = texture[tex][texWidth * texY + texX]; //get current color from the texture
 		if((color & 0x00FFFFFF) != 0) buffer[y][stripe] = color; //paint pixel if it isn't black, black is the invisible color
 	      }
