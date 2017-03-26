@@ -277,6 +277,11 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
 		int texY;
 		int texX;
 		texX = int(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * texWidth / spriteWidth) / 256;
+		/*
+		  Because the sprites vary in height, it is neccessary to divide
+		  the value by the a height variable (1 for 32 pixels height and
+		  2 for 64 pixels height)
+		 */
 		texY = ((d * texHeight) / spriteHeight) / (256 / sprites[spriteOrder[i]]->texY);
 		Uint32 color = texture[tex][texWidth * texY + texX]; //get current color from the texture
 		if((color & 0x00FFFFFF) != 0) buffer[y][stripe] = color; //paint pixel if it isn't black, black is the invisible color
