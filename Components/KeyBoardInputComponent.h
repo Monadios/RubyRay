@@ -1,5 +1,5 @@
-#ifndef KeyBoardInputComponent_H
-#define KeyBoardInputComponent_H
+#ifndef KEYBOARDINPUTCOMPONENT_H
+#define KEYBOARDINPUTCOMPONENT_H
 
 class Player;
 

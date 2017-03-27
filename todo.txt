@@ -1,13 +1,9 @@
 ;; Public -> private
 ;; Immutability
-;; Enemy rendering fix
 ;;AI
-;;Make ConfigFileParser check if file changed and update values accordingly
 ;;Transform class -> Position, Rotation
 ;;Render Class
-;;Levels (consists of map, enemies and items)
 ;; World Class
-;; Camera Class -- Done
 ;; Make Camera a component
 ;; Cutscenes = Move Camera Independently
 ;;  scripted events files

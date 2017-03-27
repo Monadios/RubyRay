@@ -25,7 +25,7 @@ Game::Game()
 
   std::vector<std::vector<int>> worldMap {};
   ConfigFileParser parser = ConfigFileParser();
-  parser.loadFile("map.json");
+  parser.loadFile("./Data/map.json");
   Json::Value map = parser.get("map");
   // TODO FIgure out what to do with failure
   if(map == ConfigFileParser::VALUE_NOT_FOUND){
