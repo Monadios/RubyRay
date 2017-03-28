@@ -18,7 +18,9 @@
   Probably More
  */
 
-Camera::Camera(double _x,double _y, double _dx, double _dy)
+Camera::Camera(double _x,double _y, double _dx, double _dy,
+	       const std::vector<std::vector<int>>& worldMap,
+	       std::vector<GameObject*> sprites)
 {
   for(int i = 0; i < 11; i++) texture[i].resize(texWidth * texHeight);
   pX = _x;
@@ -57,8 +59,7 @@ Camera::Camera(double _x,double _y, double _dx, double _dy)
 
 }
 
-void Camera::render(const std::vector<std::vector<int>>& worldMap,
-		    std::vector<GameObject*> sprites)
+void Camera::render()
 {
   spriteOrder.reserve(sprites.size());
   spriteDistance.reserve(sprites.size());
@@ -140,7 +141,7 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
       //Calculate height of line to draw on screen
       int lineHeight = (int)(QuickCG::h / perpWallDist);
 
-      //calculate lowest and highest pixel to fill in current stripe
+p      //calculate lowest and highest pixel to fill in current stripe
       int drawStart = -lineHeight / 2 + QuickCG::h / 2;
       if(drawStart < 0) drawStart = 0;
       int drawEnd = lineHeight / 2 + QuickCG::h / 2;
