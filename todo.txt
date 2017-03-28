@@ -1,3 +1,4 @@
+;;Remove raw pointers
 ;; Public -> private
 ;; Immutability
 ;;AI

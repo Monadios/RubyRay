@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <string>
 
 #include "../Classes/RubyRay.h"
 #include "../Classes/GameObject.h"
@@ -16,7 +17,8 @@ Game::Game()
 {
   std::vector<GameObject*> sprites;
   sprites.push_back(new Enemy(18.5,12));
-  sprites.push_back(new Barrel(19.5,11.5));
+  sprites[0]->addComponent(std::type_index(typeid(TextureComponent)),
+			   new TextureComponent("Media/guard.png",1,2));
   /*
     TODO:
     Add a LoadLevel(Filename) function

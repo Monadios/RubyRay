@@ -9,7 +9,6 @@ class Player;
 #include "../Utils/quickcg.h"
 #include "../Classes/Player.h"
 
-#define numObstacles 2
 #define screenWidth 640
 #define screenHeight 480
 
@@ -39,11 +38,11 @@ private:
   //1D Zbuffer
   double ZBuffer[screenWidth];
   //arrays used to sort the sprites
-  int spriteOrder[numObstacles];
-  double spriteDistance[numObstacles];
+  std::vector<int> spriteOrder;
+  std::vector<double> spriteDistance;
   double currentDist;
   //function used to sort the sprites
-  void combSort(int* order, double* dist, int amount);
+  void combSort(std::vector<int> order, std::vector<double> dist, int amount);
 };
 
 #endif

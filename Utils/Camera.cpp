@@ -5,6 +5,7 @@
 #include "../Utils/json/json.h"
 #include "../Utils/Camera.h"
 #include "../Utils/ConfigFileParser.h"
+#include "../Components/TextureComponent.h"
 
 #define texWidth 64
 #define texHeight 64
@@ -59,6 +60,9 @@ Camera::Camera(double _x,double _y, double _dx, double _dy)
 void Camera::render(const std::vector<std::vector<int>>& worldMap,
 		    std::vector<GameObject*> sprites)
 {
+  spriteOrder.reserve(sprites.size());
+  spriteDistance.reserve(sprites.size());
+  
   for(int _x = 0; _x < QuickCG::w; _x++)
     {
       //calculate ray position and direction
@@ -220,19 +224,21 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
 
   //SPRITE CASTING
   //sort sprites from far to close
-    for(int i = 0; i < numObstacles; i++)
+  for(int i = 0; i < sprites.size(); i++)
     {
       spriteOrder[i] = i;
       spriteDistance[i] = ((pX - sprites[i]->x) * (pX - sprites[i]->x) + (pY - sprites[i]->y) * (pY - sprites[i]->y)); //sqrt not taken, unneeded
     }
-  combSort(spriteOrder, spriteDistance, numObstacles);
+  combSort(spriteOrder, spriteDistance, (int)sprites.size());
 
   //after sorting the sprites, do the projection and draw them
-  for(int i = 0; i < numObstacles; i++)
+  for(int i = 0; i < sprites.size(); i++)
     {
       //translate sprite position to relative to camera
       double spriteX = sprites[spriteOrder[i]]->x - pX;
       double spriteY = sprites[spriteOrder[i]]->y - pY;
+
+      TextureComponent* texCom = sprites[spriteOrder[i]]->get<TextureComponent>();
 
       double invDet = 1.0 / (plX * dY - dX * plY); //required for correct matrix multiplication
 
@@ -247,7 +253,9 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
       int vMoveScreen = int(vMove / transformY);
 
       //calculate height of the sprite on screen
-      int spriteHeight = abs(int(QuickCG::h / (transformY))) / vDiv; //using "transformY" instead of the real distance prevents fisheye
+      //using "transformY" instead of the real distance prevents fisheye
+      int spriteHeight = abs(int(QuickCG::h / (transformY))) / texCom->heightFactor;
+
       //calculate lowest and highest pixel to fill in current stripe
       int drawStartY = -spriteHeight / 2 + QuickCG::h / 2 + vMoveScreen;
       if(drawStartY < 0) drawStartY = 0;
@@ -255,7 +263,7 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
       if(drawEndY >= QuickCG::h) drawEndY = QuickCG::h - 1;
 
       //calculate width of the sprite
-      int spriteWidth = abs( int (QuickCG::h / (transformY))) / sprites[spriteOrder[i]]->width;
+      int spriteWidth = abs( int (QuickCG::h / (transformY))) / texCom->widthFactor;
       int drawStartX = -spriteWidth / 2 + spriteScreenX;
       if(drawStartX < 0) drawStartX = 0;
       int drawEndX = spriteWidth / 2 + spriteScreenX;
@@ -273,7 +281,6 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
 	    for(int y = drawStartY; y < drawEndY; y++) //for every pixel of the current stripe
 	      {
 		int d = (y-vMoveScreen) * 256 - QuickCG::h * 128 + spriteHeight * 128; //256 and 128 factors to avoid floats
-		int tex = sprites[spriteOrder[i]]->texture;
 		int texY;
 		int texX;
 		texX = int(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * texWidth / spriteWidth) / 256;
@@ -282,8 +289,10 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
 		  the value by the a height variable (1 for 32 pixels height and
 		  2 for 64 pixels height)
 		 */
+
+		// Using texCom here causes a rendering error; investigate
 		texY = ((d * texHeight) / spriteHeight) / (256 / sprites[spriteOrder[i]]->texY);
-		Uint32 color = texture[tex][texWidth * texY + texX]; //get current color from the texture
+		Uint32 color = texCom->texture[texWidth * texY + texX]; //get current color from the texture
 		if((color & 0x00FFFFFF) != 0) buffer[y][stripe] = color; //paint pixel if it isn't black, black is the invisible color
 	      }
 	}
@@ -310,7 +319,7 @@ void Camera::drawMiniMap(const std::vector<std::vector<int>>& worldMap)
   // To implement or not to implement... that is the question
 }
 
-void Camera::combSort(int* order, double* dist, int amount)
+void Camera::combSort(std::vector<int> order, std::vector<double> dist, int amount)
 {
   int gap = amount;
   bool swapped = false;

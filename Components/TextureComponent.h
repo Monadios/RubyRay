@@ -1,13 +1,24 @@
 #ifndef TEXTURE_COMPONENT_H
 #define TEXTURE_COMPONENT_H
 
+#include <string>
+
 #include "../Utils/Texture.h"
 #include "../Classes/Component.h"
 
 class TextureComponent : public Component
 {
 public:
-  TextureComponent(Texture* tex);
+  TextureComponent(std::string path, double h, double w) :
+    texture(Texture(path)), heightFactor(h),widthFactor(w) {}
+
+  void setHeightFactor(int fac){
+    heightFactor = fac;
+  }
+
+  void setWidthFactor(int fac){
+    widthFactor = fac;
+  }
   void update(){
     //handle animations in here;
   }
@@ -17,7 +28,6 @@ public:
   int heightFactor;
   int widthFactor;
 
-private:
-  Texture* tex;
+  Texture texture;
 };
 #endif
