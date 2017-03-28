@@ -8,14 +8,15 @@
 #include "../Utils/json/json.h"
 #include "../Utils/ConfigFileParser.h"
 #include "../Utils/quickcg.h"
+#include "../Utils/Texture.h"
 #include "../Classes/Player.h"
+#include "../Components/TextureComponent.h"
 
 Game::Game()
 {
   std::vector<GameObject*> sprites;
   sprites.push_back(new Enemy(18.5,12));
   sprites.push_back(new Barrel(19.5,11.5));
-
   /*
     TODO:
     Add a LoadLevel(Filename) function

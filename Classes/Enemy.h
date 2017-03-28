@@ -1,5 +1,9 @@
 #include "../Classes/GameObject.h"
 
+class TextureComponent;
+
+#include "../Components/TextureComponent.h"
+
 #ifndef ENEMY_H
 #define ENEMY_H
 

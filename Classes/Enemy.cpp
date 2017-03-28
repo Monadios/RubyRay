@@ -11,5 +11,6 @@ Enemy::Enemy(double x_, double y_)
 
 void Enemy::update()
 {
+  
 }
 
