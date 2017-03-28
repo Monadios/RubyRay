@@ -8,22 +8,26 @@
 
 #include <map>
 #include <typeindex>
+#include <vector>
 #include "../Classes/Component.h"
 
 class GameObject
 {
 public:
+  GameObject(double _x, double _y);
+  GameObject(double _x, double _y, std::vector<Component*> cs);
+
   double x;
   double y;
-  GameObject();
-  int texY;
-  int width;
-  int texture;
   int id;
   std::map<std::type_index, Component*> components;
 
-  void addComponent(std::type_index, Component* c);
-  virtual void update()=0;
+  void addComponent(Component* c);
+  virtual void update(){
+    for(const auto& pair : components ){
+      pair.second->update();
+    }
+  };
   template <typename T>
   T* get() {
     auto it = components.find(std::type_index(typeid(T)));

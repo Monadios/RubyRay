@@ -4,8 +4,6 @@
 
 #include "../Classes/RubyRay.h"
 #include "../Classes/GameObject.h"
-#include "../Classes/Enemy.h"
-#include "../Classes/Barrel.h"
 #include "../Utils/json/json.h"
 #include "../Utils/ConfigFileParser.h"
 #include "../Utils/quickcg.h"
@@ -16,9 +14,9 @@
 Game::Game()
 {
   std::vector<GameObject*> sprites;
-  sprites.push_back(new Enemy(18.5,12));
-  sprites[0]->addComponent(std::type_index(typeid(TextureComponent)),
-			   new TextureComponent("Media/guard.png",1,2));
+  sprites.push_back(new GameObject(18.5,12,
+			      std::vector<Component*> {
+				new TextureComponent("Media/guard.png",1,2)}));
   /*
     TODO:
     Add a LoadLevel(Filename) function
@@ -49,8 +47,7 @@ Game::Game()
     coords.push_back(coord.asInt());
   }
   player = new Player(coords[0],coords[1],-1,0,0,0.66);
-  player->addComponent(std::type_index(typeid(KeyBoardInputComponent)),
-		       new KeyBoardInputComponent(player,worldMap));
+  player->addComponent(new KeyBoardInputComponent(player,worldMap));
   curLevel = new Level(sprites, worldMap);
 }
 

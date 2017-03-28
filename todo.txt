@@ -1,11 +1,13 @@
 ;;Remove raw pointers
+;;Make player a gameobject
+;; Make Camera a component
+;;Add fps capping and lower resolution (imitate original Wolfenstein)
 ;; Public -> private
 ;; Immutability
 ;;AI
 ;;Transform class -> Position, Rotation
 ;;Render Class
 ;; World Class
-;; Make Camera a component
 ;; Cutscenes = Move Camera Independently
 ;;  scripted events files
 ;;Data Driven Design

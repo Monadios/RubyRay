@@ -290,8 +290,8 @@ void Camera::render(const std::vector<std::vector<int>>& worldMap,
 		  2 for 64 pixels height)
 		 */
 
-		// Using texCom here causes a rendering error; investigate
-		texY = ((d * texHeight) / spriteHeight) / (256 / sprites[spriteOrder[i]]->texY);
+		// TODO: Give texcom a texY variable (seperate from heightfactor)
+		texY = ((d * texHeight) / spriteHeight) / (256 / 2);
 		Uint32 color = texCom->texture[texWidth * texY + texX]; //get current color from the texture
 		if((color & 0x00FFFFFF) != 0) buffer[y][stripe] = color; //paint pixel if it isn't black, black is the invisible color
 	      }

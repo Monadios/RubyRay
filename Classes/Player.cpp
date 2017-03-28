@@ -2,7 +2,7 @@
 #include "../Classes/Component.h"
 
 Player::Player(double px, double py, double dx, double dy,
-	       double planX, double planY)
+	       double planX, double planY) : GameObject(px,py)
 {
   posX = px;
   posY = py;
