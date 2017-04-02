@@ -19,20 +19,11 @@ Json::Value ConfigFileParser::get(std::string key)
   return root.get(key, VALUE_NOT_FOUND);
 }
 
-Json::Value ConfigFileParser::get(std::string key, Json::Value notfound)
-{
-  return root.get(key, notfound);
-}
-
 void ConfigFileParser::reloadFile()
 {
   std::ifstream config_file(DATA_FOLDER + pathName, std::ios::binary);
   config_file >> root;
 }
-
-/*
-  TODO: Add Parser abstract class to allow for casting to types
-*/
 
 const std::string ConfigFileParser::DATA_FOLDER = "./Data/";
 const Json::Value ConfigFileParser::VALUE_NOT_FOUND = Json::Value::null;

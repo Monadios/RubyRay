@@ -1,6 +1,7 @@
 Make Component Data only -- add systems (ECS)
 ConfigFileParser type conversion
  Istream << operator
+ maybe change to CSV parser
 Add Event System -> more immutability
 Wall Class
 
@@ -37,3 +38,4 @@ https://eliasdaler.wordpress.com/2015/08/10/using-lua-and-cpp-in-practice/
 http://gamedev.stackexchange.com/questions/72878/how-can-i-implement-a-main-menu
 http://www.danielsoltyka.com/programming/2011/04/15/simple-class-serialization-with-jsoncpp/
 http://stackoverflow.com/questions/7254009/how-to-convert-a-string-to-a-templated-type-in-c
+http://www.hyperrealm.com/libconfig/libconfig_manual.html
