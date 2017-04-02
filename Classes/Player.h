@@ -19,7 +19,6 @@ public:
   void update();
   double posX,posY;
   double dirX, dirY; //initial direction vector
-  Camera* camera;
   bool moving = true;
   bool shoot = false;
 };

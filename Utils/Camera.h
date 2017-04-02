@@ -19,7 +19,7 @@ class Camera : public Component
 {
 public:
   Camera(double _x,double _y, double _dx, double _dy,
-	 const std::vector<std::vector<int>>& worldMap,
+	 std::vector<std::vector<int>> map,
 	 std::vector<GameObject*> sprites);
 
   void render();
@@ -29,20 +29,13 @@ public:
     Note: these to functions should proably be made private
    */
 
-  void update()
-  {
-    if(draw){
-      render();
-    }
-  }
-
+  void update();
   void clearScreen();
   void updateScreen() const;
 
   double pX,pY;
   double dX,dY;
   double plX, plY;
-  bool drawScreen = true;
 private:
   Player* player;
   std::vector<Uint32> texture[12];
@@ -51,8 +44,10 @@ private:
   double ZBuffer[screenWidth];
   //arrays used to sort the sprites
   std::vector<int> spriteOrder;
+  std::vector<GameObject*> sprites;
   std::vector<double> spriteDistance;
   double currentDist;
+  std::vector<std::vector<int>> worldMap;
   //function used to sort the sprites
   void combSort(std::vector<int> order, std::vector<double> dist, int amount);
 };

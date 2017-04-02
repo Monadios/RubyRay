@@ -10,18 +10,13 @@
 #define texWidth 64
 #define texHeight 64
 
-/*
-  Problems with this file:
-  Does not render sprites
-  Has way too much knowledge of player
-  Depends on player coordinates -- should update in main loop
-  Probably More
- */
-
+// Maybe camera should take a Level object instead of map and sprites
 Camera::Camera(double _x,double _y, double _dx, double _dy,
-	       const std::vector<std::vector<int>>& worldMap,
-	       std::vector<GameObject*> sprites)
+	       std::vector<std::vector<int>> map,
+	       std::vector<GameObject*> _sprites)
 {
+  sprites = _sprites;
+  worldMap = map;
   for(int i = 0; i < 11; i++) texture[i].resize(texWidth * texHeight);
   pX = _x;
   pY = _y;
@@ -63,7 +58,6 @@ void Camera::render()
 {
   spriteOrder.reserve(sprites.size());
   spriteDistance.reserve(sprites.size());
-  
   for(int _x = 0; _x < QuickCG::w; _x++)
     {
       //calculate ray position and direction
@@ -141,7 +135,7 @@ void Camera::render()
       //Calculate height of line to draw on screen
       int lineHeight = (int)(QuickCG::h / perpWallDist);
 
-p      //calculate lowest and highest pixel to fill in current stripe
+      //calculate lowest and highest pixel to fill in current stripe
       int drawStart = -lineHeight / 2 + QuickCG::h / 2;
       if(drawStart < 0) drawStart = 0;
       int drawEnd = lineHeight / 2 + QuickCG::h / 2;
@@ -318,6 +312,13 @@ void Camera::clearScreen()
 void Camera::drawMiniMap(const std::vector<std::vector<int>>& worldMap)
 {
   // To implement or not to implement... that is the question
+}
+
+void Camera::update()
+{
+  render();
+  clearScreen();
+  updateScreen();
 }
 
 void Camera::combSort(std::vector<int> order, std::vector<double> dist, int amount)

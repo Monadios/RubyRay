@@ -48,6 +48,8 @@ Game::Game()
   }
   player = new Player(coords[0],coords[1],-1,0,0,0.66);
   player->addComponent(new KeyBoardInputComponent(player,worldMap));
+  player->addComponent(new Camera(player->posX,player->posY,-1,0,
+				  worldMap, sprites));
   curLevel = new Level(sprites, worldMap);
 }
 
@@ -67,14 +69,6 @@ void Game::MainLoop()
 		  {
 		    e->update();
 		  });
-
-    player->camera->render(curLevel->worldMap, curLevel->sprites);
-    player->camera->drawMiniMap(curLevel->worldMap);
-    player->camera->clearScreen();
-    player->camera->updateScreen();
-    if(player->shoot){
-      player->shoot = false;
-    }
   }
 }
 
