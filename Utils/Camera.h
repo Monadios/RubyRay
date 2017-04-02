@@ -8,12 +8,12 @@ class Player;
 #include "../Classes/GameObject.h"
 #include "../Utils/quickcg.h"
 #include "../Classes/Player.h"
-#include "../Classes/Component.h"
+#include "../Components/Component.h"
 
 
 //These should be loaded from file or as an argument
-#define screenWidth 640
-#define screenHeight 480
+#define screenWidth 360
+#define screenHeight 270
 
 class Camera : public Component
 {

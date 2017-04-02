@@ -4,9 +4,10 @@
 class Player;
 
 #include <SDL/SDL.h>
+#include <iostream>
 
 #include "../Classes/Player.h"
-#include "../Classes/Component.h"
+#include "../Components/Component.h"
 #include "../Utils/quickcg.h"
 
 class KeyBoardInputComponent : public Component
@@ -20,10 +21,6 @@ public:
   void update();
   Uint8* keyboard;
 private:
-
-  /*
-    TODO: Make this a const reference
-   */
   std::vector<std::vector<int>> worldMap;
   Player* p;
 };

@@ -5,7 +5,7 @@ class EventManager
     @subs = {}
   end
 
-  def subscribe(type, sub)
+  def subscribe(sub, type)
     if @subs.has_key? type
       @subs[type] << sub
     else
@@ -13,7 +13,7 @@ class EventManager
     end
   end
 
-  def unsubscribe(type, sub)
+  def unsubscribe(sub, type)
     if @subs.has_key? type
       @subs[type] -= Array(sub)
       true

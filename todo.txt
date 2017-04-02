@@ -1,60 +1,39 @@
-;;Remove raw pointers
-;;Make player a gameobject
-;; Make Camera a component
-;;Add fps capping and lower resolution (imitate original Wolfenstein)
-;; Public -> private
-;; Immutability
-;;AI
-;;Transform class -> Position, Rotation
-;;Render Class
-;; World Class
-;; Cutscenes = Move Camera Independently
-;;  scripted events files
-;;Data Driven Design
-;; Make Enemies load from lua file
-;; Make Components easier to load from file
+Make Component Data only -- add systems (ECS)
+ConfigFileParser type conversion
+ Istream << operator
+Add Event System -> more immutability
+Wall Class
+
+Make player a gameobject
+Add Location,Direction, Plane Components
+Remove raw pointers
+Public -> private
+Split level into areas and only update those
+Immutability
+AI
+Weapon
+Door + Secret Area (gst)
+Data Driven Design
+ Make Enemies load from lua file
+ Make Components easier to load from file
+Animation
+Cutscenes = Move Camera Independently
+ scripted events files
+Improve Directory Structure
+currentDist lookuptable
+Menu screen (stack loaded from file)
+Enemy types
+Debug Console
+Add fps capping and lower resolution (imitate original Wolfenstein)
+
+{
+	events = ["PlayerShotEvent"]
+}
 
 Enemy = new GameObject([new Position(x,y), new Health(100), ...]);
 
 https://github.com/open-source-parsers/jsoncpp/wiki
 https://eliasdaler.wordpress.com/2015/08/10/using-lua-and-cpp-in-practice/
-;;Components
-;; Add Event System -> more immutability
-;;  RegisterCallback
-;; Add Graphics Class and Draw() function instead of manual buffer mutation
-;;Weapon
-;;Enemy types
-;;Door + Secret Area (gst)
-;; Wall Class
-;;Animation
-;;currentDist lookuptable
-;;Debug Console
-;;Entity ID's
-;;Make Component Data only -- add systems (ECS)
-;;Improve Directory Structure
-;;ConfigFileParser
-;;Menu screen (stack loaded from file)
 http://gamedev.stackexchange.com/questions/72878/how-can-i-implement-a-main-menu
 http://www.danielsoltyka.com/programming/2011/04/15/simple-class-serialization-with-jsoncpp/
-
-Event Handling:
-
-class Object
-      handleevent() = {
-      		      switch(event.type):
-			case: 
-      		      };
-end
-
-EventManager.subscribe(Object, eventype);
-EventQueue = [Event1,Event2,...]
-EventManager.handle(event) = {
-				listeners = findGameObjectsByEventType(event.type);
-				for listener in listeners:
-				    listener.handleevent(event)
-			     }
-
-
-{
-	events = ["PlayerShotEvent"]
-}
+http://stackoverflow.com/questions/7254009/how-to-convert-a-string-to-a-templated-type-in-c

@@ -4,7 +4,7 @@
 #include <string>
 
 #include "../Utils/Texture.h"
-#include "../Classes/Component.h"
+#include "../Components/Component.h"
 
 class TextureComponent : public Component
 {

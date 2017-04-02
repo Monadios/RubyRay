@@ -1,3 +1,4 @@
+
 /**
  * \brief This is the base class for any interactable object in the game
  */
@@ -9,7 +10,7 @@
 #include <map>
 #include <typeindex>
 #include <vector>
-#include "../Classes/Component.h"
+#include "../Components/Component.h"
 
 class GameObject
 {
