@@ -1,6 +1,8 @@
 #ifndef RUBY_RAY_H
 #define RUBY_RAY_H
 
+#include <memory>
+
 #include "../Classes/Player.h"
 #include "../Utils/Level.h"
 
@@ -8,7 +10,7 @@ class Game
 {
 public:
   Game();
-  Player* player;
+  std::shared_ptr<Player> player;
   Level* curLevel; // This should be a list of levels
   void MainLoop();
 private:

@@ -4,7 +4,6 @@
 #include "../Utils/quickcg.h"
 #include "../Utils/json/json.h"
 #include "../Utils/Camera.h"
-#include "../Utils/ConfigFileParser.h"
 #include "../Components/TextureComponent.h"
 
 #define texWidth 64

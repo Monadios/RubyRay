@@ -46,7 +46,9 @@ Game::Game()
   for(auto coord : playerPos){
     coords.push_back(coord.asInt());
   }
-  player = new Player(coords[0],coords[1],-1,0,0,0.66);
+
+  player = std::shared_ptr<Player> (new Player(coords[0],coords[1], -1,0,0,0.66));
+
   player->addComponent(new KeyBoardInputComponent(player,worldMap));
   player->addComponent(new Camera(player->posX,player->posY,-1,0,
 				  worldMap, sprites));

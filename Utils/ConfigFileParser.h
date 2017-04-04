@@ -6,7 +6,6 @@
 #include <typeindex>
 #include <libconfig.h++>
 #include "../Utils/json/json.h"
-#include "../Classes/Enemy.h"
 
 class ConfigFileParser
 {
