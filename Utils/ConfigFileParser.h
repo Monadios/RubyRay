@@ -11,20 +11,14 @@ class ConfigFileParser
 {
 public:
   ConfigFileParser();
+
   Json::Value loadFile(std::string filename);
   static const Json::Value VALUE_NOT_FOUND;
   static const std::string DATA_FOLDER;
   Json::Value get(std::string key);
-  template <typename T>
-  T convertGet(std::string key){
-    Json::Value v = root.get(key, VALUE_NOT_FOUND);
-    const char* type = typeid(T).name();
-    if(type == "int"){
-      return v.asInt();
-    }else if(type == "double") {
-      return v.asDouble();
-    }
-}
+  std::string getString(std::string key);
+  double getDouble(std::string key);
+  int getInt(std::string key);
 
   void reloadFile();
 /*

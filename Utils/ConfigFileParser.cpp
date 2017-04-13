@@ -19,6 +19,21 @@ Json::Value ConfigFileParser::get(std::string key)
   return root.get(key, VALUE_NOT_FOUND);
 }
 
+std::string ConfigFileParser::getString(std::string key)
+{
+  return root.get(key, VALUE_NOT_FOUND).asString();
+}
+
+double ConfigFileParser::getDouble(std::string key)
+{
+  return root.get(key, VALUE_NOT_FOUND).asDouble();
+}
+
+int ConfigFileParser::getInt(std::string key)
+{
+  return root.get(key, VALUE_NOT_FOUND).asInt();
+}
+
 void ConfigFileParser::reloadFile()
 {
   std::ifstream config_file(DATA_FOLDER + pathName, std::ios::binary);

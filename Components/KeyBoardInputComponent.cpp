@@ -1,5 +1,7 @@
 #include "../Components/KeyBoardInputComponent.h"
 #include<iostream>
+#include<cstdlib>
+
 void KeyBoardInputComponent::update()
 {
 
@@ -44,9 +46,4 @@ void KeyBoardInputComponent::update()
       cam->plX = cam->plX * cos(p->rotSpeed) - cam->plY * sin(p->rotSpeed);
       cam->plY = oldPosPlaneX * sin(p->rotSpeed) + cam->plY * cos(p->rotSpeed);
     }
-
-  if(keyboard[SDLK_SPACE]){
-    p->shoot = true;
-  }
-
 }

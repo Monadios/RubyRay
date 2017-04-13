@@ -12,18 +12,18 @@ class Player;
 
 
 //These should be loaded from file or as an argument
-#define screenWidth 360
-#define screenHeight 270
+#define screenWidth 480
+#define screenHeight 360
 
 class Camera : public Component
 {
 public:
   Camera(double _x,double _y, double _dx, double _dy,
-	 std::vector<std::vector<int>> map,
+	 std::vector<std::vector<int>>& map,
 	 std::vector<GameObject*> sprites);
 
   void render();
-  void drawMiniMap(const std::vector<std::vector<int>>& worldMap);
+  void drawMiniMap();
 
   /*
     Note: these to functions should proably be made private
@@ -47,7 +47,7 @@ private:
   std::vector<GameObject*> sprites;
   std::vector<double> spriteDistance;
   double currentDist;
-  std::vector<std::vector<int>> worldMap;
+  std::vector<std::vector<int>>& worldMap;
   //function used to sort the sprites
   void combSort(std::vector<int> order, std::vector<double> dist, int amount);
 };

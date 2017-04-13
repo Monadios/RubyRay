@@ -14,7 +14,7 @@ class Player;
 class KeyBoardInputComponent : public Component
 {
 public:
-  KeyBoardInputComponent( const std::shared_ptr<Player>& _p, std::vector<std::vector<int>> map ) : p(_p), worldMap(map)
+  KeyBoardInputComponent( const std::shared_ptr<Player>& _p, std::vector<std::vector<int>>& map ) : p(_p), worldMap(map)
   {
     keyboard = {};
   }
@@ -24,7 +24,7 @@ public:
   void update();
   Uint8* keyboard;
 private:
-  std::vector<std::vector<int>> worldMap;
+  std::vector<std::vector<int>>& worldMap;
   const std::shared_ptr<Player>& p;
 };
 

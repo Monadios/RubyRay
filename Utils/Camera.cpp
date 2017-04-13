@@ -9,10 +9,10 @@
 #define texWidth 64
 #define texHeight 64
 
-// Maybe camera should take a Level object instead of map and sprites
+// Camera should take a gameobject
 Camera::Camera(double _x,double _y, double _dx, double _dy,
-	       std::vector<std::vector<int>> map,
-	       std::vector<GameObject*> _sprites)
+	       std::vector<std::vector<int>>& map,
+	       std::vector<GameObject*> _sprites) : worldMap(map)
 {
   sprites = _sprites;
   worldMap = map;
@@ -308,7 +308,7 @@ void Camera::clearScreen()
     }
 }
 
-void Camera::drawMiniMap(const std::vector<std::vector<int>>& worldMap)
+void Camera::drawMiniMap()
 {
   // To implement or not to implement... that is the question
 }

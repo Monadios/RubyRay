@@ -32,6 +32,7 @@ Game::Game()
   if(map == ConfigFileParser::VALUE_NOT_FOUND){
     std::cout << "hello\n";
   }
+
   for(auto val : map){
     std::vector<int> temp;
     for(auto square : val){
@@ -41,18 +42,18 @@ Game::Game()
     temp.clear();
   }
 
-  std::vector<int> coords;
-  Json::Value playerPos = parser.get("player");
-  for(auto coord : playerPos){
-    coords.push_back(coord.asInt());
-  }
+  player = std::shared_ptr<Player> (new Player(parser.getDouble("posX"),
+					       parser.getDouble("posY"),
+					       parser.getDouble("dirX"),
+					       parser.getDouble("dirY"),
+					       parser.getDouble("planeX"),
+					       parser.getDouble("planeY")));
 
-  player = std::shared_ptr<Player> (new Player(coords[0],coords[1], -1,0,0,0.66));
-
-  player->addComponent(new KeyBoardInputComponent(player,worldMap));
-  player->addComponent(new Camera(player->posX,player->posY,-1,0,
-				  worldMap, sprites));
   curLevel = new Level(sprites, worldMap);
+  player->addComponent(new KeyBoardInputComponent(player,curLevel->worldMap));
+  player->addComponent(new Camera(player->posX,player->posY,-1,0,
+				  curLevel->worldMap, curLevel->sprites));
+
 }
 
 void Game::MainLoop()
