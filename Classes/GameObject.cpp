@@ -1,20 +1,16 @@
 #include "../Classes/GameObject.h"
 
-GameObject::GameObject(double _x, double _y)
+GameObject::GameObject()
 {
-  x = _x;
-  y = _y;
   id=idCounter++;
 }
 
-GameObject::GameObject(double _x, double _y, std::vector<Component*> cs)
+GameObject::GameObject(std::vector<Component*> cs)
 {
   for(Component* c : cs){
     addComponent(c);
   }
 
-  x = _x;
-  y = _y;
   id=idCounter++;
 }
 

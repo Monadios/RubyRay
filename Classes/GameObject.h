@@ -15,8 +15,8 @@
 class GameObject
 {
 public:
-  GameObject(double _x, double _y);
-  GameObject(double _x, double _y, std::vector<Component*> cs);
+  GameObject();
+  GameObject(std::vector<Component*> cs);
 
   double x;
   double y;

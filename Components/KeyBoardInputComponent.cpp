@@ -1,6 +1,10 @@
-#include "../Components/KeyBoardInputComponent.h"
 #include<iostream>
 #include<cstdlib>
+
+#include "../Components/KeyBoardInputComponent.h"
+#include "../Components/PositionComponent.h"
+#include "../Components/DirectionComponent.h"
+#include "../Components/SpeedComponent.h"
 
 void KeyBoardInputComponent::update()
 {
@@ -12,38 +16,41 @@ void KeyBoardInputComponent::update()
   SDL_PumpEvents();
   keyboard = SDL_GetKeyState(NULL);
   Camera* cam = p->get<Camera>();
+  PositionComponent* pos = p->get<PositionComponent>();
+  DirectionComponent* dir = p->get<DirectionComponent>();
+  SpeedComponent* speed  = p->get<SpeedComponent>();
 
   if (keyboard[SDLK_UP])
     {
-      if(worldMap[int(p->posX + p->dirX * p->moveSpeed)][int(p->posY)] == false) p->posX += p->dirX * p->moveSpeed;
-      if(worldMap[int(p->posX)][int(p->posY + p->dirY * p->moveSpeed)] == false) p->posY += p->dirY * p->moveSpeed;
+      if(worldMap[int(pos->x + dir->x * speed->moveSpeed)][int(pos->y)] == false) pos->x += dir->x * speed->moveSpeed;
+      if(worldMap[int(pos->x)][int(pos->y + dir->y * speed->moveSpeed)] == false) pos->y += dir->y * speed->moveSpeed;
     }
   //move backwards if no wall behind you
   if (keyboard[SDLK_DOWN])
     {
-      if(worldMap[int(p->posX - p->dirX * p->moveSpeed)][int(p->posY)] == false) p->posX -= p->dirX * p->moveSpeed;
-      if(worldMap[int(p->posX)][int(p->posY - p->dirY * p->moveSpeed)] == false) p->posY -= p->dirY * p->moveSpeed;
+      if(worldMap[int(pos->x - dir->x * speed->moveSpeed)][int(pos->y)] == false) pos->x -= dir->x * speed->moveSpeed;
+      if(worldMap[int(pos->x)][int(pos->y - dir->y * speed->moveSpeed)] == false) pos->y -= dir->y * speed->moveSpeed;
     }
   //rotate to the right
   if (keyboard[SDLK_RIGHT])
     {
       //both camera p->direction and camera p->camera->pl must be rotated
-      double oldPosDirX = p->dirX;
-      p->dirX = p->dirX * cos(-p->rotSpeed) - p->dirY * sin(-p->rotSpeed);
-      p->dirY = oldPosDirX * sin(-p->rotSpeed) + p->dirY * cos(-p->rotSpeed);
+      double oldPosDirX = dir->x;
+      dir->x = dir->x * cos(-speed->rotSpeed) - dir->y * sin(-speed->rotSpeed);
+      dir->y = oldPosDirX * sin(-speed->rotSpeed) + dir->y * cos(-speed->rotSpeed);
       double oldPosPlaneX = cam->plX;
-      cam->plX = cam->plX * cos(-p->rotSpeed) - cam->plY * sin(-p->rotSpeed);
-      cam->plY = oldPosPlaneX * sin(-p->rotSpeed) + cam->plY * cos(-p->rotSpeed);
+      cam->plX = cam->plX * cos(-speed->rotSpeed) - cam->plY * sin(-speed->rotSpeed);
+      cam->plY = oldPosPlaneX * sin(-speed->rotSpeed) + cam->plY * cos(-speed->rotSpeed);
     }
   //rotate to the left
   if (keyboard[SDLK_LEFT])
     {
       //both camera p->direction and camera cam->pl must be rotated
-      double oldPosDirX = p->dirX;
-      p->dirX = p->dirX * cos(p->rotSpeed) - p->dirY * sin(p->rotSpeed);
-      p->dirY = oldPosDirX * sin(p->rotSpeed) + p->dirY * cos(p->rotSpeed);
+      double oldPosDirX = dir->x;
+      dir->x = dir->x * cos(speed->rotSpeed) - dir->y * sin(speed->rotSpeed);
+      dir->y = oldPosDirX * sin(speed->rotSpeed) + dir->y * cos(speed->rotSpeed);
       double oldPosPlaneX = cam->plX;
-      cam->plX = cam->plX * cos(p->rotSpeed) - cam->plY * sin(p->rotSpeed);
-      cam->plY = oldPosPlaneX * sin(p->rotSpeed) + cam->plY * cos(p->rotSpeed);
+      cam->plX = cam->plX * cos(speed->rotSpeed) - cam->plY * sin(speed->rotSpeed);
+      cam->plY = oldPosPlaneX * sin(speed->rotSpeed) + cam->plY * cos(speed->rotSpeed);
     }
 }

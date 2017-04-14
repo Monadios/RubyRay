@@ -19,7 +19,8 @@ public:
   void setWidthFactor(int fac){
     widthFactor = fac;
   }
-  void update(){
+
+  inline void update(){
     //handle animations in here;
   }
 

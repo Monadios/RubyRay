@@ -2,12 +2,12 @@
 #define CAMERA_H
 
 #include <cmath>
+#include <memory>
 
 class Player;
 
 #include "../Classes/GameObject.h"
 #include "../Utils/quickcg.h"
-#include "../Classes/Player.h"
 #include "../Components/Component.h"
 
 
@@ -18,7 +18,7 @@ class Player;
 class Camera : public Component
 {
 public:
-  Camera(double _x,double _y, double _dx, double _dy,
+  Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
 	 std::vector<std::vector<int>>& map,
 	 std::vector<GameObject*> sprites);
 
@@ -37,7 +37,7 @@ public:
   double dX,dY;
   double plX, plY;
 private:
-  Player* player;
+  const std::shared_ptr<GameObject>& obj;
   std::vector<Uint32> texture[12];
   Uint32 buffer[screenHeight][screenWidth];
   //1D Zbuffer

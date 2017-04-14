@@ -7,14 +7,15 @@ class Player;
 #include <iostream>
 #include <memory>
 
-#include "../Classes/Player.h"
 #include "../Components/Component.h"
+#include "../Classes/GameObject.h"
+#include "../Utils/Camera.h"
 #include "../Utils/quickcg.h"
 
 class KeyBoardInputComponent : public Component
 {
 public:
-  KeyBoardInputComponent( const std::shared_ptr<Player>& _p, std::vector<std::vector<int>>& map ) : p(_p), worldMap(map)
+  KeyBoardInputComponent( const std::shared_ptr<GameObject>& _p, std::vector<std::vector<int>>& map ) : p(_p), worldMap(map)
   {
     keyboard = {};
   }
@@ -25,7 +26,7 @@ public:
   Uint8* keyboard;
 private:
   std::vector<std::vector<int>>& worldMap;
-  const std::shared_ptr<Player>& p;
+  const std::shared_ptr<GameObject>& p;
 };
 
 #endif

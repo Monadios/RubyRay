@@ -4,23 +4,27 @@
 #include "../Utils/quickcg.h"
 #include "../Utils/json/json.h"
 #include "../Utils/Camera.h"
+#include "../Components/PositionComponent.h"
+#include "../Components/DirectionComponent.h"
 #include "../Components/TextureComponent.h"
 
 #define texWidth 64
 #define texHeight 64
 
 // Camera should take a gameobject
-Camera::Camera(double _x,double _y, double _dx, double _dy,
+Camera::Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
 	       std::vector<std::vector<int>>& map,
-	       std::vector<GameObject*> _sprites) : worldMap(map)
+		std::vector<GameObject*> _sprites) : worldMap(map), obj(_obj)
 {
   sprites = _sprites;
   worldMap = map;
   for(int i = 0; i < 11; i++) texture[i].resize(texWidth * texHeight);
-  pX = _x;
-  pY = _y;
-  dX = _dx;
-  dY = _dy;
+  PositionComponent* pos = obj->get<PositionComponent>();
+  DirectionComponent* dir = obj->get<DirectionComponent>();
+  pX = pos->x;
+  pY = pos->y;
+  dX = dir->x;
+  dY = dir->y;
   plX = 0.0;
   plY = 0.66;
 
@@ -315,6 +319,10 @@ void Camera::drawMiniMap()
 
 void Camera::update()
 {
+  pX = obj->get<PositionComponent>()->x;
+  pY = obj->get<PositionComponent>()->y;
+  dX = obj->get<DirectionComponent>()->x;
+  dY = obj->get<DirectionComponent>()->y;
   render();
   clearScreen();
   updateScreen();

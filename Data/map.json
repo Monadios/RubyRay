@@ -31,5 +31,7 @@
     "dirX" : -1,
     "dirY" : 0,
     "planeX" : 0,
-    "planeY" : 0.66
+    "planeY" : 0.66,
+    "rotFactor" : 2,
+    "moveFactor" : 3
 }
