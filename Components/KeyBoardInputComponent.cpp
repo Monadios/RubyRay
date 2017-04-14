@@ -1,5 +1,6 @@
 #include<iostream>
 #include<cstdlib>
+#include<cmath>
 
 #include "../Components/KeyBoardInputComponent.h"
 #include "../Components/PositionComponent.h"
@@ -52,5 +53,23 @@ void KeyBoardInputComponent::update()
       double oldPosPlaneX = cam->plX;
       cam->plX = cam->plX * cos(speed->rotSpeed) - cam->plY * sin(speed->rotSpeed);
       cam->plY = oldPosPlaneX * sin(speed->rotSpeed) + cam->plY * cos(speed->rotSpeed);
+    }
+
+  if(keyboard[SDLK_SPACE])
+    {
+      double x = p->get<DirectionComponent>()->x;
+      double y = p->get<DirectionComponent>()->y;
+
+    /*
+      The angle is calculated as the angle between the (0,1) vector and the
+      player direction (x,y) vector.
+      http://stackoverflow.com/questions/5188561/signed-angle-between-two-3d-vectors-with-same-origin-within-the-same-plane
+     */
+
+      double angle = acos(x/(sqrt(pow(x,2)+pow(y,2))));
+      double degrees = angle * (180/3.14159);
+      if(worldMap[pos->x+(1*cos(angle))][pos->y+(1*sin(angle))] == 2){
+	worldMap[pos->x+(1*cos(angle))][pos->y+(1*sin(angle))] = 0;
+      }
     }
 }

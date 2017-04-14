@@ -1,4 +1,4 @@
-{
+[
     "eagle"       : "Media/eagle.png"
     "redbrick"    : "Media/redbrick.png"
     "purplestone" : "Media/purplestone.png"
@@ -11,4 +11,4 @@
     "pillar"      : "Media/pillar.png"
     "greenlight"  : "Media/greenlight.png"
     "guard"       : "Media/guard.png"
-}
+]

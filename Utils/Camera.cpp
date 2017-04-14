@@ -4,6 +4,7 @@
 #include "../Utils/quickcg.h"
 #include "../Utils/json/json.h"
 #include "../Utils/Camera.h"
+#include "../Utils/ConfigFileParser.h"
 #include "../Components/PositionComponent.h"
 #include "../Components/DirectionComponent.h"
 #include "../Components/TextureComponent.h"
@@ -14,19 +15,20 @@
 // Camera should take a gameobject
 Camera::Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
 	       std::vector<std::vector<int>>& map,
-		std::vector<GameObject*> _sprites) : worldMap(map), obj(_obj)
+	       std::vector<GameObject*> _sprites) : worldMap(map), obj(_obj)
 {
   sprites = _sprites;
   worldMap = map;
-  for(int i = 0; i < 11; i++) texture[i].resize(texWidth * texHeight);
   PositionComponent* pos = obj->get<PositionComponent>();
   DirectionComponent* dir = obj->get<DirectionComponent>();
+  ConfigFileParser parser = ConfigFileParser();
+  parser.loadFile("./Data/map.json");
   pX = pos->x;
   pY = pos->y;
   dX = dir->x;
   dY = dir->y;
-  plX = 0.0;
-  plY = 0.66;
+  plX = parser.getDouble("planeX");
+  plY = parser.getDouble("planeY");
 
   QuickCG::screen(screenWidth,screenHeight, 0, "Raycaster");
 
@@ -35,8 +37,11 @@ Camera::Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
     TODO: should probably find a better way of loading textures
     possibly automatic parsing of media folder
    */
-
   unsigned long tw, th, error = 0;
+
+  for(int i = 0; i < 12; i++){
+    texture[i].reserve(texWidth*texHeight);
+  }
   error |= QuickCG::loadImage(texture[0], tw, th, "Media/eagle.png");
   error |= QuickCG::loadImage(texture[1], tw, th, "Media/redbrick.png");
   error |= QuickCG::loadImage(texture[2], tw, th, "Media/purplestone.png");
@@ -60,8 +65,6 @@ Camera::Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
 
 void Camera::render()
 {
-  spriteOrder.reserve(sprites.size());
-  spriteDistance.reserve(sprites.size());
   for(int _x = 0; _x < QuickCG::w; _x++)
     {
       //calculate ray position and direction
@@ -226,10 +229,10 @@ void Camera::render()
   //sort sprites from far to close
   for(int i = 0; i < sprites.size(); i++)
     {
-      spriteOrder[i] = i;
+      spriteOrder.push_back(i);
       double x = sprites[i]->get<PositionComponent>()->x;
       double y = sprites[i]->get<PositionComponent>()->y;
-      spriteDistance[i] = ((pX - x) * (pX - x) + (pY - y) * (pY - y)); //sqrt not taken, unneeded
+      spriteDistance.push_back((pX - x) * (pX - x) + (pY - y) * (pY - y)); //sqrt not taken, unneeded
     }
   combSort(spriteOrder, spriteDistance, (int)sprites.size());
 

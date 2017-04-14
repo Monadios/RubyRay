@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <cmath>
 
 #include "../Classes/RubyRay.h"
 #include "../Classes/GameObject.h"
@@ -78,6 +79,7 @@ void Game::MainLoop()
     player->get<SpeedComponent>()->moveSpeed = frameTime * movFac; //the constant value is in squares/second
     player->get<SpeedComponent>()->rotSpeed = frameTime * rotFac; //the constant value is in radians/second
     player->update();
+
 
     std::for_each(std::begin(curLevel->sprites), std::end(curLevel->sprites), [=](GameObject* e)
 		  {

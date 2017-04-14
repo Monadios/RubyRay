@@ -1,15 +1,10 @@
-
-/**
- * \brief This is the base class for any interactable object in the game
- */
-
-
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 
 #include <map>
 #include <typeindex>
 #include <vector>
+
 #include "../Components/Component.h"
 
 class GameObject
