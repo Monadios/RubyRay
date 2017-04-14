@@ -35,6 +35,7 @@ Camera::Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
     TODO: should probably find a better way of loading textures
     possibly automatic parsing of media folder
    */
+
   unsigned long tw, th, error = 0;
   error |= QuickCG::loadImage(texture[0], tw, th, "Media/eagle.png");
   error |= QuickCG::loadImage(texture[1], tw, th, "Media/redbrick.png");

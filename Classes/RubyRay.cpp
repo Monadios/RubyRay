@@ -38,9 +38,9 @@ Game::Game()
 
   for(auto val : map){
     std::vector<int> temp;
-    for(auto square : val){
+    for(auto square : val) {
       temp.push_back(square.asInt());
-    }
+    };
     worldMap.push_back(temp);
     temp.clear();
   }
@@ -58,13 +58,18 @@ Game::Game()
 
   player->addComponent(new KeyBoardInputComponent(player,curLevel->worldMap));
   player->addComponent(new Camera(player,-1,0,curLevel->worldMap, curLevel->sprites));
-
 }
 
 void Game::MainLoop()
 {
   double rotFac = parser.getDouble("rotFactor");
   double movFac = parser.getDouble("moveFactor");
+
+  /*
+    Ideally this function should simply be operating on a list of systems
+    i.e for system in systems : system.update(entities w. required components)
+   */
+
   while(!QuickCG::done()){
     SDL_Delay(5); //so it consumes less processing power
     oldTime = time;

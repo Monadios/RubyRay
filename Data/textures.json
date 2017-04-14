@@ -1,0 +1,14 @@
+{
+    "eagle"       : "Media/eagle.png"
+    "redbrick"    : "Media/redbrick.png"
+    "purplestone" : "Media/purplestone.png"
+    "greystone"   : "Media/greystone.png"
+    "bluestone"   : "Media/bluestone.png"
+    "mossy"       : "Media/mossy.png"
+    "wood"        : "Media/wood.png"
+    "colorstone"  : "Media/colorstone.png"
+    "barrel"      : "Media/barrel.png"
+    "pillar"      : "Media/pillar.png"
+    "greenlight"  : "Media/greenlight.png"
+    "guard"       : "Media/guard.png"
+}

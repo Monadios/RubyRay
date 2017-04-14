@@ -15,10 +15,10 @@ public:
   Json::Value loadFile(std::string filename);
   static const Json::Value VALUE_NOT_FOUND;
   static const std::string DATA_FOLDER;
-  Json::Value get(std::string key);
-  std::string getString(std::string key);
-  double getDouble(std::string key);
-  int getInt(std::string key);
+  Json::Value get(std::string key, Json::Value def=VALUE_NOT_FOUND);
+  std::string getString(std::string key, Json::Value def=VALUE_NOT_FOUND);
+  double getDouble(std::string key, Json::Value def=VALUE_NOT_FOUND);
+  int getInt(std::string key, Json::Value def=VALUE_NOT_FOUND);
 
   void reloadFile();
 /*
@@ -30,6 +30,6 @@ public:
 Json::Value root;
 
 private:
-std::string pathName;
+  std::string pathName;
 };
 #endif

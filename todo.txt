@@ -1,5 +1,10 @@
 http://vasir.net/blog/game-development/how-to-build-entity-component-system-in-javascript
+
+Maybe components could just be json object
+Entity reload components by rereading files
+
 Make Component Data only -- add systems (ECS)
+Make Camera a system
 ConfigFileParser type conversion
  Istream << operator
  maybe change to CSV parser

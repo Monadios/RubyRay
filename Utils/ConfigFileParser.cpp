@@ -14,24 +14,24 @@ Json::Value ConfigFileParser::loadFile(std::string path)
   return root;
 }
 
-Json::Value ConfigFileParser::get(std::string key)
+Json::Value ConfigFileParser::get(std::string key, Json::Value def)
 {
-  return root.get(key, VALUE_NOT_FOUND);
+  return root.get(key, def);
 }
 
-std::string ConfigFileParser::getString(std::string key)
+std::string ConfigFileParser::getString(std::string key, Json::Value def)
 {
-  return root.get(key, VALUE_NOT_FOUND).asString();
+  return root.get(key, def).asString();
 }
 
-double ConfigFileParser::getDouble(std::string key)
+double ConfigFileParser::getDouble(std::string key, Json::Value def)
 {
-  return root.get(key, VALUE_NOT_FOUND).asDouble();
+  return root.get(key, def).asDouble();
 }
 
-int ConfigFileParser::getInt(std::string key)
+int ConfigFileParser::getInt(std::string key, Json::Value def)
 {
-  return root.get(key, VALUE_NOT_FOUND).asInt();
+  return root.get(key, def).asInt();
 }
 
 void ConfigFileParser::reloadFile()
