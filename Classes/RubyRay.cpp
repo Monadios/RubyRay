@@ -18,6 +18,7 @@ Game::Game()
 {
   std::vector<GameObject*> sprites;
   sprites.push_back(new GameObject(std::vector<Component*> {
+	new PositionComponent(19,12),
 	new TextureComponent("Media/guard.png",1,2)}));
   /*
     TODO:

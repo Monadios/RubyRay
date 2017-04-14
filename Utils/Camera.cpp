@@ -221,11 +221,14 @@ void Camera::render()
     }
 
   //SPRITE CASTING
+
   //sort sprites from far to close
   for(int i = 0; i < sprites.size(); i++)
     {
       spriteOrder[i] = i;
-      spriteDistance[i] = ((pX - sprites[i]->x) * (pX - sprites[i]->x) + (pY - sprites[i]->y) * (pY - sprites[i]->y)); //sqrt not taken, unneeded
+      double x = sprites[i]->get<PositionComponent>()->x;
+      double y = sprites[i]->get<PositionComponent>()->y;
+      spriteDistance[i] = ((pX - x) * (pX - x) + (pY - y) * (pY - y)); //sqrt not taken, unneeded
     }
   combSort(spriteOrder, spriteDistance, (int)sprites.size());
 
@@ -233,8 +236,8 @@ void Camera::render()
   for(int i = 0; i < sprites.size(); i++)
     {
       //translate sprite position to relative to camera
-      double spriteX = sprites[spriteOrder[i]]->x - pX;
-      double spriteY = sprites[spriteOrder[i]]->y - pY;
+      double spriteX = sprites[spriteOrder[i]]->get<PositionComponent>()->x - pX;
+      double spriteY = sprites[spriteOrder[i]]->get<PositionComponent>()->y - pY;
 
       TextureComponent* texCom = sprites[spriteOrder[i]]->get<TextureComponent>();
 

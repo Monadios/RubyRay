@@ -18,8 +18,6 @@ public:
   GameObject();
   GameObject(std::vector<Component*> cs);
 
-  double x;
-  double y;
   int id;
   std::map<std::type_index, Component*> components;
 
