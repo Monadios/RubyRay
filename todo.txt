@@ -8,7 +8,6 @@ Make Component Data only -- add systems (ECS)
 Make Camera a system
 Add Event System -> more immutability
 Make player a gameobject
-Add Location,Direction, Plane Components
 Remove raw pointers
 Public -> private
 Split level into areas and only update those
@@ -16,7 +15,6 @@ Immutability
 AI
 Weapon
 Door + Secret Area (gst)
- Check in immediate vicinity (ie posX +- 1, posY +- 1)
 Data Driven Design
  Make Enemies load from lua file
  Make Components easier to load from file

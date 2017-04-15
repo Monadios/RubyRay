@@ -9,6 +9,7 @@
 #include "../Utils/quickcg.h"
 #include "../Utils/Texture.h"
 #include "../Utils/Camera.h"
+#include "../Systems/InputSystem.h"
 #include "../Components/TextureComponent.h"
 #include "../Components/KeyBoardInputComponent.h"
 #include "../Components/PositionComponent.h"
@@ -57,7 +58,7 @@ Game::Game()
 
   player->addComponent(new SpeedComponent(0,0));
 
-  player->addComponent(new KeyBoardInputComponent(player,curLevel->worldMap));
+  player->addComponent(new KeyBoardInputComponent(curLevel->worldMap));
   player->addComponent(new Camera(player,-1,0,curLevel->worldMap, curLevel->sprites));
 }
 
@@ -65,7 +66,9 @@ void Game::MainLoop()
 {
   double rotFac = parser.getDouble("rotFactor");
   double movFac = parser.getDouble("moveFactor");
-
+  InputSystem insys = InputSystem();
+  std::vector<GameObject> es;
+  es.push_back(*player.get());
   /*
     Ideally this function should simply be operating on a list of systems
     i.e for system in systems : system.update(entities w. required components)
@@ -79,8 +82,7 @@ void Game::MainLoop()
     player->get<SpeedComponent>()->moveSpeed = frameTime * movFac; //the constant value is in squares/second
     player->get<SpeedComponent>()->rotSpeed = frameTime * rotFac; //the constant value is in radians/second
     player->update();
-
-
+    insys.update(es);
     std::for_each(std::begin(curLevel->sprites), std::end(curLevel->sprites), [=](GameObject* e)
 		  {
 		    e->update();

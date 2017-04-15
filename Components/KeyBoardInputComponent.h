@@ -15,18 +15,12 @@ class Player;
 class KeyBoardInputComponent : public Component
 {
 public:
-  KeyBoardInputComponent( const std::shared_ptr<GameObject>& _p, std::vector<std::vector<int>>& map ) : p(_p), worldMap(map)
-  {
-    keyboard = {};
-  }
+  KeyBoardInputComponent(std::vector<std::vector<int>>& map ) : worldMap(map) {}
 
   ~KeyBoardInputComponent() = default;
 
-  void update();
-  Uint8* keyboard;
-private:
+  inline void update() {};
   std::vector<std::vector<int>>& worldMap;
-  const std::shared_ptr<GameObject>& p;
 };
 
 #endif
