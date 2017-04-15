@@ -10,6 +10,7 @@
 #include "../Utils/Texture.h"
 #include "../Utils/Camera.h"
 #include "../Systems/InputSystem.h"
+#include "../Systems/System.h"
 #include "../Components/TextureComponent.h"
 #include "../Components/KeyBoardInputComponent.h"
 #include "../Components/PositionComponent.h"
@@ -66,9 +67,11 @@ void Game::MainLoop()
 {
   double rotFac = parser.getDouble("rotFactor");
   double movFac = parser.getDouble("moveFactor");
-  InputSystem insys = InputSystem();
-  std::vector<GameObject> es;
-  es.push_back(*player.get());
+  std::vector<System*> systems;
+  systems.push_back(new InputSystem());
+  std::vector<GameObject> entities;
+  entities.push_back(*player.get());
+
   /*
     Ideally this function should simply be operating on a list of systems
     i.e for system in systems : system.update(entities w. required components)
@@ -82,7 +85,9 @@ void Game::MainLoop()
     player->get<SpeedComponent>()->moveSpeed = frameTime * movFac; //the constant value is in squares/second
     player->get<SpeedComponent>()->rotSpeed = frameTime * rotFac; //the constant value is in radians/second
     player->update();
-    insys.update(es);
+    for(auto it = systems.begin(); it != systems.end(); it++){
+      (*it)->update(entities);
+    }
     std::for_each(std::begin(curLevel->sprites), std::end(curLevel->sprites), [=](GameObject* e)
 		  {
 		    e->update();
