@@ -8,17 +8,29 @@
 #include "../Components/SpeedComponent.h"
 #include "../Systems/InputSystem.h"
 
-void InputSystem::update(std::vector<GameObject>& entities)
+void InputSystem::update(std::vector<GameObject*>& entities)
 {
   SDL_PumpEvents();
   keyboard = SDL_GetKeyState(NULL);
+  for(GameObject* e : entities){
+    Camera* cam = e->get<Camera>();
+    PositionComponent* pos = e->get<PositionComponent>();
+    DirectionComponent* dir = e->get<DirectionComponent>();
+    SpeedComponent* speed  = e->get<SpeedComponent>();
+    KeyBoardInputComponent* keys = e->get<KeyBoardInputComponent>();
+    // Find better way of filtering out incompatible entities
+    if(cam == nullptr || pos == nullptr || dir == nullptr
+       || speed == nullptr || keys == nullptr){
+      continue;
+    }
 
-  for(GameObject e : entities){
-    Camera* cam = e.get<Camera>();
-    PositionComponent* pos = e.get<PositionComponent>();
-    DirectionComponent* dir = e.get<DirectionComponent>();
-    SpeedComponent* speed  = e.get<SpeedComponent>();
-    KeyBoardInputComponent* keys = e.get<KeyBoardInputComponent>();
+    oldTime = time;
+    time = QuickCG::getTicks();
+    double frameTime = (time - oldTime) / 1000.0; //frametime is the time this frame has taken, in seconds
+    e->get<SpeedComponent>()->moveSpeed = frameTime * e->get<SpeedComponent>()->rotFac;
+    e->get<SpeedComponent>()->rotSpeed = frameTime * e->get<SpeedComponent>()->movFac;
+
+
 
     if (keyboard[SDLK_UP])
       {
@@ -56,8 +68,8 @@ void InputSystem::update(std::vector<GameObject>& entities)
 
     if(keyboard[SDLK_SPACE])
       {
-	double x = e.get<DirectionComponent>()->x;
-	double y = e.get<DirectionComponent>()->y;
+	double x = e->get<DirectionComponent>()->x;
+	double y = e->get<DirectionComponent>()->y;
 
 	/*
 	  The angle is calculated as the angle between the (0,1) vector and the

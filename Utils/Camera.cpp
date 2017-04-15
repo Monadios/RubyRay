@@ -22,7 +22,7 @@ Camera::Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
   PositionComponent* pos = obj->get<PositionComponent>();
   DirectionComponent* dir = obj->get<DirectionComponent>();
   ConfigFileParser parser = ConfigFileParser();
-  parser.loadFile("./Data/map.json");
+  parser.loadFile("./Data/cam.json");
   pX = pos->x;
   pY = pos->y;
   dX = dir->x;

@@ -17,8 +17,12 @@ class InputSystem : public System
 public:
   ~InputSystem() = default;
 
-  void update(std::vector<GameObject>& entities);
+  void update(std::vector<GameObject*>& entities);
   Uint8* keyboard;
+
+private:
+  double time = 0; //time of current frame
+  double oldTime = 0; //time of previous frame
 };
 
 #endif

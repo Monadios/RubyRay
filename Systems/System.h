@@ -8,7 +8,7 @@
 class System
 {
 public:
-  virtual void update(std::vector<GameObject>& entities)=0;
+  virtual void update(std::vector<GameObject*>& entities)=0;
 };
 
 #endif
