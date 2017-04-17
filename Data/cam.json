@@ -1,4 +1,11 @@
 {
     "planeX" : 0,
-    "planeY" : 0.66
+    "planeY" : 0.66,
+    "fullscreen" : false,
+    "windowname" : "Raycaster",
+    "floorceil" : false,
+    "texHeight" : 64,
+    "texWidth"  : 64,
+    "screenW" : 480,
+    "screenH" : 360
 }

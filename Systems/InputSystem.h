@@ -15,6 +15,7 @@ class Player;
 class InputSystem : public System
 {
 public:
+  InputSystem() = default;
   ~InputSystem() = default;
 
   void update(std::vector<GameObject*>& entities);

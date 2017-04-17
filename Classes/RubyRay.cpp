@@ -54,6 +54,7 @@ void Game::MainLoop()
 
   sprites.push_back(new GameObject(std::vector<Component*> {
 	new PositionComponent(19,12),
+	  new DirectionComponent(-1,0),
 	  new TextureComponent("Media/guard.png",1,2)}));
 
   curLevel = new Level(sprites, worldMap);
@@ -74,15 +75,16 @@ void Game::MainLoop()
   // 					    player->get<PositionComponent>()->y));
   player->addComponent(new KeyBoardInputComponent(curLevel->worldMap));
   player->addComponent(new Camera(player,-1,0,curLevel->worldMap, curLevel->sprites));
-
   entities.push_back(player.get());
 
   int interval = parser.getInt("cpuwait");
+  // systems[0]->setRequired(PositionComponent, DirectionComponent,
+  // 			  SpeedComponent, KeyBoardInputComponent);
+  std::cout << systems[0]->isCompatibleWith(sprites[0]) << std::endl;
 
   while(!QuickCG::done()){
     SDL_Delay(interval); //so it consumes less processing power
     player->get<Camera>()->update();
-
     for(auto it = systems.begin(); it != systems.end(); it++){
       (*it)->update(entities);
     }

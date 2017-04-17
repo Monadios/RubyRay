@@ -4,6 +4,9 @@
 
 ConfigFileParser::ConfigFileParser()
 {
+  /*
+    Maybe this should load lua files instead
+   */
 }
 
 Json::Value ConfigFileParser::loadFile(std::string path)

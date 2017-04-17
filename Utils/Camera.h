@@ -9,6 +9,7 @@ class Player;
 #include "../Classes/GameObject.h"
 #include "../Utils/quickcg.h"
 #include "../Components/Component.h"
+#include "../Utils/ConfigFileParser.h"
 
 
 //These should be loaded from file or as an argument
@@ -22,7 +23,7 @@ public:
 	 std::vector<std::vector<int>>& map,
 	 std::vector<GameObject*> sprites);
 
-  void render();
+  void render(bool floorceil);
   void drawMiniMap();
 
   /*
@@ -36,8 +37,13 @@ public:
   double pX,pY;
   double dX,dY;
   double plX, plY;
-private:
   const std::shared_ptr<GameObject>& obj;
+private:
+  ConfigFileParser parser;
+  int texHeight;
+  int texWidth;
+  Uint32 floorColor;
+  Uint32 ceilColor;
   std::vector<Uint32> texture[12];
   Uint32 buffer[screenHeight][screenWidth];
   //1D Zbuffer

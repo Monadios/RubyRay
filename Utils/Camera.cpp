@@ -4,13 +4,9 @@
 #include "../Utils/quickcg.h"
 #include "../Utils/json/json.h"
 #include "../Utils/Camera.h"
-#include "../Utils/ConfigFileParser.h"
 #include "../Components/PositionComponent.h"
 #include "../Components/DirectionComponent.h"
 #include "../Components/TextureComponent.h"
-
-#define texWidth 64
-#define texHeight 64
 
 // Camera should take a gameobject
 Camera::Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
@@ -21,7 +17,7 @@ Camera::Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
   worldMap = map;
   PositionComponent* pos = obj->get<PositionComponent>();
   DirectionComponent* dir = obj->get<DirectionComponent>();
-  ConfigFileParser parser = ConfigFileParser();
+  parser = ConfigFileParser();
   parser.loadFile("./Data/cam.json");
   pX = pos->x;
   pY = pos->y;
@@ -29,14 +25,23 @@ Camera::Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
   dY = dir->y;
   plX = parser.getDouble("planeX");
   plY = parser.getDouble("planeY");
+  texHeight = parser.getInt("texHeight");
+  texWidth  = parser.getInt("texWidth");
 
-  QuickCG::screen(screenWidth,screenHeight, 0, "Raycaster");
+  QuickCG::screen(parser.getInt("screenW"),
+		  parser.getInt("screenH"),
+		  parser.getInt("fullscreen"),
+		  parser.getString("windowname"));
 
-  //load some textures
+  floorColor = (0x666600 >> 1) & 8355711;
+  ceilColor  = 0x666666;
+
+   //load some textures
   /*
     TODO: should probably find a better way of loading textures
     possibly automatic parsing of media folder
-   */
+  */
+
   unsigned long tw, th, error = 0;
 
   for(int i = 0; i < 12; i++){
@@ -60,10 +65,9 @@ Camera::Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
   error |= QuickCG::loadImage(texture[11], tw, th, "Media/guard.png");
   //TODO: Add actual error handling (throw exception)
   if(error) { std::cout << "error loading images" << std::endl; }
-
 }
 
-void Camera::render()
+void Camera::render(bool floorceil)
 {
   for(int _x = 0; _x < QuickCG::w; _x++)
     {
@@ -173,56 +177,60 @@ void Camera::render()
       //SET THE ZBUFFER FOR THE SPRITE CASTING
       ZBuffer[_x] = perpWallDist; //perpendicular distance is used
 
-      //FLOOR CASTING
-      double floorXWall, floorYWall; //x, y position of the floor texel at the bottom of the wall
+	//FLOOR CASTING
+	double floorXWall, floorYWall; //x, y position of the floor texel at the bottom of the wall
 
-      //4 different wall directions possible
-      if(side == 0 && rayDirX > 0)
-	{
-	  floorXWall = mapX;
-	  floorYWall = mapY + wallX;
-	}
-      else if(side == 0 && rayDirX < 0)
-	{
-	  floorXWall = mapX + 1.0;
-	  floorYWall = mapY + wallX;
-	}
-      else if(side == 1 && rayDirY > 0)
-	{
-	  floorXWall = mapX + wallX;
-	  floorYWall = mapY;
-	}
-      else
-	{
-	  floorXWall = mapX + wallX;
-	  floorYWall = mapY + 1.0;
-	}
+	//4 different wall directions possible
+	if(side == 0 && rayDirX > 0)
+	  {
+	    floorXWall = mapX;
+	    floorYWall = mapY + wallX;
+	  }
+	else if(side == 0 && rayDirX < 0)
+	  {
+	    floorXWall = mapX + 1.0;
+	    floorYWall = mapY + wallX;
+	  }
+	else if(side == 1 && rayDirY > 0)
+	  {
+	    floorXWall = mapX + wallX;
+	    floorYWall = mapY;
+	  }
+	else
+	  {
+	    floorXWall = mapX + wallX;
+	    floorYWall = mapY + 1.0;
+	  }
 
-      double distWall, distPlayer;
+	double distWall, distPlayer;
 
-      distWall = perpWallDist;
-      distPlayer = 0.0;
-      if (drawEnd < 0) drawEnd = QuickCG::h; //becomes < 0 when the integer overflows
-      //draw the floor from drawEnd to the bottom of the screen
-      for(int y = drawEnd + 1; y < QuickCG::h; y++)
-	{
-	  currentDist = QuickCG::h / (2.0 * y - QuickCG::h); //you could make a small lookup table for this instead
-	  double weight = (currentDist - distPlayer) / (distWall - distPlayer);
+	distWall = perpWallDist;
+	distPlayer = 0.0;
+	if (drawEnd < 0) drawEnd = QuickCG::h; //becomes < 0 when the integer overflows
+	//draw the floor from drawEnd to the bottom of the screen
+	for(int y = drawEnd + 1; y < QuickCG::h; y++)
+	  {
 
-	  double currentFloorX = weight * floorXWall + (1.0 - weight) * pX;
-	  double currentFloorY = weight * floorYWall + (1.0 - weight) * pY;
+	    currentDist = QuickCG::h / (2.0 * y - QuickCG::h); //you could make a small lookup table for this instead
+	    double weight = (currentDist - distPlayer) / (distWall - distPlayer);
 
-	  int floorTexX, floorTexY;
-	  floorTexX = int(currentFloorX * texWidth) % texWidth;
-	  floorTexY = int(currentFloorY * texHeight) % texHeight;
+	    double currentFloorX = weight * floorXWall + (1.0 - weight) * pX;
+	    double currentFloorY = weight * floorYWall + (1.0 - weight) * pY;
 
-	  //floor
-	  buffer[y][_x] = (texture[3][texWidth * floorTexY + floorTexX] >> 1) & 8355711;
-	  //ceiling (symmetrical!)
-	  buffer[QuickCG::h - y][_x] = texture[6][texWidth * floorTexY + floorTexX];
+	    int floorTexX, floorTexY;
+	    floorTexX = int(currentFloorX * texWidth) % texWidth;
+	    floorTexY = int(currentFloorY * texHeight) % texHeight;
+	    if(floorceil){
+	      floorColor = (texture[3][texWidth * floorTexY + floorTexX] >> 1) & 8355711;
+	      ceilColor = texture[6][texWidth * floorTexY + floorTexX];
+	    }
+	    //floor
+	    buffer[y][_x] = floorColor;
+	    //ceiling (symmetrical!)
+	    buffer[QuickCG::h - y][_x] = ceilColor;
 
-	}
-    }
+	  }
+      }
 
   //SPRITE CASTING
 
@@ -293,7 +301,7 @@ void Camera::render()
 		  Because the sprites vary in height, it is neccessary to divide
 		  the value by the a height variable (1 for 32 pixels height and
 		  2 for 64 pixels height)
-		 */
+		*/
 
 		// TODO: Give texcom a texY variable (seperate from heightfactor)
 		texY = ((d * texHeight) / spriteHeight) / (256 / 2);
@@ -330,7 +338,7 @@ void Camera::update()
   pY = obj->get<PositionComponent>()->y;
   dX = obj->get<DirectionComponent>()->x;
   dY = obj->get<DirectionComponent>()->y;
-  render();
+  render(parser.getInt("floorceil"));
   clearScreen();
   updateScreen();
 }
