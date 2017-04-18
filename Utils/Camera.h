@@ -19,7 +19,7 @@ class Player;
 class Camera : public Component
 {
 public:
-  Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
+  Camera(GameObject* _obj, double _dx, double _dy,
 	 std::vector<std::vector<int>>& map,
 	 std::vector<GameObject*> sprites);
 
@@ -37,7 +37,7 @@ public:
   double pX,pY;
   double dX,dY;
   double plX, plY;
-  const std::shared_ptr<GameObject>& obj;
+  GameObject* obj;
 private:
   ConfigFileParser parser;
   int texHeight;

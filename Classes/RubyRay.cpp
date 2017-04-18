@@ -45,9 +45,9 @@ void Game::MainLoop()
     temp.clear();
   }
 
-  std::vector<System*> systems
+  std::map<std::type_index, System*> systems
   {
-    new InputSystem()
+    {std::type_index(typeid(InputSystem)), new InputSystem()}
   };
   std::vector<GameObject*> entities;
   std::vector<GameObject*> sprites;
@@ -59,7 +59,7 @@ void Game::MainLoop()
 
   curLevel = new Level(sprites, worldMap);
 
-  player = std::shared_ptr<GameObject> (new GameObject());
+  player = new GameObject();
 
   player->addComponent(new PositionComponent(parser.getDouble("posX"),
 					     parser.getDouble("posY")));
@@ -75,18 +75,26 @@ void Game::MainLoop()
   // 					    player->get<PositionComponent>()->y));
   player->addComponent(new KeyBoardInputComponent(curLevel->worldMap));
   player->addComponent(new Camera(player,-1,0,curLevel->worldMap, curLevel->sprites));
-  entities.push_back(player.get());
+  entities.push_back(player);
 
   int interval = parser.getInt("cpuwait");
-  // systems[0]->setRequired(PositionComponent, DirectionComponent,
-  // 			  SpeedComponent, KeyBoardInputComponent);
-  std::cout << systems[0]->isCompatibleWith(sprites[0]) << std::endl;
+
+  systems[std::type_index(typeid(InputSystem))]->setRequired(std::vector<std::type_index>
+							     {
+							       std::type_index(typeid(PositionComponent)),
+							       std::type_index(typeid(DirectionComponent)),
+							       std::type_index(typeid(SpeedComponent)),
+							       std::type_index(typeid(KeyBoardInputComponent))
+							     });
+  // TODO: Make this return the correct values
+  std::cout << systems[std::type_index(typeid(InputSystem))]->isCompatibleWith(sprites[0]) << std::endl;
+  std::cout << systems[std::type_index(typeid(InputSystem))]->isCompatibleWith(player) << std::endl;
 
   while(!QuickCG::done()){
     SDL_Delay(interval); //so it consumes less processing power
     player->get<Camera>()->update();
     for(auto it = systems.begin(); it != systems.end(); it++){
-      (*it)->update(entities);
+      (*it).second->update(entities);
     }
   }
 }

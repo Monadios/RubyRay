@@ -8,7 +8,7 @@
 #include "../Components/SpeedComponent.h"
 #include "../Systems/InputSystem.h"
 
-void InputSystem::update(std::vector<GameObject*>& entities)
+void InputSystem::onUpdate(std::vector<GameObject*>& entities)
 {
   SDL_PumpEvents();
   keyboard = SDL_GetKeyState(NULL);

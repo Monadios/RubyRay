@@ -18,7 +18,7 @@ public:
   InputSystem() = default;
   ~InputSystem() = default;
 
-  void update(std::vector<GameObject*>& entities);
+  void onUpdate(std::vector<GameObject*>& entities);
   Uint8* keyboard;
 
 private:

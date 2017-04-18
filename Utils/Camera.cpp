@@ -9,7 +9,7 @@
 #include "../Components/TextureComponent.h"
 
 // Camera should take a gameobject
-Camera::Camera(const std::shared_ptr<GameObject>& _obj, double _dx, double _dy,
+Camera::Camera(GameObject* _obj, double _dx, double _dy,
 	       std::vector<std::vector<int>>& map,
 	       std::vector<GameObject*> _sprites) : worldMap(map), obj(_obj)
 {

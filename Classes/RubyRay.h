@@ -11,7 +11,7 @@ class Game
 {
 public:
   Game();
-  std::shared_ptr<GameObject> player;
+  GameObject* player;
   void MainLoop();
 private:
   Level* curLevel; // This should be a list of levels

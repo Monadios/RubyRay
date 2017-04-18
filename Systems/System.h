@@ -3,6 +3,7 @@
 
 #include<vector>
 #include <typeindex>
+#include<algorithm>
 
 #include "../Classes/GameObject.h"
 #include "../Components/Component.h"
@@ -10,20 +11,28 @@
 class System
 {
 public:
-  virtual void update(std::vector<GameObject*>& entities)=0;
+  void update(std::vector<GameObject*>& entities)
+  {
+    if(enabled){
+      onUpdate(entities);
+    }
+  }
 
-  void setRequired(std::vector<Component*> reqs) { required = reqs; }
+  virtual void onUpdate(std::vector<GameObject*>& entities)=0;
+
+  void setRequired(std::vector<std::type_index> reqs) { required = reqs; }
+
+  void setEnabled(bool b){ enabled = b; }
 
   bool isCompatibleWith(GameObject* e){
-    for(auto it = required.begin(); it != required.end(); it++){
-      if( e->components[std::type_index(typeid(it))] == nullptr ){
-	return false;
-      }
-    }
-    return true;
+    return std::any_of(required.begin(), required.end(),
+		       [=](std::type_index i){
+			 return (e->components.count(i) != 0);
+		       });
   }
 private:
-  std::vector<Component*> required;
+  std::vector<std::type_index> required;
+  bool enabled = true;
 };
 
 #endif

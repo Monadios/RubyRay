@@ -7,8 +7,6 @@ Vector Class
 Make Component Data only -- add systems (ECS)
 Make Camera a system
 Add Event System -> more immutability
-Make player a gameobject
-Remove raw pointers
 Public -> private
 Split level into areas and only update those
 Immutability
