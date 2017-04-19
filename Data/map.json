@@ -30,7 +30,6 @@
     "posY" : 11,
     "dirX" : -1,
     "dirY" : 0,
-    // These should be moved to a player settings file
     "rotFactor" : 3,
     "moveFactor" : 2,
     "cpuwait" : 5

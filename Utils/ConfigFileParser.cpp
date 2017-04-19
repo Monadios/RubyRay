@@ -1,4 +1,8 @@
 #include <fstream>
+#include<iostream>
+#include<string>
+#include <limits.h>
+#include <stdlib.h>
 
 #include "../Utils/ConfigFileParser.h"
 
@@ -11,8 +15,10 @@ ConfigFileParser::ConfigFileParser()
 
 Json::Value ConfigFileParser::loadFile(std::string path)
 {
-  std::ifstream config_file(path, std::ios::binary);
-  pathName = path;
+  char full[PATH_MAX];
+  realpath(path.c_str(), full);
+  std::cout << full << std::endl;
+  std::ifstream config_file(full, std::ios::binary);
   config_file >> root;
   return root;
 }
