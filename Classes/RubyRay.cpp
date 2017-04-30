@@ -9,6 +9,7 @@
 #include "../Utils/quickcg.h"
 #include "../Utils/Texture.h"
 #include "../Utils/Camera.h"
+#include "../Utils/EventManager.h"
 #include "../Systems/InputSystem.h"
 #include "../Systems/System.h"
 #include "../Components/TextureComponent.h"
@@ -25,7 +26,6 @@ Game::Game()
     Check if map is valid i.e wall along every edge to avoid infinite rays
     and crashing
   */
-
 }
 
 void Game::MainLoop()

@@ -3,7 +3,7 @@
     "planeY" : 0.66,
     "fullscreen" : false,
     "windowname" : "Raycaster",
-    "floorceil" : false,
+    "floorceil" : true,
     "texHeight" : 64,
     "texWidth"  : 64,
     "screenW" : 480,
