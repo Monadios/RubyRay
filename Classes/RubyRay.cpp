@@ -92,7 +92,7 @@ void Game::MainLoop()
   std::cout << systems[std::type_index(typeid(InputSystem))]->isCompatibleWith(player) << std::endl;
 
 
-  player->setOnReceive([](Event& e) { std::cout << "got event" << std::endl; });
+  player->setOnReceive([](GameObject* obj,Event& e) { std::cout << obj->id << std::endl; });
   EventManager::getInstance()->subscribe(player, Event("event"));
 
   while(!QuickCG::done()){

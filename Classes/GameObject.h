@@ -33,17 +33,17 @@ public:
     return nullptr;
   }
 
-  void setOnReceive(std::function<void(Event&)> f) { onReceive = f; }
+  void setOnReceive(std::function<void(GameObject*, Event&)> f) { onReceive = f; }
 
-  void receive(Event e){
+  void receive(GameObject* obj, Event e){
     if(onReceive){
-      onReceive(e);
+      onReceive(obj, e);
     }
   }
 
 private:
   static int idCounter;
-  std::function<void(Event&)> onReceive;
+  std::function<void(GameObject*, Event&)> onReceive;
 };
 
 #endif

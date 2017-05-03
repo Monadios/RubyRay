@@ -23,7 +23,7 @@ void EventManager::subscribe(GameObject* obj, Event type)
 void EventManager::fireEvent(Event e)
 {
   for(auto sub : subs[std::type_index(typeid(e))]){
-    sub->receive(e);
+    sub->receive(sub, e);
   }
 }
 
