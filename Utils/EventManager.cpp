@@ -8,7 +8,7 @@ EventManager* EventManager::getInstance()
   return instance;
 }
 
-void EventManager::subscribe(GameObject* obj, Event type)
+void EventManager::subscribe(GameObject* obj, Event* type)
 {
   std::type_index index = std::type_index(typeid(type));
   //TODO: Fix this. It is a lot of unnecessary operations
@@ -20,10 +20,10 @@ void EventManager::subscribe(GameObject* obj, Event type)
   }
 }
 
-void EventManager::fireEvent(Event e)
+void EventManager::fireEvent(Event* e)
 {
   for(auto sub : subs[std::type_index(typeid(e))]){
-    sub->receive(sub, e);
+    sub->receive(sub,e);
   }
 }
 

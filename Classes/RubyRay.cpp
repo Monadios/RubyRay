@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <cmath>
-
+#include <typeinfo>
 #include "../Classes/RubyRay.h"
 #include "../Classes/GameObject.h"
 #include "../Utils/json/json.h"
@@ -10,7 +10,7 @@
 #include "../Utils/Texture.h"
 #include "../Utils/Camera.h"
 #include "../Utils/EventManager.h"
-#include "../Events/Event.h"
+#include "../Events/PlayerShootEvent.h"
 #include "../Systems/InputSystem.h"
 #include "../Systems/System.h"
 #include "../Components/TextureComponent.h"
@@ -83,17 +83,21 @@ void Game::MainLoop()
   systems[std::type_index(typeid(InputSystem))]->setRequired(std::vector<std::type_index>
 							     {
 							       std::type_index(typeid(PositionComponent)),
-							       std::type_index(typeid(DirectionComponent)),
-							       std::type_index(typeid(SpeedComponent)),
-							       std::type_index(typeid(KeyBoardInputComponent))
-							     });
+								 std::type_index(typeid(DirectionComponent)),
+								 std::type_index(typeid(SpeedComponent)),
+								 std::type_index(typeid(KeyBoardInputComponent))
+								 });
   // TODO: Make this return the correct values
   std::cout << systems[std::type_index(typeid(InputSystem))]->isCompatibleWith(sprites[0]) << std::endl;
   std::cout << systems[std::type_index(typeid(InputSystem))]->isCompatibleWith(player) << std::endl;
 
 
-  player->setOnReceive([](GameObject* obj,Event& e) { std::cout << obj->id << std::endl; });
-  EventManager::getInstance()->subscribe(player, Event("event"));
+  player->setOnReceive([=](GameObject* obj,Event* e) {
+      std::cout << "Object: " << obj->id << std::endl;
+      std::cout << "Event: " << (static_cast<PlayerShootEvent*>(e))->y << std::endl;
+    });
+
+  EventManager::getInstance()->subscribe(player, new PlayerShootEvent(1,2));
 
   while(!QuickCG::done()){
     SDL_Delay(interval); //so it consumes less processing power
@@ -103,4 +107,3 @@ void Game::MainLoop()
     }
   }
 }
-

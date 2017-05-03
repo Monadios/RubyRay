@@ -6,9 +6,9 @@
 class Event
 {
 public:
-  Event(std::string eventName) : name(eventName) {}
-  std::string getName();
-private:
+  Event()=default;
+  ~Event()=default;
+  virtual std::string getName()=0;
   const std::string name;
 };
 
