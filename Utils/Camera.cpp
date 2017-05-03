@@ -8,7 +8,6 @@
 #include "../Components/DirectionComponent.h"
 #include "../Components/TextureComponent.h"
 
-// Camera should take a gameobject
 Camera::Camera(GameObject* _obj, double _dx, double _dy,
 	       std::vector<std::vector<int>>& map,
 	       std::vector<GameObject*> _sprites) : worldMap(map), obj(_obj)
@@ -36,17 +35,14 @@ Camera::Camera(GameObject* _obj, double _dx, double _dy,
   floorColor = (0x666600 >> 1) & 8355711;
   ceilColor  = 0x666666;
 
-   //load some textures
-  /*
-    TODO: should probably find a better way of loading textures
-    possibly automatic parsing of media folder
-  */
-
   unsigned long tw, th, error = 0;
 
   for(int i = 0; i < 12; i++){
     texture[i].reserve(texWidth*texHeight);
   }
+
+  // Loading textures
+
   error |= QuickCG::loadImage(texture[0], tw, th, "Media/eagle.png");
   error |= QuickCG::loadImage(texture[1], tw, th, "Media/redbrick.png");
   error |= QuickCG::loadImage(texture[2], tw, th, "Media/purplestone.png");
@@ -55,10 +51,6 @@ Camera::Camera(GameObject* _obj, double _dx, double _dy,
   error |= QuickCG::loadImage(texture[5], tw, th, "Media/mossy.png");
   error |= QuickCG::loadImage(texture[6], tw, th, "Media/wood.png");
   error |= QuickCG::loadImage(texture[7], tw, th, "Media/colorstone.png");
-
-  //load some sprite textures
-  unsigned long gw;
-  unsigned long gh;
   error |= QuickCG::loadImage(texture[8], tw, th, "Media/barrel.png");
   error |= QuickCG::loadImage(texture[9], tw, th, "Media/pillar.png");
   error |= QuickCG::loadImage(texture[10], tw, th, "Media/greenlight.png");
@@ -98,7 +90,6 @@ void Camera::render(bool floorceil)
       int hit = 0; //was there a wall hit?
       int side; //was a NS or a EW wall hit?
 
-      //calculate step and initial sideDist
       if (rayDirX < 0)
 	{
 	  stepX = -1;
@@ -119,6 +110,7 @@ void Camera::render(bool floorceil)
 	  stepY = 1;
 	  sideDistY = (mapY + 1.0 - rayPosY) * deltaDistY;
 	}
+
       //perform DDA
       while (hit == 0)
 	{

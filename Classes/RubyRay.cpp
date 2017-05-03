@@ -10,6 +10,7 @@
 #include "../Utils/Texture.h"
 #include "../Utils/Camera.h"
 #include "../Utils/EventManager.h"
+#include "../Events/Event.h"
 #include "../Systems/InputSystem.h"
 #include "../Systems/System.h"
 #include "../Components/TextureComponent.h"
@@ -55,7 +56,7 @@ void Game::MainLoop()
   sprites.push_back(new GameObject(std::vector<Component*> {
 	new PositionComponent(19,12),
 	  new DirectionComponent(-1,0),
-	  new TextureComponent("Media/guard.png",1,2)}));
+	  new TextureComponent("Media/georg.png",1,2)}));
 
   curLevel = new Level(sprites, worldMap);
 
@@ -89,6 +90,10 @@ void Game::MainLoop()
   // TODO: Make this return the correct values
   std::cout << systems[std::type_index(typeid(InputSystem))]->isCompatibleWith(sprites[0]) << std::endl;
   std::cout << systems[std::type_index(typeid(InputSystem))]->isCompatibleWith(player) << std::endl;
+
+
+  player->setOnReceive([](Event& e) { std::cout << "got event" << std::endl; });
+  EventManager::getInstance()->subscribe(player, Event("event"));
 
   while(!QuickCG::done()){
     SDL_Delay(interval); //so it consumes less processing power

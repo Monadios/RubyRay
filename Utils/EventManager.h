@@ -3,6 +3,7 @@
 
 #include<vector>
 #include<map>
+#include<typeindex>
 #include "../Events/Event.h"
 #include "../Classes/GameObject.h"
 
@@ -12,8 +13,9 @@ class EventManager
 public:
   void subscribe(GameObject* obj, Event type);
   static EventManager* getInstance();
+  void fireEvent(Event e);
 private:
-  std::map<GameObject*, Event> subs;
+  std::map<std::type_index, std::vector<GameObject*>> subs;
 };
 
 #endif

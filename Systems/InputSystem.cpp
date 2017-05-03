@@ -7,6 +7,7 @@
 #include "../Components/DirectionComponent.h"
 #include "../Components/SpeedComponent.h"
 #include "../Systems/InputSystem.h"
+#include "../Utils/EventManager.h"
 
 void InputSystem::onUpdate(std::vector<GameObject*>& entities)
 {
@@ -82,6 +83,8 @@ void InputSystem::onUpdate(std::vector<GameObject*>& entities)
 	if(keys->worldMap[pos->x+(1*cos(angle))][pos->y+(1*sin(angle))] == 2){
 	  keys->worldMap[pos->x+(1*cos(angle))][pos->y+(1*sin(angle))] = 0;
 	}
+
+	EventManager::getInstance()->fireEvent(Event("event"));
       }
   }
 }

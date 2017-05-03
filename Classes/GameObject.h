@@ -4,8 +4,9 @@
 #include <map>
 #include <typeindex>
 #include <vector>
-
+#include <functional>
 #include "../Components/Component.h"
+#include "../Events/Event.h"
 
 class GameObject
 {
@@ -17,11 +18,12 @@ public:
   std::map<std::type_index, Component*> components;
 
   void addComponent(Component* c);
-  virtual void update(){
+  void update(){
     for(const auto& pair : components ){
       pair.second->update();
     }
   };
+
   template <typename T>
   T* get() {
     auto it = components.find(std::type_index(typeid(T)));
@@ -30,8 +32,18 @@ public:
     }
     return nullptr;
   }
+
+  void setOnReceive(std::function<void(Event&)> f) { onReceive = f; }
+
+  void receive(Event e){
+    if(onReceive){
+      onReceive(e);
+    }
+  }
+
 private:
   static int idCounter;
+  std::function<void(Event&)> onReceive;
 };
 
 #endif

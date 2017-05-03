@@ -10,7 +10,21 @@ EventManager* EventManager::getInstance()
 
 void EventManager::subscribe(GameObject* obj, Event type)
 {
-  subs.insert(std::map<GameObject*, Event>::value_type(obj,type));
+  std::type_index index = std::type_index(typeid(type));
+  //TODO: Fix this. It is a lot of unnecessary operations
+  if(subs.find(index) == subs.end()){
+    // Not Found
+    subs[index] = {obj};
+  }else{
+    subs[index].push_back(obj);
+  }
 }
 
-EventManager* EventManager::instance  =  0;
+void EventManager::fireEvent(Event e)
+{
+  for(auto sub : subs[std::type_index(typeid(e))]){
+    sub->receive(e);
+  }
+}
+
+EventManager* EventManager::instance = 0;
