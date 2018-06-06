@@ -24,13 +24,14 @@ public:
 
   void setEnabled(bool b){ enabled = b; }
 
-  bool isCompatibleWith(GameObject* e){
+  bool isCompatibleWith(GameObject* e)
+  {
     return std::any_of(required.begin(), required.end(),
 		       [=](std::type_index i){
 			 return (e->components.count(i) != 0);
 		       });
   }
-private:
+ private:
   std::vector<std::type_index> required;
   bool enabled = true;
 };

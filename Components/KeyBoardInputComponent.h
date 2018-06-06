@@ -18,8 +18,7 @@ public:
   KeyBoardInputComponent(std::vector<std::vector<int>>& map ) : worldMap(map) {}
 
   ~KeyBoardInputComponent() = default;
-
-  inline void update() {};
+  void sendMessage( Msg msg ) {};
   std::vector<std::vector<int>>& worldMap;
 };
 

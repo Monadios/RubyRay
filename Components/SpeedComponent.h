@@ -6,8 +6,8 @@ public:
   SpeedComponent(double rot, double move,
 		 double rf, double mf) : rotSpeed(rot), moveSpeed(move),
 					 rotFac(rf), movFac(mf) {};
-  inline void update() {}
 
+  void sendMessage( Msg msg ) {};
   double rotSpeed;
   double moveSpeed;
   double rotFac;

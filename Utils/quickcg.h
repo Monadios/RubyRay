@@ -25,9 +25,7 @@
 
 /*
   QuickCG is an SDL 1.2 codebase that wraps some of the SDL 1.2 functionality.
-  It's used by Lode's Computer Graphics Tutorial to work with simple function calls
-  to demonstrate graphical programs. It may or may not be of industrial strength
-  for games, though I've actually used it for some.
+  It's used by Lode's Computer Graphics Tutorial to work with simple function calls to demonstrate graphical programs. It may or may not be of industrial strength for games, though I've actually used it for some.
 
   QuickCG can handle some things that standard C++ does not but that are useful, such as:
   -drawing graphics

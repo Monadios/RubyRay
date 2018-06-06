@@ -4,8 +4,7 @@ class DirectionComponent : public Component
 {
 public:
   DirectionComponent(double dx, double dy) : x(dx), y(dy) {};
-  inline void update() {}
-
+  void sendMessage( Msg msg ) {};
   double x;
   double y;
 };

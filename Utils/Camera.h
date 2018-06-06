@@ -25,7 +25,7 @@ public:
 
   void render(bool floorceil);
   void drawMiniMap();
-
+  void sendMessage(Msg msg) {}
   /*
     Note: these to functions should proably be made private
    */

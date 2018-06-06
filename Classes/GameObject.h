@@ -8,6 +8,7 @@
 #include "../Components/Component.h"
 #include "../Events/Event.h"
 
+
 class GameObject
 {
 public:
@@ -20,7 +21,7 @@ public:
   void addComponent(Component* c);
   void update(){
     for(const auto& pair : components ){
-      pair.second->update();
+      //      pair.second->update();
     }
   };
 
